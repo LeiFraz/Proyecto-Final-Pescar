@@ -1,9 +1,11 @@
 import './App.css'
+import Home from './pages/home'
 
 function App() {
 
   return (
     <>
+      <Home/>
       <div>
         <h1> GROW </h1>
       </div>
