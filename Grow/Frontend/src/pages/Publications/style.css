@@ -1,0 +1,211 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    background-color: rgba(0, 0, 0, 0.185);
+  
+}
+
+
+
+header{
+    background-color: rgb(145, 205, 169);
+    margin: 0;
+    display: flex;
+    height: 100%;
+}
+
+.titulares{
+    text-align: center;
+}
+.menu a{
+    text-decoration: none;
+    color:beige;
+    text-shadow: whitesmoke;
+    padding: 10px;
+    margin-top: auto;
+    justify-content: space-around;
+    align-items: flex-end;
+ }
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    background-size: contain;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+
+.productos,
+.servicios{
+    
+    background-color: aliceblue;
+    display: flex;
+    justify-content:space-between;
+    gap: 50px; /* Añade un espacio entre los elementos */
+    position: relative;
+    padding: 50px; /* Añade un padding interno para que no estén pegados a los bordes */
+  }
+
+  .producto,
+  .servicio{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: left;
+    padding: 0; 
+    margin-left: 10px; 
+    
+  }
+
+  .espacio-blanco{
+    padding: 60px;
+    background-color: aliceblue;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .servicio h2,
+  .servicio h3,
+  .producto h3,
+  .producto h2{
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+  .servicio-img,
+  .producto-img{
+    width: 100%;
+    height: auto;
+  }
+
+  .filtros{
+    text-decoration: none;
+    padding-left: 2%;
+    text-align: left;
+    display: flex;
+    justify-content: space-evenly;
+
+  }
+  .filtros img{
+    width: 3%;
+    height: auto;
+    padding-left: 0;
+  }
+
+
+  .espaciar-filtro{
+    display: flex;
+    align-items: center;
+  }
+  img{
+    width: 30%;
+    height: auto;
+  }
+
+  
+   
+.filtros {
+    display: flex;                  
+     justify-content: space-between; 
+     align-items: center;           
+     padding: 0 3%;                 
+     background-color: #000000da;
+     color: aliceblue;
+}
+.filtros img{
+    width: 20px;
+    height: auto;
+    color: aliceblue ;
+    filter: brightness(0) invert(1); /*hace la imagen de color blanco*/
+
+  }
+    
+  .tenue{
+    color: rgba(0, 0, 0, 0.651);
+    margin: 0;
+    padding: 0;
+  }
+
+ 
+   a:hover,
+  .servicio:hover,
+  .producto:hover,
+  .flecha-derecha:hover,
+  .flecha-izquierda:hover{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+
+  }
+
+  footer{
+    background-color: rgb(145, 205, 169);
+    display: flex;
+    gap: 10%;
+    padding-left: 15%;
+    padding-bottom: 5%;
+
+
+   
+  }
+
+  .social{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10%;
+
+
+  }
+  .redes,
+  .grow,
+  .tienda,
+  .ayuda{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10%;
+
+
+  }
+
+  .social a{
+    width: 2rem;
+    height: 2rem;
+    background-size: contain;
+    justify-content: space-between;
+    display: block;   
+
+  }
+
+  .social h2{
+    text-align: center;
+  }
+
+  .whatsapp{
+    background-image: url("whatsapp-logo.png") ;
+    background-repeat: no-repeat;
+  }
+
+  .facebook{
+    background-image: url("facebook-logo.png");
+    background-repeat: no-repeat;
+  }
+
+  .instagram{
+    background-image: url("instragram-logo.png");
+    background-repeat: no-repeat;
+ }
+
+  .footer a{
+    text-decoration: none;
+    color:beige;
+    text-shadow: whitesmoke;
+  }
