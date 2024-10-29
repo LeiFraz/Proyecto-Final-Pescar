@@ -1,7 +1,7 @@
 // Importamos el CSS y otros recursos
 import './upload.css';
-import logo from '../assets/logo_reducido_negro.png';
-import carrito from '../assets/carrito.png';
+import logo from '../../assets/img-upload/logo_reducido_negro.png';
+import carrito from '../../assets/img-upload/carrito.png';
 
 function Upload() {
     return (

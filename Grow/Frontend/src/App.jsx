@@ -1,15 +1,17 @@
 import './App.css'
-
 import { BrowserRouter } from 'react-router-dom'
 import { Routes } from './routes/Routes'
-import Header from './components/header';
 
-const App = () => {
+function App() {
+
   return (
-    <div>
-      <Header />
-    </div>
-  );
-};
+    <>
+      <BrowserRouter>
+        <Routes/>
+      </BrowserRouter>
+      
+    </>
+  )
+}
 
 export default App

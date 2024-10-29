@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import Layout from "../pages/Layout/Layout";
 import Publications from "../pages/Publications/Publications";
+import Upload from "../pages/Upload/upload";
 
 export const Routes = () => {
 
@@ -15,6 +16,10 @@ export const Routes = () => {
                 {
                     path: '/publicaciones',
                     element: <Publications/>
+                },
+                {
+                    path: '/publicaciones/crearPublicacion',
+                    element: <Upload/>
                 }
             ],
         }
