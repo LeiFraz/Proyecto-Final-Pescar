@@ -2,8 +2,16 @@
 import './upload.css';
 import logo from '../../assets/img-upload/logo_reducido_negro.png';
 import carrito from '../../assets/img-upload/carrito.png';
+import ModalSuccess from '../../components/Modals/ModalSuccess';
+import { useState } from 'react';
 
 function Upload() {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
+
     return (
     <div>
       {/* Header Superior */}
@@ -28,6 +36,11 @@ function Upload() {
         </div>
         </div>
     </header>
+
+    {/* Modal*/}
+    <ModalSuccess isOpen={isOpen} text={'Se creo la publicación exitosamente'}>
+        <button onClick={closeModal}> Aceptar </button>
+    </ModalSuccess>
 
       {/* Barra de Navegación Inferior */}
     <nav className="nav-bar">
@@ -85,7 +98,7 @@ function Upload() {
 
         <div className="buttons">
         <button className="save-btn">Guardar como borrador</button>
-        <button className="publish-btn">Publicar ahora</button>
+        <button className="publish-btn" onClick={openModal}>Publicar ahora</button>
         </div>
     </main>
     </div>
