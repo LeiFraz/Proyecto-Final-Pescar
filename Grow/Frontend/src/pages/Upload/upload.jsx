@@ -39,7 +39,7 @@ function Upload() {
 
     {/* Modal*/}
     <ModalSuccess isOpen={isOpen} text={'Se creo la publicación exitosamente'}>
-        <button onClick={closeModal}> Aceptar </button>
+        <button className='btn btn-success' onClick={closeModal}> Aceptar </button>
     </ModalSuccess>
 
       {/* Barra de Navegación Inferior */}
