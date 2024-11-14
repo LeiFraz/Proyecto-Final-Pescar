@@ -21,12 +21,23 @@ body {
     text-align: center;
 }
 
-.profile-pic img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 }
+
+.profile-pic img {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 3px solid #022e18; /* Añade un borde para simular la burbuja */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de elevación */
+    transition: transform 0.3s ease; /* Transición para efecto de flotación */
+}
+
+
 
 .sidebar-btn {
     display: block;
