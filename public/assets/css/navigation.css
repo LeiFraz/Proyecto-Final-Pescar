@@ -1,0 +1,213 @@
+.main-search{
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 90px; /* Para ver el efecto de centrado en la ventana */
+    background-color: #91cda9;
+}
+
+.nav {
+    width: 90%;
+    display: flex;
+    justify-content: space-between; /* Asegura que los elementos estén distribuidos entre izquierda, centro y derecha */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 10px 20px; /* Espaciado alrededor */
+
+}
+
+.nav a {
+    display: inline-block;
+    text-decoration: none; /* Eliminar subrayado de los enlaces */
+}
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+.image-hover:hover {
+    opacity: 1;
+}
+.image:hover{
+    opacity: 0;
+}
+.nav .search {
+    display: flex;
+    flex-grow: 1; /* Ocupa el espacio disponible */
+    height: 45px; /* Altura del contenedor de búsqueda */
+    max-width: 45%; /* Limita el ancho máximo */
+    margin: 0 auto; /* Centra el contenedor dentro del flex */
+    
+}
+
+.nav .search input {
+    width: 65%;
+    padding: 10px;
+    outline: none; /* Opcional: Elimina el borde de enfoque por defecto */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 5px rgba(134, 134, 134, 0.5);
+    border-radius: 7px 0px 0px 7px;
+    -webkit-border-radius: 7px 0px 0px 7px;
+    -moz-border-radius: 7px 0px 0px 7px;
+    -ms-border-radius: 7px 0px 0px 7px;
+    -o-border-radius: 7px 0px 0px 7px;
+}
+
+.nav .search button {
+    width: 20%;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 0px 7px 7px 0px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 5px 5px 5px rgba(134, 134, 134, 0.5);
+    -webkit-border-radius: 0px 7px 7px 0px;
+    -moz-border-radius: 0px 7px 7px 0px;
+    -ms-border-radius: 0px 7px 7px 0px;
+    -o-border-radius: 0px 7px 7px 0px;
+    transition: 0.3s ease;
+}
+.nav .search button:hover {
+    background-color: #12c258;
+    color: #000000;
+}
+
+.nav a:last-child {
+    margin-left: 20px; /* Espacio entre el último enlace y la barra de búsqueda */
+}
+.nav img{
+    width: 190px;
+}
+
+.carrito > div > a > img{
+    width: 35px;
+    transition: 0.3s ease;
+}
+.carrito > div > a > img:hover{
+    -webkit-filter: invert(100%); 
+    filter: invert(100%);
+}
+.carrito{
+    position: relative;
+    
+}
+.contador{
+    position: absolute;
+    background-color: #074910;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: 2px solid white; /* Borde blanco de 2px */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    bottom: 1rem;
+    left: 1.2rem;
+}
+.main-nav{
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 50px; /* Para ver el efecto de centrado en la ventana */
+    background-color: #1a1a1a;
+}
+.nav-container{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    
+}
+
+.nav-links-container{
+    padding: 16px 0;
+}
+.nav-links{
+    list-style: none;
+}
+.nav-links > .nav-link-item{
+    display: inline-block;
+    margin: 0 15px;
+    position: relative;
+}
+.nav-links > .nav-link-item > a{
+    text-decoration: none;
+    display: flex;
+    padding: 16px 0;
+    color: #999999;
+    font-weight: 600;
+    font-size: 0.95rem;
+    align-items: center;
+    
+
+}
+.nav-links > .nav-link-item > a:hover{
+    color: #fff;
+    transition: 0.3s ease;
+}
+.nav-link-item > a > .icon-down-open{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-left: 8px;
+    pointer-events: none;
+}
+.nav-link-item > a > .icon-user{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    pointer-events: none;
+}
+
+
+.nav-links > .nav-link-item > .dropdown-menu{
+    width: 200px;
+    position: absolute;
+    top: 80%;
+    left: -16px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    transform: translateY(0);
+    translate: 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.nav-links > .nav-link-item:hover > .dropdown-menu{
+    transform: translate(8px);
+    visibility: visible;
+    opacity: 1;
+}
+.nav-links > .nav-link-item > .dropdown-menu > .dropdown-menu-item{
+    list-style: none;
+}
+.nav-links > .nav-link-item > .dropdown-menu > .dropdown-menu-item > a{
+    text-decoration: none;
+    display: block;
+    color: #999999;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+    padding: 16px;
+}
+.nav-links > .nav-link-item > .dropdown-menu > .dropdown-menu-item > a:hover{
+    color: #fff;
+    background-color: #333333;
+}
