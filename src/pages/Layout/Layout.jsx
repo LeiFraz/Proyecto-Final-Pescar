@@ -113,8 +113,8 @@ const recargar=()=>{
         <div className="footer-copy-main">
             <section className="footer-copy container">
                 <p className="footer-copy-text" id="copyright">
-                    Copyright &copy
-                    <span id="current-year"></span>
+                    Copyright &#169;
+                    <span id="current-year">{new Date().getFullYear()} </span> 
                     Todos los derechos reservados
                 </p>
                 <div className="affiliates">
