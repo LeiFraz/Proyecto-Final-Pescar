@@ -16,7 +16,7 @@ const recargar=()=>{
 
         <>
             <div className="main-search" id="#">
-            <div className="nav container">
+            <div className="nav mycontainer">
                 <div className="image-wrapper">
                     <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src="/img/logo_negro.png" className="image"/></div>
                     <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src="/img/logo_bombilla2.png" className="image-hover"/></div>
@@ -35,13 +35,13 @@ const recargar=()=>{
             </div>
             </div>
             <div className="main-nav">
-            <div className="nav-container container">
+                <div className="nav-container mycontainer">
                 <div className="nav-links-container">
                     <ul className="nav-links">
                     <li className="nav-link-item"><a href="#">Inicio</a>
                     </li>
                     <li className="nav-link-item"><a href="#">Tienda <i className="icon-down-open"></i></a>
-                        <ul className="dropdown-menu">
+                        <ul className="dropdown_menu">
                             <li className="dropdown-menu-item"><a href="#">Productos</a></li>
                             <li className="dropdown-menu-item"><a href="#">Servicios</a></li>
                             <li className="dropdown-menu-item"><a href="#">Emprendimientos</a></li>
@@ -49,7 +49,7 @@ const recargar=()=>{
                     </li>
                     <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
                     <li className="nav-link-item"><a href="#">Contactanos</a></li>
-                    </ul>
+                </ul>
                 </div>
                 <div className="nav-links-container">
                     <ul className="nav-links">
@@ -57,11 +57,11 @@ const recargar=()=>{
                     </ul>
                 </div>
             </div>
-        </div>
+            </div>
             <Page/>
             <footer className="footer">
         <section className="footer-sections">
-            <div className="footer-sections-container container">
+            <div className="footer-sections-container mycontainer">
                 <article className="footer-section">
                 <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src={logofooter} alt="Grow" className="footer-logo"/></div>
                 </article>
@@ -111,7 +111,7 @@ const recargar=()=>{
             </div>
         </section>
         <div className="footer-copy-main">
-            <section className="footer-copy container">
+            <section className="footer-copy mycontainer">
                 <p className="footer-copy-text" id="copyright">
                     Copyright &#169;
                     <span id="current-year">{new Date().getFullYear()} </span> 
