@@ -1,0 +1,187 @@
+*{
+    box-sizing: border-box;
+}
+.main-container{
+    width: 80%;                /* El ancho será el 80% del contenedor padre */
+    max-width: 1200px;         /* El ancho no superará los 1200px */
+    margin: 0 auto;            /* Centra el contenedor horizontalmente */
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.banner {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: repeat(2, 6fr);
+    grid-column-gap: 1.2rem;
+    grid-row-gap: 1.2rem;
+    }
+.banner a{
+    text-decoration: none;
+    color: #000;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.699);
+    transition: 0.3s ease;
+}
+.banner a:hover{
+    color:#fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.banner-title{
+    font-size: 1.7rem;
+    padding-left: 10px;
+    font-weight: 600;
+    padding-top: 30px;
+}
+.products {
+    grid-area: 1 / 1 / 2 / 2;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(./img/torta.jpg);
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+.discounts { 
+    grid-area: 1 / 2 / 2 / 3; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(./img/globo.png);
+    background-size:cover;
+    background-position: center 70%;
+    background-repeat: no-repeat;
+    
+}
+.services { 
+    grid-area: 2 / 1 / 3 / 2; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url(./img/masaje.jpg);
+    background-size:cover;
+    background-position: center 72%;
+    background-repeat: no-repeat;
+}
+.entrepreneurship { 
+    grid-area: 2 / 2 / 3 / 3; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(./img/emprendimientos.jpg);
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.products,
+.discounts,
+.services,
+.entrepreneurship{
+    border-radius:5px;
+    height: 240px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 3px 5px 0px, rgba(60, 64, 67, 0.15) 0px 2px 3px 1px;
+    transition: filter 0.3s ease; /* Transición suave en el filtro */
+}
+.products:hover,
+.discounts:hover,
+.services:hover,
+.entrepreneurship:hover{
+    filter: brightness(1.35);
+}
+
+.more-info {
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.82); /* Rojo con opacidad del 50% */
+    color: #fff;
+    border: none;
+    border-radius: 0px 7px 7px 0px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 5px 5px 5px rgba(134, 134, 134, 0.5);
+    -webkit-border-radius: 0px 7px 7px 0px;
+    -moz-border-radius: 0px 7px 7px 0px;
+    -ms-border-radius: 0px 7px 7px 0px;
+    -o-border-radius: 0px 7px 7px 0px;
+    transition: 0.3s ease;
+    margin-top: 0.8rem;
+}
+.more-info:hover {
+    color: #12c258;
+    background-color: rgba(0, 0, 0, 1);
+}
+.section-title{
+    display: flex;
+    justify-content: space-between; 
+    margin-bottom: 1rem;
+}
+.section-title h2{
+    color: #000;
+    font-weight: 700;
+}
+.section-title a{
+    font-size: 1.25rem;
+    color: #00b207;
+    text-decoration: none;
+}
+.section-title a:hover{
+    text-shadow: 0 0 10px rgba(102, 255, 102, 0.5), 0 0 20px rgba(117, 255, 117, 0.445), 0 0 30px rgba(3, 255, 3, 0.308);
+}
+.notes-container img{
+    width: 50px;
+}
+.notes-container p{
+    margin: 0;
+}
+.notes-container{
+    border-radius:10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.notes-container {
+    min-height: 150px;
+    font-size: 0.75rem;
+}
+.notes{
+    width: 98%;
+    display: flex;
+    justify-content: space-evenly; /* Alinea la imagen a la izquierda */
+    align-items: center; /* Centra la imagen verticalmente */
+}
+.publication,
+.support,
+.connection,
+.pays{
+    display: flex;
+    justify-content: flex-start; /* Alinea la imagen a la izquierda */
+    align-items: center; /* Centra la imagen verticalmente */
+}
+.notes-icon{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.notes-p p{
+    margin-top: 0.3rem;
+}
+
+
+.categories-container{
+    flex-wrap: wrap;
+    height: auto;
+    display: flex;
+    justify-content: space-between; /* Alinea la imagen a la izquierda */
+
+    gap: 1.5rem; /* Espaciado entre tarjetas */
+    align-items: flex-start; /* Asegura que las tarjetas estén alineadas en la parte superior */
+}
+
+
+.products-container{
+    flex-wrap: wrap;
+    height: auto;
+    display: flex;
+    justify-content: space-between; /* Alinea la imagen a la izquierda */
+
+    gap: 1.5rem; /* Espaciado entre tarjetas */
+    align-items: flex-start; /* Asegura que las tarjetas estén alineadas en la parte superior */
+}
+
+
+.profiles-container{
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    justify-content: center; /* Centra horizontalmente las cards en el contenedor */
+    align-items: center; /* Centra verticalmente las cards en el contenedor (opcional) */
+    gap: 20px 0; /* 20px de separación vertical, 0px horizontal */
+    flex-wrap: wrap;
+}

@@ -1,0 +1,316 @@
+import { useEffect, useState } from "react";
+import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
+
+function Index() {
+    const [loading, setLoading] = useState(true); // Estado de carga
+
+    useEffect(() => {
+        // Verifica si el archivo CSS ya está en el head
+        const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
+        
+        if (!existingLink) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/src/pages/Index/index.css'; // Ruta al archivo CSS
+            document.head.appendChild(link);
+
+            // Cuando el archivo CSS se carga correctamente, actualizamos el estado de carga
+            link.onload = () => {
+                setLoading(false);  // Cambiar el estado a false después de que se cargue el CSS
+            };
+
+            // Si el archivo CSS no se carga correctamente (en caso de error)
+            link.onerror = (error) => {
+                console.error('Error al cargar el CSS:', error);
+                setLoading(false);  // Asegúrate de quitar el estado de carga si hay un error
+            };
+        } else {
+            setLoading(false);  // Si el CSS ya está cargado, no es necesario esperar
+        }
+
+        // Cleanup: Elimina el link cuando el componente se desmonte
+        return () => {
+            const link = document.querySelector('link[href="/src/pages/Index/index.css"]');
+            if (link) {
+                document.head.removeChild(link);
+            }
+        };
+    }, []);
+
+    // Si estamos cargando, mostramos el indicador de carga
+    if (loading) {
+        return <div className="loading-spinner">Cargando...</div>;
+    }
+    return(
+        <div className="montserrat-regular">
+            <div class="main-container">
+                <section class="banner" >
+                    <a href="#products-section" class=""><div class="products">
+                        <h3 class="banner-title">Productos Recomendados</h3>
+                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                    </div></a>
+                    <a href="#discounts-section"><div class="discounts">
+                        <h3 class="banner-title" >Ofertas Disponibles</h3>
+                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                    </div></a>
+                    <a href="#services-section"><div class="services">
+                        <h3 class="banner-title" >Servicios Recomendados</h3>
+                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                    </div></a>
+                    <a href="#entrepreneurships-section">
+                        <div class="entrepreneurship">
+                            <h3 class="banner-title" >Emprendimientos Recomendados</h3>
+                            <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                        </div></a>
+                </section>
+                <section class="notes-container">
+                    <div class="notes">
+                        <article class="publication">
+                            <div class="notes-icon"><img src="/src/pages/Index/img/laptop.png" alt=""/></div>
+                            <div class="notes-p"><strong>Fácil publicación</strong><p>Publica tus productos y servicios de forma sencilla y rápida.</p></div>
+                        </article>
+                        <article class="support">
+                            <div class="notes-icon"><img src="/src/pages/Index/img/headset.png" alt=""/></div>
+                            <div class="notes-p"><strong>Soporte al emprendedor</strong><p>Ayuda personalizada para gestionar tu negocio en GROW.</p></div>
+                        </article>
+                        <article class="connection">
+                            <div class="notes-icon"><img src="/src/pages/Index/img/chat.png" alt=""/></div>
+                            <div class="notes-p"><strong>Conexión directa</strong><p>Contacto de forma directa con tus emprendedores / clientes potenciales.</p></div>
+                        </article>
+                        <article class="pays">
+                            <div class="notes-icon"><img src="/src/pages/Index/img/introduction.png" alt=""/></div>
+                            <div class="notes-p"><strong>Pautas de Pago Flexibles</strong><p>Acuerda los terminos de pago que mejor se adapten a tu bolsillo.</p></div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+            <div class="main-container">
+                <section class="categories">
+                    <div class="section-title">
+                        <h2 class="section-subtitle">Categorías Populares</h2><a href="">Ver más <i class="icon-right"></i></a>
+                    </div>
+                    <div class="categories-container">
+                        {/* <!-- Cards category --> */}
+                        <CategoryCard
+                        imageUrl={"https://inevitable.co.uk/cdn/shop/files/5-minute-origami-3.jpg?v=1699550292"}
+                        categoryName={"Artesanías y Manualidades"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://static.bidcom.com.ar/publicacionesML/productos/MOCHP002/1000x1000-MOCHP002.jpg"}
+                        categoryName={"Belleza y Cuidado Personal"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://www.trucchis.com/cdn/shop/products/CookiePlatter_1000x.png?v=1601494532"}
+                        categoryName={"Alimentos y Bebidas"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://acdn.mitiendanube.com/stores/001/502/451/products/4combobotiqui-860e7ca38c6077765217268576722331-1024-1024.jpg"}
+                        categoryName={"Decoración y Hogar"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://m.media-amazon.com/images/I/613g46TIGWL.jpg"}
+                        categoryName={"Moda y Accesorios"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://vermontteddybear.com/cdn/shop/files/vtb-22883-15loveyourheartbear-kbkj15032_feature1_20190116_1623.jpg?v=1714330780"}
+                        categoryName={"Articulos para niños"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://www.theodist.com/Images/Printing/graphic-design-Theodist.jpg"}
+                        categoryName={"Diseño Gráfico"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://img.ltwebstatic.com/images3_spmp/2023/11/11/37/16996653637bf0436df6aae896dc05a3d3770c6cc2_thumbnail_720x.webp"}
+                        categoryName={"Jardinería"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://arsonyb2c.vtexassets.com/arquivos/ids/292580/FDR-AX700_Black_2.jpg?v=637124423932570000"}
+                        categoryName={"Fotografía y Vídeo"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://apfconsultores.es/wp-content/uploads/2021/07/asesoramiento-empresarial.png"}
+                        categoryName={"Consultoría y Asesoría"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://png.pngtree.com/png-clipart/20230131/ourmid/pngtree-indoor-tutoring-for-teachers-and-students-png-image_6198599.png"}
+                        categoryName={"Clases y Tutorías"}
+                        />
+                        <CategoryCard
+                        imageUrl={"https://www.tronxy3dprinter.com/cdn/shop/files/Tronxy-VEHO-1000-Large-3D-Printer.jpg?v=1723605345"}
+                        categoryName={"Impresión y Personalización"}
+                        />
+
+                    </div>
+                </section>
+            </div>
+
+            <div class="main-container">
+                <section class="products-section" id="products-section">
+                    <div class="section-title">
+                        <h2 class="section-subtitle">Productos Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+                    </div>
+                    <div class="products-container">
+                        {/* <!-- Cards products --> */}
+                        <ProductCard
+                        imageUrl="https://i.pinimg.com/originals/1a/e7/5d/1ae75d4027c349a8a9d56714370612cf.jpg"
+                        productName="Peluches a Crochet Personalizados"
+                        profileName="Crochetizate"
+                        originalPrice={30000}
+                        discount={20}
+                        />
+                        <ProductCard
+                        imageUrl="https://d22fxaf9t8d39k.cloudfront.net/d77b447786f2bdd7994fddc3bfd4e52d190a7c608926e912dc7d16a96500ab1d14657.png"
+                        productName="Mazo de Cartas Personalizado"
+                        profileName="CarteandoAndo"
+                        originalPrice={25000}
+                        />
+                        <ProductCard
+                        imageUrl="https://fbi.cults3d.com/uploaders/14619068/illustration-file/84bee593-e0c1-4a9d-ab3d-4e4846df1a12/017.jpg"
+                        productName="Figura impresa 3D a elección"
+                        profileName="Impresiones Xtreme"
+                        originalPrice={40000}
+                        discount={30}
+                        />
+                        <ProductCard
+                        imageUrl="https://i.pinimg.com/736x/f0/6c/88/f06c88e5b39d2c878be2427db5d09a1c.jpg"
+                        productName="Torta personalizada"
+                        profileName="Beli Pasteleria"
+                        originalPrice={35500}
+                        />
+                    </div>
+                </section>
+            </div>
+            
+            <div class="main-container">
+                <section class="services-section" id="services-section">
+                    <div class="section-title">
+                        <h2 class="section-subtitle">Servicios Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+                    </div>
+                    <div class="products-container">
+                        {/* <!-- Cards services --> */}
+                        <ProductCard
+                        imageUrl="https://institutotecnicorivadavia.com/webfiles/rivadavia/productos/68/2_1000x1000.jpg"
+                        productName="Instalación de aire acondicionado"
+                        profileName="Juan Instalaciones"
+                        originalPrice={70000}
+                        />
+                        <ProductCard
+                        imageUrl="https://www.spaoneandonly.cl/wp-content/uploads/2024/09/C7AD8ED4-BA67-4775-BA6A-BFC6832F6BC7-1-1000x1000.jpg"
+                        productName="Sesión de masaje por hora"
+                        profileName="MAXajes"
+                        originalPrice={10000}
+                        />
+                        <ProductCard
+                        imageUrl="https://siberiasalon.com/wp-content/smush-webp/2023/09/Glitter-1000x1000.jpg.webp"
+                        productName="Uñas permanentes personalizadas"
+                        profileName="Marlu Nails"
+                        originalPrice={8000}
+                        discount={25}
+                        />
+                        <ProductCard
+                        imageUrl="https://grupolasser.com/wp-content/uploads/2022/07/empresa-instalacion-camaras-empresas-comunidades-hogares-madrid.jpg"
+                        productName="Instalación de camaras de seguridad"
+                        profileName="SecurityCam"
+                        originalPrice={110000}
+                        discount={10}
+                        />
+                    </div>
+                </section>
+            </div>
+
+            <div class="main-container">
+                <section class="discounts-section" id="discounts-section">
+                    <div class="section-title">
+                        <h2 class="section-subtitle">Ofertas Disponibles</h2><a href="">Ver más <i class="icon-right"></i></a>
+                    </div>
+                    <div class="products-container">
+                        {/* <!-- Cards services products discount --> */}
+                        <ProductCard
+                        imageUrl="http://www.mesasdepool.com.ar/images/productos/Directorio/Directorio-01.jpg"
+                        productName="Mesa de pool giratoria"
+                        profileName="Piramide Pool"
+                        originalPrice={1000000}
+                        discount={70}
+                        />
+                        <ProductCard
+                        imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi8vNpeOn4mAIBd8SIfu7BqHUlmD-Qcj0Pmw&s"
+                        productName="Reparación de PC"
+                        profileName="Surfear"
+                        originalPrice={30000}
+                        discount={60}
+                        />
+                        <ProductCard
+                        imageUrl="https://www.santafe.gob.ar/ms/impulsa/wp-content/uploads/sites/67/2024/06/1-3.png"
+                        productName="Soldador profesional a domicilio"
+                        profileName="SPD Metales"
+                        originalPrice={60000}
+                        discount={30}
+                        />
+                        <ProductCard
+                        imageUrl="https://acdn.mitiendanube.com/stores/002/897/767/products/balde-de-albanil-comun11-5b35b60800072eacfb16882243036520-1024-1024.png"
+                        productName="Albañileria por dia"
+                        profileName="Raul Paez"
+                        originalPrice={35514}
+                        discount={20}
+                        />
+                    </div>
+                </section>
+            </div>
+            <div class="main-container">
+                <section class="entrepreneurships-section" id="entrepreneurships-section">
+                    <div class="section-title">
+                        <h2 class="section-subtitle">Emprendimientos Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+                    </div>
+                    <div class="profiles-container">
+                        {/* <!-- Cards profiles --> */}
+                        <ProfileCard
+                        imageUrl={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQReQFArnzkZPKmQ-YbY0EPY8TObhOlbSTQ&s"}
+                        profileName={"Piramide Pool"}
+                        description={"Pirámide es una empresa familiar que hace 25 años se dedica a la fabricación de diseños exclusivos de juegos de salón. Contamos con una amplia variedad de diseños, que se adaptan al gusto y necesidad de cada cliente. En la web se encuentran todos los modelos disponibles y, para una atención más personalizada, tenemos abierto nuestro showroom, atendido por sus dueños, quienes les brindarán una excelente atención."}
+                        />
+                        <ProfileCard
+                        imageUrl={"https://i.postimg.cc/hPBVg96b/logooooooooo.png"}
+                        profileName={"Beli Pasteleria"}
+                        description={"Pasteleria artesanal 🍪 📍José C Paz | San Miguel | Bella vista (Consulte por otras zonas)"}
+                        />
+                        <ProfileCard
+                        imageUrl={"https://marketplace.canva.com/EAE_Xy5fMq0/1/0/1600w/canva-logo-floral-para-emprendimiento-accesorios-jxJv6i75-lc.jpg"}
+                        profileName={"Alta Pinta Accesorios"}
+                        description={"Accesorios de todo tipo, llaveros, pines, pulseras, collares, todo hecho al detalle."}
+                        />
+                        <ProfileCard
+                        imageUrl={"https://creadordelogos.com.ar/_next/image/?url=%2Fimages%2Fes-AR%2Flogos%2Faurora.png&w=1920&q=75"}
+                        profileName={"Aurora"}
+                        description={"Productos para tu mascota, alimento balanceado, camas, cuchas, rascadores y juguetes para tu amigo peludo."}
+                        />
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        
+    );
+};
+
+
+export default Index;
+{/* <ProductCard
+        imageUrl="https://placehold.co/1000x1000"
+        productName="Peluche personalizado"
+        profileName="PeluchitosGod"
+        originalPrice={50000}
+        discount={50}
+        />
+
+        <CategoryCard
+        imageUrl="https://placehold.co/400x400"
+        categoryName="Hecho a Mano"
+        />
+
+        <ProfileCard
+        imageUrl={"https://placehold.co/1000x1000"}
+        profileName={"PeluchitosGod"}
+        description={"Peluches hechos a mano, a tejido, de tela y de lana personalizados a gusto del consumidor."}
+        /> */}

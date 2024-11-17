@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from '../../assets/Img-componentes/logo_negro.png';
 import logo2 from '../../assets/Img-componentes/logo_bombilla2.png';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
+
 function Layout() {
     
 

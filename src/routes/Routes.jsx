@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import Layout from "../pages/Layout/Layout";
 import Publications from "../pages/Publications/Publications";
 import Upload from "../pages/Upload/upload";
+import Index from "../pages/Index/Index";
 
 export const Routes = () => {
 
@@ -20,6 +21,10 @@ export const Routes = () => {
                 {
                     path: '/publicaciones/crearPublicacion',
                     element: <Upload/>
+                },
+                {
+                    path: '/inicio',
+                    element: <Index/>
                 }
             ],
         }

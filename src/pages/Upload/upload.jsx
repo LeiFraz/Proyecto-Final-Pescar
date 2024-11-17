@@ -1,11 +1,21 @@
 // Importamos el CSS y otros recursos
-import './upload.css';
+
 import logo from '../../assets/img-upload/logo_reducido_negro.png';
 import carrito from '../../assets/img-upload/carrito.png';
 import ModalSuccess from '../../components/Modals/ModalSuccess';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Upload() {
+    useEffect(() => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/src/pages/Upload/upload.css'; // Ruta al archivo CSS
+        document.head.appendChild(link);
+    
+        return () => {
+          document.head.removeChild(link); // Elimina el CSS cuando el componente se desmonta
+        };
+    }, []);
 
     const [isOpen, setIsOpen] = useState(false);
 
