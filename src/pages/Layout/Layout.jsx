@@ -35,7 +35,7 @@ const recargar=()=>{
                 </div>
             </div>
             </div>
-            <div className="main-nav">
+            <div className="main-nav montserrat-regular">
                 <div className="nav-container mycontainer">
                 <div className="nav-links-container">
                     <ul className="nav-links">
