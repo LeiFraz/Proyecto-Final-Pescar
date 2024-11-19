@@ -221,3 +221,15 @@ ul{
     color: #fff;
     background-color: #333333;
 }
+.profile{
+    border-bottom: #ccc 1px solid;
+}
+.profile:last-child{
+    border-bottom: 0px;
+}
+.nav-links > .nav-link-item > .dropdown_menu > .dropdown-menu-item  > .logout{
+    color: #c20d0d;
+}
+.nav-links > .nav-link-item > .dropdown_menu > .dropdown-menu-item  > .logout:hover{
+    color: #ff6a6a;
+}

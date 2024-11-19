@@ -9,7 +9,8 @@ function Index() {
     useEffect(() => {
         // Verifica si el archivo CSS ya está en el head
         const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
-        
+        const userData=localStorage.setItem("userId", "1234");
+        const userId=localStorage.getItem("userId");
         if (!existingLink) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -45,53 +46,53 @@ function Index() {
     }
     return(
         <div className="montserrat-regular">
-            <div class="main-container">
-                <section class="banner" >
-                    <a href="#products-section" class=""><div class="products">
-                        <h3 class="banner-title">Productos Recomendados</h3>
-                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+            <div className="main-container">
+                <section className="banner" >
+                    <a href="#products-section" className=""><div className="products">
+                        <h3 className="banner-title">Productos Recomendados</h3>
+                        <button className="more-info">Ver más <i className="icon-down-open"></i></button>
                     </div></a>
-                    <a href="#discounts-section"><div class="discounts">
-                        <h3 class="banner-title" >Ofertas Disponibles</h3>
-                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                    <a href="#discounts-section"><div className="discounts">
+                        <h3 className="banner-title" >Ofertas Disponibles</h3>
+                        <button className="more-info">Ver más <i className="icon-down-open"></i></button>
                     </div></a>
-                    <a href="#services-section"><div class="services">
-                        <h3 class="banner-title" >Servicios Recomendados</h3>
-                        <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                    <a href="#services-section"><div className="services">
+                        <h3 className="banner-title" >Servicios Recomendados</h3>
+                        <button className="more-info">Ver más <i className="icon-down-open"></i></button>
                     </div></a>
                     <a href="#entrepreneurships-section">
-                        <div class="entrepreneurship">
-                            <h3 class="banner-title" >Emprendimientos Recomendados</h3>
-                            <button class="more-info">Ver más <i class="icon-down-open"></i></button>
+                        <div className="entrepreneurship">
+                            <h3 className="banner-title" >Emprendimientos Recomendados</h3>
+                            <button className="more-info">Ver más <i className="icon-down-open"></i></button>
                         </div></a>
                 </section>
-                <section class="notes-container">
-                    <div class="notes">
-                        <article class="publication">
-                            <div class="notes-icon"><img src="/src/pages/Index/img/laptop.png" alt=""/></div>
-                            <div class="notes-p"><strong>Fácil publicación</strong><p>Publica tus productos y servicios de forma sencilla y rápida.</p></div>
+                <section className="notes-container">
+                    <div className="notes">
+                        <article className="publication">
+                            <div className="notes-icon"><img src="/src/pages/Index/img/laptop.png" alt=""/></div>
+                            <div className="notes-p"><strong>Fácil publicación</strong><p>Publica tus productos y servicios de forma sencilla y rápida.</p></div>
                         </article>
-                        <article class="support">
-                            <div class="notes-icon"><img src="/src/pages/Index/img/headset.png" alt=""/></div>
-                            <div class="notes-p"><strong>Soporte al emprendedor</strong><p>Ayuda personalizada para gestionar tu negocio en GROW.</p></div>
+                        <article className="support">
+                            <div className="notes-icon"><img src="/src/pages/Index/img/headset.png" alt=""/></div>
+                            <div className="notes-p"><strong>Soporte al emprendedor</strong><p>Ayuda personalizada para gestionar tu negocio en GROW.</p></div>
                         </article>
-                        <article class="connection">
-                            <div class="notes-icon"><img src="/src/pages/Index/img/chat.png" alt=""/></div>
-                            <div class="notes-p"><strong>Conexión directa</strong><p>Contacto de forma directa con tus emprendedores / clientes potenciales.</p></div>
+                        <article className="connection">
+                            <div className="notes-icon"><img src="/src/pages/Index/img/chat.png" alt=""/></div>
+                            <div className="notes-p"><strong>Conexión directa</strong><p>Contacto de forma directa con tus emprendedores / clientes potenciales.</p></div>
                         </article>
-                        <article class="pays">
-                            <div class="notes-icon"><img src="/src/pages/Index/img/introduction.png" alt=""/></div>
-                            <div class="notes-p"><strong>Pautas de Pago Flexibles</strong><p>Acuerda los terminos de pago que mejor se adapten a tu bolsillo.</p></div>
+                        <article className="pays">
+                            <div className="notes-icon"><img src="/src/pages/Index/img/introduction.png" alt=""/></div>
+                            <div className="notes-p"><strong>Pautas de Pago Flexibles</strong><p>Acuerda los terminos de pago que mejor se adapten a tu bolsillo.</p></div>
                         </article>
                     </div>
                 </section>
             </div>
-            <div class="main-container">
-                <section class="categories">
-                    <div class="section-title">
-                        <h2 class="section-subtitle">Categorías Populares</h2><a href="">Ver más <i class="icon-right"></i></a>
+            <div className="main-container">
+                <section className="categories">
+                    <div className="section-title">
+                        <h2 className="section-subtitle">Categorías Populares</h2><a href="">Ver más <i className="icon-right"></i></a>
                     </div>
-                    <div class="categories-container">
+                    <div className="categories-container">
                         {/* <!-- Cards category --> */}
                         <CategoryCard
                         imageUrl={"https://inevitable.co.uk/cdn/shop/files/5-minute-origami-3.jpg?v=1699550292"}
@@ -146,12 +147,12 @@ function Index() {
                 </section>
             </div>
 
-            <div class="main-container">
-                <section class="products-section" id="products-section">
-                    <div class="section-title">
-                        <h2 class="section-subtitle">Productos Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+            <div className="main-container">
+                <section className="products-section" id="products-section">
+                    <div className="section-title">
+                        <h2 className="section-subtitle">Productos Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
                     </div>
-                    <div class="products-container">
+                    <div className="products-container">
                         {/* <!-- Cards products --> */}
                         <ProductCard
                         imageUrl="https://i.pinimg.com/originals/1a/e7/5d/1ae75d4027c349a8a9d56714370612cf.jpg"
@@ -183,12 +184,12 @@ function Index() {
                 </section>
             </div>
             
-            <div class="main-container">
-                <section class="services-section" id="services-section">
-                    <div class="section-title">
-                        <h2 class="section-subtitle">Servicios Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+            <div className="main-container">
+                <section className="services-section" id="services-section">
+                    <div className="section-title">
+                        <h2 className="section-subtitle">Servicios Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
                     </div>
-                    <div class="products-container">
+                    <div className="products-container">
                         {/* <!-- Cards services --> */}
                         <ProductCard
                         imageUrl="https://institutotecnicorivadavia.com/webfiles/rivadavia/productos/68/2_1000x1000.jpg"
@@ -220,12 +221,12 @@ function Index() {
                 </section>
             </div>
 
-            <div class="main-container">
-                <section class="discounts-section" id="discounts-section">
-                    <div class="section-title">
-                        <h2 class="section-subtitle">Ofertas Disponibles</h2><a href="">Ver más <i class="icon-right"></i></a>
+            <div className="main-container">
+                <section className="discounts-section" id="discounts-section">
+                    <div className="section-title">
+                        <h2 className="section-subtitle">Ofertas Disponibles</h2><a href="">Ver más <i className="icon-right"></i></a>
                     </div>
-                    <div class="products-container">
+                    <div className="products-container">
                         {/* <!-- Cards services products discount --> */}
                         <ProductCard
                         imageUrl="http://www.mesasdepool.com.ar/images/productos/Directorio/Directorio-01.jpg"
@@ -242,7 +243,7 @@ function Index() {
                         discount={60}
                         />
                         <ProductCard
-                        imageUrl="https://www.santafe.gob.ar/ms/impulsa/wp-content/uploads/sites/67/2024/06/1-3.png"
+                        imageUrl=""
                         productName="Soldador profesional a domicilio"
                         profileName="SPD Metales"
                         originalPrice={60000}
@@ -258,12 +259,12 @@ function Index() {
                     </div>
                 </section>
             </div>
-            <div class="main-container">
-                <section class="entrepreneurships-section" id="entrepreneurships-section">
-                    <div class="section-title">
-                        <h2 class="section-subtitle">Emprendimientos Recomendados</h2><a href="">Ver más <i class="icon-right"></i></a>
+            <div className="main-container">
+                <section className="entrepreneurships-section" id="entrepreneurships-section">
+                    <div className="section-title">
+                        <h2 className="section-subtitle">Emprendimientos Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
                     </div>
-                    <div class="profiles-container">
+                    <div className="profiles-container">
                         {/* <!-- Cards profiles --> */}
                         <ProfileCard
                         imageUrl={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQReQFArnzkZPKmQ-YbY0EPY8TObhOlbSTQ&s"}

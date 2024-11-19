@@ -1,11 +1,20 @@
 import { Outlet as Page } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import logo from '../../assets/Img-componentes/logo_negro.png';
 import logo2 from '../../assets/Img-componentes/logo_bombilla2.png';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 
 function Layout() {
-    
+    const[id,setId] = useState()
+    const[tipo,setTipo] = useState()
+    useEffect(() => {
+        // Verifica si el archivo CSS ya está en el he
+        localStorage.setItem("userId", "1234");
+        localStorage.setItem("tipoPerfil","emprendedor")
+        setId(localStorage.getItem("userId"));
+        setTipo(localStorage.getItem("tipoPerfil"))
+    }, [id]);
 
     const navigate = useNavigate();
     const paginaRegistro = () => navigate('/registro') 
@@ -53,9 +62,24 @@ const recargar=()=>{
                 </ul>
                 </div>
                 <div className="nav-links-container">
-                    <ul className="nav-links">
+                    {!id?(
+                        <ul className="nav-links">
                         <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
-                    </ul>
+                        </ul>
+                    ) : (
+                    <ul className="nav-links">
+                        <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Nombre Cuenta <i className="icon-down-open"></i></a>
+                            <ul className="dropdown_menu">
+                                <li className="dropdown-menu-item profile"><a href="#">Perfil</a></li>
+                                {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
+                                {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
+                                <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
+                                <li className="dropdown-menu-item profile"><a href="#" className="logout"><i className="icon-logout"></i>Cerrar Sesión</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+                    )}
+                    
                 </div>
             </div>
             </div>
