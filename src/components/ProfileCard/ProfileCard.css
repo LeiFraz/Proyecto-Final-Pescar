@@ -1,0 +1,84 @@
+.card-profile {
+    width: 255px;
+    height: 430px;
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    outline: 2px solid #c0c0c0;
+    transition: 0.2s ease;
+}
+
+  .card-profile:hover {
+    outline: 2px solid #2c742f;
+    box-shadow: rgba(0, 207, 10, 0.35) 0px 5px 15px;
+    z-index: 2;
+  }
+
+  .card-profile-image {
+    width: 100%;
+    height: 192px;
+    flex-shrink: 0;
+    display: flex; /* Añadido para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    overflow: hidden;
+    background-color: #f4f4f4; /* Opcional, para un fondo en el contenedor */
+    padding: 10px;
+}
+
+.card-profile-image img {
+  max-width: 100%; /* Limita el ancho máximo al tamaño del contenedor */
+  max-height: 100%; /* Limita la altura máxima al tamaño del contenedor */
+  object-position: center; /* Centra la imagen */
+}
+  .card-profile-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: calc(500px - 192px); /* Altura total - altura de la imagen */
+    overflow: hidden;
+  }
+
+  .card-profile-title {
+    margin: 0 0 16px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-profile-description {
+    margin: 0 0 16px 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #666666;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    flex: 0 1 auto; /* No crecerá más allá de su contenido */
+  }
+
+  .card-profile-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+  }
+
+  .card-profile-button:hover {
+    background-color: #12c258;
+    color: #000000;
+  }
