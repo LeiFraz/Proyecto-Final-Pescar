@@ -5,106 +5,50 @@ body {
     background-color: #f4f4f4;
 }
 
-  /* Header superior */
-    .header {
-    background-color: #91CDA9;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
-
-    .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    }
-
-    .logo {
-    width: 100px;
-    }
-
-    .search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    gap: 5px;
-    }
-
-    .search-bar {
-    width: 100%;
-    max-width: 400px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    }
-
-    .search-btn {
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    }
-
-    .header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    }
-
-    .shopping-cart {
-    font-size: 14px;
-    }
-
-    .cart-btn, .login-btn {
-    padding: 8px 12px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin-left: auto;
-    color: #fff;
-    }
-
-  /* Barra de navegación inferior */
-    .nav-bar {
-    background-color: #333;
-    padding: 10px 20px;
-    display: flex;
-    justify-content:center;
-    gap: 15px;
-    }
-
-    .nav-bar a {
-    color: #d3d2d2;
-    text-decoration: none;
-    font-weight: 500;
-    }
-
-  /* Contenido principal */
-    .main-container {
+/* Contenido principal */
+.main-container {
     padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    }
+}
 
-    .info-general, .imagen, .precios, .categoria, .inventario {
+.info-general, .imagen, .precios, .categoria, .inventario {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+}
+
+label, input, textarea, select {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 1rem;
+    color: #333;
+}
+
+input, textarea, select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007BFF;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
 textarea {
-    width: 100%;
     height: 80px;
     resize: none;
 }
 
+/* Espaciado y alineación de botones */
 .buttons {
     grid-column: span 2;
     display: flex;
@@ -127,7 +71,10 @@ textarea {
     color: #fff;
 }
 
-    .cart-icon {
-    width: 20px;
-    height: 20px;
-    }
+.save-btn:hover {
+    background-color: #81c784;
+}
+
+.publish-btn:hover {
+    background-color: #0da848;
+}
