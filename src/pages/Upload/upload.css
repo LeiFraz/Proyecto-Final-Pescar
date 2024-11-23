@@ -7,7 +7,11 @@ body {
 
 /* Contenido principal */
 .main-container {
-    padding: 20px;
+    width: 80%;                /* El ancho será el 80% del contenedor padre */
+    max-width: 1200px;         /* El ancho no superará los 1200px */
+    margin: 0 auto;            /* Centra el contenedor horizontalmente */
+    margin-top: 45px;
+    margin-bottom: 45px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -20,14 +24,19 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-label, input, textarea, select {
+.main-container label, 
+.main-container input, 
+.main-container textarea, 
+.main-container select {
     display: block;
     margin-bottom: 16px;
     font-size: 1rem;
     color: #333;
 }
 
-input, textarea, select {
+.main-container input, 
+.main-container textarea, 
+.main-container select {
     width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
@@ -36,8 +45,142 @@ input, textarea, select {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
+.calcContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+    margin-bottom: 16px;
+}
+.botonPrecio{
+    height: 40px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+
+}
+/* Cambiar el estilo al pasar el ratón por el contenedor */
+.labelPrecio:hover .checkPrecio {
+    background-color: #ccc;
+}
+
+/* Cuando el checkbox está marcado, cambia el fondo del indicador */
+.labelPrecio .inputPrecio:checked + .checkPrecio {
+    background-color: #2196F3;
+}
+.labelPrecio input{
+    appearance: none;
+    position: absolute;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+/* Crear la marca de verificación (invisible por defecto) */
+.checkPrecio:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Mostrar la marca de verificación cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio:after {
+    display: block;
+}
+
+/* Estilo de la marca de verificación */
+.checkPrecio:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Estilo inicial del checkPrecio (indicador visual del checkbox) */
+.checkPrecio {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+}
+.inputPrecio{
+    margin: 0;
+}
+/* Ocultar completamente el checkbox nativo */
+.inputPrecio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Cambiar el estilo del indicador visual al pasar el ratón por el contenedor */
+.labelPrecio:hover .checkPrecio {
+    background-color: #ccc;
+}
+
+/* Cambiar el estilo del indicador visual cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio {
+    background-color: #12C258;
+}
+
+/* Crear la marca de verificación (invisible por defecto) */
+.checkPrecio:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Mostrar la marca de verificación cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio:after {
+    display: block;
+}
+
+/* Estilo de la marca de verificación */
+.checkPrecio:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(8, 8, 8);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+/* Estilo inicial del checkPrecio (indicador visual del checkbox) */
+.checkPrecio {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Estilo del label para centrar contenido */
+.main-container .precios .labelPrecio {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
 
 input:focus, textarea:focus, select:focus {
+    outline: none;
     border-color: #007BFF;
     background-color: #ffffff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -77,4 +220,8 @@ textarea {
 
 .publish-btn:hover {
     background-color: #0da848;
+}
+.error-message{
+    color: red;
+    font-size: 0.8rem;
 }

@@ -1,13 +1,15 @@
 import { Outlet as Page } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import logo from '../../assets/Img-componentes/logo_negro.png';
-import logo2 from '../../assets/Img-componentes/logo_bombilla2.png';
+import { useEffect, useState, useRef } from "react";
+import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
+import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
 
 function Layout() {
     const[id,setId] = useState()
     const[tipo,setTipo] = useState()
+    const lottieRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(false);
     useEffect(() => {
         // Verifica si el archivo CSS ya está en el he
         localStorage.setItem("userId", "1234");
@@ -22,14 +24,47 @@ function Layout() {
 const recargar=()=>{
     window.location.reload();
 }
+
+const handleMouseEnter = () => {
+    if (lottieRef.current) {
+      setIsPlaying(true);
+      lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
+      const currentFrame = lottieRef.current.currentFrame;
+      lottieRef.current.goToAndPlay(currentFrame, true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (lottieRef.current) {
+      setIsPlaying(false);
+      lottieRef.current.setSpeed(-1.5);
+      const currentFrame = lottieRef.current.currentFrame;
+      lottieRef.current.goToAndPlay(currentFrame, true);
+    }
+  };
+
+  const handleComplete = () => {
+    if (!isPlaying && lottieRef.current) {
+      lottieRef.current.setSpeed(1.5); // Reseteamos la velocidad cuando termina la reversa
+      lottieRef.current.goToAndStop(0); // Nos aseguramos que se detenga en el frame 0
+    }
+  };
     return(
 
         <>
             <div className="main-search" id="#">
             <div className="nav mycontainer">
-                <div className="image-wrapper">
-                    <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src="/img/logo_negro.png" className="image"/></div>
-                    <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src="/img/logo_bombilla2.png" className="image-hover"/></div>
+                <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <a href="" className="logo-link">
+                <Lottie
+                    lottieRef={lottieRef}
+                    animationData={animationData}
+                    autoplay={false}
+                    loop={false}
+                    speed={isPlaying ? 1 : -1}
+                    onComplete={handleComplete}
+                />
+                </a>
                 </div>
                 
                 <div className="search">
@@ -88,7 +123,9 @@ const recargar=()=>{
         <section className="footer-sections">
             <div className="footer-sections-container mycontainer">
                 <article className="footer-section">
-                <div role="link" tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}><img src={logofooter} alt="Grow" className="footer-logo"/></div>
+                <div role="link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} tabIndex={0} onClick={volverArriba} style={{ cursor: 'pointer' }}>
+                    <img src={logofooter} alt="Grow" className="footer-logo"/>
+                </div>
                 </article>
                 <article className="footer-section">
                     <h3 className="footer-section-title">Mi Cuenta</h3>

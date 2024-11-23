@@ -22,6 +22,13 @@
     position: relative;
     display: inline-block;
 }
+.logo-wrapper {
+    width: 200px;
+    display: inline-block;
+}
+.logo-link{
+    margin: 0;
+}
 .image-hover {
     position: absolute;
     top: 0;
@@ -78,9 +85,7 @@
     color: #000000;
 }
 
-.nav a:last-child {
-    margin-left: 20px; /* Espacio entre el último enlace y la barra de búsqueda */
-}
+
 .nav img{
     width: 190px;
 }

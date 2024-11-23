@@ -3,6 +3,8 @@ import Layout from "../pages/Layout/Layout";
 import Publications from "../pages/Publications/Publications";
 import Upload from "../pages/Upload/upload";
 import Index from "../pages/Index/Index";
+import CrearPublicacion from "../pages/CrearPublicacionTest/CrearPublicacion";
+import CreateEntrepreneur from "../pages/CreateEntrepreneur/CreateEntrepreneur";
 
 export const Routes = () => {
 
@@ -12,7 +14,7 @@ export const Routes = () => {
             children: [
                 {
                     path: '/',
-                    element: <Publications/>
+                    element: <Index/>
                 },
                 {
                     path: '/publicaciones',
@@ -25,6 +27,10 @@ export const Routes = () => {
                 {
                     path: '/inicio',
                     element: <Index/>
+                },
+                {
+                    path:'/emprendimientos/crearEmprendimiento',
+                    element:<CreateEntrepreneur/>
                 }
             ],
         }
