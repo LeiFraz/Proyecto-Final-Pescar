@@ -1,0 +1,99 @@
+.postCard {
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.postProductImage {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-right: 1rem;
+}
+.postCardContainer .cardLink{
+    z-index: 1;
+    display: block;
+}
+.postCardContainer{
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+.postCardContainer:hover{
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.postCardContainer .profileLink{
+    color: #333;
+    z-index: 2;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.postInfo {
+    flex: 1;
+}
+
+.postTitle {
+    font-size: 1rem;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    text-decoration: none;
+}
+
+.postPriceContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.postCurrentPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+.noPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #007BFF;
+    margin: 0;
+}
+.noPrice::first-letter{
+    color: #333;
+}
+.postOriginalPrice {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.postDiscount {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin: 0;
+}
+/* Cambiar el título a verde al hacer hover en la card */
+.greenText {
+    color: #2c742f !important;
+}
+
+.blackText {
+    color: #333 !important;
+}
+
+.entrepreneurName{
+    display: inline-block;
+}
+.profileName{
+    margin: 0;
+}

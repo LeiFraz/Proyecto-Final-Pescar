@@ -55,7 +55,7 @@ const handleMouseEnter = () => {
             <div className="main-search" id="#">
             <div className="nav mycontainer">
                 <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="" className="logo-link">
+                <a href="/inicio" className="logo-link">
                 <Lottie
                     lottieRef={lottieRef}
                     animationData={animationData}
