@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import CardPublications from '../../components/CardPublications/CardPublications';
 import styles from './Publications.module.css';
 import Select from 'react-select';
@@ -18,12 +19,18 @@ const obtenerCategorias = async (setCategorias) => {
 };
 
 function Publications() {
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const tipo = params.get('tipo');  // Obtiene el valor del parámetro "tipo"
+    const descuento=params.get('descuento');
+    const orden=params.get('orden');
     const options = [
         { value: "", label: <><i className="icon-th-list"></i> Ordenar por</> },
         { value: "A-Z", label: "A - Z" },
         { value: "Z-A", label: "Z - A" },
         { value: "Baratos", label: "Más baratos primero" },
         { value: "Caros", label: "Más caros primero" },
+        { value: "MasDescuento", label: "Mayor descuento" },
         { value: "Convenir", label: "A convenir primero" },
     ];
 
@@ -162,6 +169,13 @@ function Publications() {
 
     useEffect(() => {
         obtenerCategorias(setCategorias);
+        if(tipo){
+            filtros.tipo=tipo
+        }
+        if(descuento && orden){
+            filtros.descuento=descuento
+            filtros.ordenar=orden
+        }
     }, []);
 
     useEffect(() => {

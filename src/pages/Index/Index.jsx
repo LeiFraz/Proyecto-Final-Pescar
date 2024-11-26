@@ -150,7 +150,7 @@ function Index() {
             <div className="main-container">
                 <section className="products-section" id="products-section">
                     <div className="section-title">
-                        <h2 className="section-subtitle">Productos Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
+                        <h2 className="section-subtitle">Productos Recomendados</h2><a href="/publicaciones?tipo=producto">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="products-container">
                         {/* <!-- Cards products --> */}
@@ -187,7 +187,7 @@ function Index() {
             <div className="main-container">
                 <section className="services-section" id="services-section">
                     <div className="section-title">
-                        <h2 className="section-subtitle">Servicios Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
+                        <h2 className="section-subtitle">Servicios Recomendados</h2><a href="/publicaciones?tipo=servicio">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="products-container">
                         {/* <!-- Cards services --> */}
@@ -224,7 +224,7 @@ function Index() {
             <div className="main-container">
                 <section className="discounts-section" id="discounts-section">
                     <div className="section-title">
-                        <h2 className="section-subtitle">Ofertas Disponibles</h2><a href="">Ver más <i className="icon-right"></i></a>
+                        <h2 className="section-subtitle">Ofertas Disponibles</h2><a href="/publicaciones?descuento=5&orden=MasDescuento">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="products-container">
                         {/* <!-- Cards services products discount --> */}
