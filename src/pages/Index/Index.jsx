@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
+const obtenerCategorias = async (setCategorias) => {
+    try {
+        // Realizar la solicitud GET
+        const response = await axios.get('http://localhost:5000/api/categoria/limit/12');
+        console.log(response)
+        // Desestructurar y obtener solo los campos "id" y "nombre" de cada publicación
+        const categoriasData = response.data.map(categoria => ({
+            id: categoria._id,
+            nombre: categoria.nombre,
+            imagen: categoria.imagen
+        }));
 
+        // Actualizar el estado con los datos filtrados
+        setCategorias(categoriasData);
+    } catch (error) {
+        console.error('Error al obtener las categorias:', error);
+    }
+};
 function Index() {
     const [loading, setLoading] = useState(true); // Estado de carga
-
+    const [categorias, setCategorias] = useState([]);
     useEffect(() => {
-        // Verifica si el archivo CSS ya está en el head
+        obtenerCategorias(setCategorias);
         const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
         const userData=localStorage.setItem("userId", "1234");
         const userId=localStorage.getItem("userId");
@@ -90,58 +108,17 @@ function Index() {
             <div className="main-container">
                 <section className="categories">
                     <div className="section-title">
-                        <h2 className="section-subtitle">Categorías Populares</h2><a href="">Ver más <i className="icon-right"></i></a>
+                        <h2 className="section-subtitle">Categorías Populares</h2><a href="/categorias">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="categories-container">
-                        {/* <!-- Cards category --> */}
-                        <CategoryCard
-                        imageUrl={"https://inevitable.co.uk/cdn/shop/files/5-minute-origami-3.jpg?v=1699550292"}
-                        categoryName={"Artesanías y Manualidades"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://static.bidcom.com.ar/publicacionesML/productos/MOCHP002/1000x1000-MOCHP002.jpg"}
-                        categoryName={"Belleza y Cuidado Personal"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://www.trucchis.com/cdn/shop/products/CookiePlatter_1000x.png?v=1601494532"}
-                        categoryName={"Alimentos y Bebidas"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://acdn.mitiendanube.com/stores/001/502/451/products/4combobotiqui-860e7ca38c6077765217268576722331-1024-1024.jpg"}
-                        categoryName={"Decoración y Hogar"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://m.media-amazon.com/images/I/613g46TIGWL.jpg"}
-                        categoryName={"Moda y Accesorios"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://vermontteddybear.com/cdn/shop/files/vtb-22883-15loveyourheartbear-kbkj15032_feature1_20190116_1623.jpg?v=1714330780"}
-                        categoryName={"Articulos para niños"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://www.theodist.com/Images/Printing/graphic-design-Theodist.jpg"}
-                        categoryName={"Diseño Gráfico"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://img.ltwebstatic.com/images3_spmp/2023/11/11/37/16996653637bf0436df6aae896dc05a3d3770c6cc2_thumbnail_720x.webp"}
-                        categoryName={"Jardinería"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://arsonyb2c.vtexassets.com/arquivos/ids/292580/FDR-AX700_Black_2.jpg?v=637124423932570000"}
-                        categoryName={"Fotografía y Vídeo"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://apfconsultores.es/wp-content/uploads/2021/07/asesoramiento-empresarial.png"}
-                        categoryName={"Consultoría y Asesoría"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://png.pngtree.com/png-clipart/20230131/ourmid/pngtree-indoor-tutoring-for-teachers-and-students-png-image_6198599.png"}
-                        categoryName={"Clases y Tutorías"}
-                        />
-                        <CategoryCard
-                        imageUrl={"https://www.tronxy3dprinter.com/cdn/shop/files/Tronxy-VEHO-1000-Large-3D-Printer.jpg?v=1723605345"}
-                        categoryName={"Impresión y Personalización"}
-                        />
+                    {categorias.map(categoria => (
+                            <CategoryCard key={categoria.id}
+                            imageUrl={categoria.imagen}
+                            categoryName={categoria.nombre}
+                            id={categoria.id}
+                            />
+                ))}
+                        
 
                     </div>
                 </section>
@@ -171,8 +148,8 @@ function Index() {
                         imageUrl="https://fbi.cults3d.com/uploaders/14619068/illustration-file/84bee593-e0c1-4a9d-ab3d-4e4846df1a12/017.jpg"
                         productName="Figura impresa 3D a elección"
                         profileName="Impresiones Xtreme"
-                        originalPrice={40000}
-                        discount={30}
+                        originalPrice={0}
+                        discount={0}
                         />
                         <ProductCard
                         imageUrl="https://i.pinimg.com/736x/f0/6c/88/f06c88e5b39d2c878be2427db5d09a1c.jpg"
@@ -262,7 +239,7 @@ function Index() {
             <div className="main-container">
                 <section className="entrepreneurships-section" id="entrepreneurships-section">
                     <div className="section-title">
-                        <h2 className="section-subtitle">Emprendimientos Recomendados</h2><a href="">Ver más <i className="icon-right"></i></a>
+                        <h2 className="section-subtitle">Emprendimientos Recomendados</h2><a href="/emprendimientos">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="profiles-container">
                         {/* <!-- Cards profiles --> */}

@@ -21,7 +21,8 @@ return (
         {discount > 0 && <div className="discount-badge">-{discount}%</div>}
         <div className="hover-overlay">
         <Link href="#" className="overlay-link"></Link>
-        <button className="add-to-cart">Añadir al carrito</button>
+        {currentPrice>0 && <button className="add-to-cart">Añadir al carrito</button>}
+        {currentPrice==0 && <button className="add-to-cart">Contactar</button>}
         <div className="action-buttons">
             <button className="action-button">
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -44,8 +45,9 @@ return (
         <p>{profileName}</p>
         </Link>
         <div className="price-container">
-        <span className="current-price">{formatPrice(currentPrice)}</span>
-        {currentPrice && currentPrice!=originalPrice && <span className="original-price">{formatPrice(originalPrice)}</span>}
+        {currentPrice>0 && <span className="current-price">{formatPrice(currentPrice)}</span>}
+        {currentPrice==0 && <span className="current-price">$ A convenir</span>}
+        {currentPrice>0 && currentPrice!=originalPrice && <span className="original-price">{formatPrice(originalPrice)}</span>}
         </div>
     </div>
     </div>

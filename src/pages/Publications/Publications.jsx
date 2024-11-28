@@ -24,6 +24,7 @@ function Publications() {
     const tipo = params.get('tipo');  // Obtiene el valor del parámetro "tipo"
     const descuento=params.get('descuento');
     const orden=params.get('orden');
+    const categoria=params.get('categoria');
     const options = [
         { value: "", label: <><i className="icon-th-list"></i> Ordenar por</> },
         { value: "A-Z", label: "A - Z" },
@@ -79,7 +80,7 @@ function Publications() {
     };
 
     const manejarCambioFiltro = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked } = e.target || { name: 'categoria', value: e?.value };
     
         setFiltros(prevFiltros => {
             const nuevosFiltros = {
@@ -102,10 +103,11 @@ function Publications() {
     };
 
     const manejarCambioOrden = (opcionSeleccionada) => {
-        setFiltros(prevFiltros => ({
-            ...prevFiltros,
-            ordenar: opcionSeleccionada.value
-        }));
+            setFiltros(prevFiltros => ({
+                ...prevFiltros,
+                ordenar: opcionSeleccionada.value
+            }));
+        
     };
 
 
@@ -169,6 +171,7 @@ function Publications() {
 
     useEffect(() => {
         obtenerCategorias(setCategorias);
+        
         if(tipo){
             filtros.tipo=tipo
         }
@@ -176,12 +179,21 @@ function Publications() {
             filtros.descuento=descuento
             filtros.ordenar=orden
         }
+        if(categoria){
+            filtros.categoria=categoria
+        }
     }, []);
 
     useEffect(() => {
         obtenerPublicaciones(1); // Reset a la primera página cuando cambian los filtros
     }, [filtros]);
-
+    const categoriasOptions = [
+        { value: "", label: "Todas" },
+        ...categorias.map(categoria => ({
+            value: categoria.id,
+            label: categoria.nombre,
+        }))
+    ];
     return (
         <div className={styles.mainContainer}>
             <div className={styles.filterProductsContainer}>
@@ -207,18 +219,16 @@ function Publications() {
 
                         <div className={`${styles.categories} ${styles.filter}`}>
                             <h2 className={styles.subtitle}>Categorias</h2>
-                            <select 
-                                name="categoria" 
-                                onChange={manejarCambioFiltro}
-                                value={filtros.categoria}
-                            >
-                                <option value="">Todas</option>
-                                {categorias.map(categoria => (
-                                    <option key={categoria.id} value={categoria.id}>
-                                        {categoria.nombre}
-                                    </option>
-                                ))}
-                            </select>
+                            <Select
+                                options={categoriasOptions}
+                                name="categoria"
+                                value={categoriasOptions.find(option => option.value === filtros.categoria)}
+                                onChange={(selectedOption) =>
+                                    manejarCambioFiltro({ target: { name: "categoria", value: selectedOption?.value } })
+                                }
+                                placeholder="Todas"
+                                isClearable
+                            />
                         </div>
 
                         <div className={`${styles.price} ${styles.filter}`}>
@@ -311,6 +321,7 @@ function Publications() {
                             value={options.find(option => option.value === filtros.ordenar) || options[0]}
                             onChange={manejarCambioOrden}
                             placeholder="Seleccionar"
+                            
                         />
                     </div>
 

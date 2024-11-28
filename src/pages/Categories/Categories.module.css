@@ -58,14 +58,15 @@
   }
 .postsContainer{
     margin-left: 30px;
-    width: 76%;
+    width: 100%;
 }
 .orderBy{
-    width: 200px;
+    width: 220px;
     height: 40px;
+    z-index: 2;
 }
 .browseName{
-    width: 300px;
+    width: 220px;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -85,7 +86,7 @@
 .browser{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 .subtitle{
     font-size: 1.2rem;
@@ -96,8 +97,8 @@
 }
 .filters select{
     margin-bottom: 1rem;
-    width: 100%;
-    height: 35px;
+    width: 150px;
+    height: 30px;
 }
 .mainTitle a{
     text-decoration: none;
@@ -164,4 +165,15 @@
     padding: 10px 20px;
     cursor: pointer;
     text-align: center;
+}
+.categoriasContenedor{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.cardIndex {
+    z-index: 1;
 }

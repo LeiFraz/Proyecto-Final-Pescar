@@ -4,7 +4,9 @@ import Publications from "../pages/Publications/Publications";
 import Upload from "../pages/Upload/upload";
 import Index from "../pages/Index/Index";
 import CreateEntrepreneur from "../pages/CreateEntrepreneur/CreateEntrepreneur";
-
+import Entrepreneurs from "../pages/Entrepreneurs/Entrepreneurs";
+import CreateCategory from "../pages/CreateCategory/CreateCategory"
+import Categories from "../pages/Categories/Categories";
 export const Routes = () => {
 
     const routes = [
@@ -28,9 +30,22 @@ export const Routes = () => {
                     element: <Index/>
                 },
                 {
+                    path: '/emprendimientos',
+                    element: <Entrepreneurs/>
+                },
+                {
+                    path: '/categorias',
+                    element: <Categories/>
+                },
+                {
+                    path: '/categorias/crearCategoria',
+                    element: <CreateCategory/>
+                },
+                {
                     path:'/emprendimientos/crearEmprendimiento',
                     element:<CreateEntrepreneur/>
                 }
+                
             ],
         }
     ]
