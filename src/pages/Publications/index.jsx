@@ -4,7 +4,7 @@ import './style.css';
 const Header = () => (
   <header className="header">
     <nav className="menu">
-      <a href="#grow"><img src="Grow Logo.png" alt="Grow Logo" /></a>
+      <a href="#grow"><img src="/src/assets/Img-publicaciones/Grow-Logo.png" alt="Grow Logo" /></a>
       <a href="#inicio">Inicio</a>
       <a href="#productos">Productos</a>
       <a href="#servicios">Servicios</a>
@@ -106,7 +106,7 @@ const Footer = () => (
   </footer>
 );
 
-const PruebaIndex = () => (
+const Home = () => (
   <div>
     <Header />
     <Filters />
@@ -118,4 +118,4 @@ const PruebaIndex = () => (
   </div>
 );
 
-export default PruebaIndex;
+export default Home;

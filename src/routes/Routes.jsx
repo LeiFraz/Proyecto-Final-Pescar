@@ -3,6 +3,7 @@ import Layout from "../pages/Layout/Layout";
 import Publications from "../pages/Publications/Publications";
 import Upload from "../pages/Upload/upload";
 import CompanyUserProfile from "../pages/CompanyUserProfile/CompanyUserProfile";
+import Index from "../pages/Publications";
 
 export const Routes = () => {
 
@@ -10,6 +11,10 @@ export const Routes = () => {
         {
             element: <Layout/>,
             children: [
+                {
+                    path: '/Home',
+                    element: <Index/>
+                },
                 {
                     path: '/Perfil',
                     element: <CompanyUserProfile/>
