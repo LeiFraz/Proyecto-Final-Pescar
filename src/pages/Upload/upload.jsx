@@ -6,6 +6,7 @@ import ModalLoading from '../../components/Modals/ModalLoading';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FilesDropzone from '../../components/FilesDropzone/FilesDropzone';
+import FormularioPrecio from '../../components/FormularioPrecio/FormularioPrecio';
 const obtenerCategorias = async (setCategorias) => {
     try {
         // Realizar la solicitud GET
@@ -25,6 +26,9 @@ const obtenerCategorias = async (setCategorias) => {
 };
 
 function Upload() {
+    const [isPrecioVisible, setIsPrecioVisible] = useState(false);
+    const [isUploadVisible, setIsUploadVisible] = useState(true);
+    const [finalMaterials, setFinalMaterials] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const id_emprendimiento="673ec846a9c1f418e3397548"
     const [values, setValues] = useState({
@@ -89,68 +93,94 @@ function Upload() {
             return null;
         }
     };
-
+    const togglePrecioVisibility = () => {
+        setIsPrecioVisible(!isPrecioVisible);
+        setIsUploadVisible(!isUploadVisible); 
+    };
     const handleSubmit = async () => {
-        let urls=[""]
+        let urls = [""];
         let hasError = false;
+    
+        // Validación de campos obligatorios
         if (!nombre) {
             setNombreError('Este campo es obligatorio');
-            hasError=true;
+            hasError = true;
         } else {
             setNombreError('');
         }
-
+    
         if (!tipo) {
             setTipoError('Este campo es obligatorio');
-            hasError=true;
+            hasError = true;
         } else {
             setTipoError('');
         }
+    
         if (!id_categoria) {
             setCatError('Este campo es obligatorio');
-            hasError=true;
+            hasError = true;
         } else {
             setCatError('');
         }
-
-        if (hasError) {
-            return;
-        }
+    
+        if (hasError) return;
+    
         setIsLoading(true);
         setIsOpen(true);
-        if(imgfiles.length>0){
+    
+        // Subir imágenes
+        if (imgfiles.length > 0) {
             try {
-                const imageUploadPromises = imgfiles.map(file => 
-                    handleImageUpload(file) // Retorna una promesa para cada archivo
+                const imageUploadPromises = imgfiles.map((file) =>
+                    handleImageUpload(file) // Subir cada archivo
                 );
-            
-                // Esperamos a que todas las promesas se resuelvan
                 urls = await Promise.all(imageUploadPromises);
-                console.log(urls)
-            }catch (error) {
-                console.error('Error al crear publicación:', error);
+            } catch (error) {
+                console.error('Error al subir las imágenes:', error);
+                setIsLoading(false);
+                setIsOpen(false);
+                return;
             }
         }
-
+    
+        // Crear el objeto de la publicación
         const formData = {
             id_emprendimiento,
             nombre,
             tipo,
-            precio: parseInt(values.precio, 10) || 0,
+            precio: parseFloat(parseFloat(values.precio || 0).toFixed(2)),
             descuento: parseInt(values.descuento, 10) || 0,
             descripcion,
             id_categoria,
-            imagenes:urls
+            imagenes: urls,
         };
-
-        console.log(formData)
-
+    
         try {
-        await axios.post('http://localhost:5000/api/publicacion/crear', formData);
-        setIsLoading(false);
-        openModal();
+            // Crear la publicación
+            const response = await axios.post(
+                'http://localhost:5000/api/publicacion/crear',
+                formData
+            );
+            const publicationId = response.data._id; // Obtener el ID de la publicación creada
+    
+            // Actualizar materiales con el ID de la publicación
+            const updatePromises = finalMaterials.map((material) =>
+                axios.put(
+                    `http://localhost:5000/api/materialusado/${material._id}`, // Asume que cada material tiene un campo `id`
+                    { id_publicacion: publicationId }
+                )
+            );
+    
+            await Promise.all(updatePromises); // Ejecutar las actualizaciones en paralelo
+            console.log('Publicación y materiales creados exitosamente.');
+    
+            setIsLoading(false);
+            openModal();
         } catch (error) {
-        console.error('Error al crear publicación:', error);
+            console.error('Error al crear publicación o actualizar materiales:', error);
+            setIsLoading(false);
+            setIsOpen(false);
+            alert('Hubo un error al crear la publicación. Intenta nuevamente.');
         }
     };
 
@@ -165,9 +195,6 @@ function Upload() {
             }));
         }
     };
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    };
     return (
         <div>
             {/* Modal */}
@@ -176,7 +203,8 @@ function Upload() {
             </ModalLoading>
 
             {/* Sección Principal */}
-            {isVisible && (<main className="main-container">
+            <div style={{ display: isUploadVisible ? 'block' : 'none' }}>
+            (<main className="main-container" >
                 <section className="info-general">
                     <h2>Información General</h2>
                     <label>Nombre</label>
@@ -204,7 +232,7 @@ function Upload() {
                     <h2>Precios</h2>
                     <input type="number" placeholder="Precio base" name='precio' value={values.precio} onChange={comprobarNegativo} disabled={isDisabled}/>
                     <div className="calcContainer">
-                        <button onClick={toggleVisibility} className='botonPrecio'>Calcular Precio</button>
+                        <button onClick={togglePrecioVisibility} className='botonPrecio'>Calcular Precio</button>
                         <label className='labelPrecio'>
                         <input type="checkbox" className='inputPrecio' value={0} checked={isDisabled} onChange={handleCheckboxChange} />
                         <span className='checkPrecio'></span>
@@ -231,7 +259,16 @@ function Upload() {
                     <button className="save-btn">Guardar como borrador</button>
                     <button className="publish-btn" onClick={handleSubmit}>Publicar ahora</button>
                 </div>
-            </main>)}
+                
+            </main>)
+            </div>
+            {isPrecioVisible && 
+            <FormularioPrecio 
+            setIsUploadVisible={setIsUploadVisible}
+            setIsPrecioVisible={setIsPrecioVisible} 
+            setValues={setValues}
+            setFinalMaterials={setFinalMaterials}
+            />}
         </div>
     );
 }

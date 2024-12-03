@@ -328,14 +328,26 @@ function Publications() {
                     {publicaciones && publicaciones.length > 0 ? (
                         <div className={styles.publicacionesLista}>
                             {publicaciones.map((pub) => (
-                                <CardPublications
-                                    key={pub._id}
-                                    nombre={pub.nombre}
-                                    precio={pub.precio}
-                                    descuento={pub.descuento}
-                                    imagen={pub.imagenes[0]}
-                                    id_emprendimiento={pub.id_emprendimiento}
-                                />
+                                pub.descuento>0 ? (
+                                    <CardPublications
+                                        key={pub._id}
+                                        nombre={pub.nombre}
+                                        precioActual={pub.precio_actual}
+                                        precioOriginal={pub.precio_original}
+                                        descuento={pub.descuento}
+                                        imagen={pub.imagenes[0]}
+                                        id_emprendimiento={pub.id_emprendimiento}
+                                    />
+                                ) : (
+                                    <CardPublications
+                                        key={pub._id}
+                                        nombre={pub.nombre}
+                                        precioActual={pub.precio_actual}
+                                        imagen={pub.imagenes[0]}
+                                        id_emprendimiento={pub.id_emprendimiento}
+                                    />
+                                )
+                                
                             ))}
                         </div>
                     ) : (

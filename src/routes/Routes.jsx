@@ -7,6 +7,8 @@ import CreateEntrepreneur from "../pages/CreateEntrepreneur/CreateEntrepreneur";
 import Entrepreneurs from "../pages/Entrepreneurs/Entrepreneurs";
 import CreateCategory from "../pages/CreateCategory/CreateCategory"
 import Categories from "../pages/Categories/Categories";
+import ReglaDeTres from "../pages/ReglaDeTres/ReglaDeTres";
+import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
 export const Routes = () => {
 
     const routes = [
@@ -40,6 +42,14 @@ export const Routes = () => {
                 {
                     path: '/categorias/crearCategoria',
                     element: <CreateCategory/>
+                },
+                {
+                    path: '/testCalculo',
+                    element: <FormularioPrecio/>
+                },
+                {
+                    path: '/testtres',
+                    element: <ReglaDeTres/>
                 },
                 {
                     path:'/emprendimientos/crearEmprendimiento',

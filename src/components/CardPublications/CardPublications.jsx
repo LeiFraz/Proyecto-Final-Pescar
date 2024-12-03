@@ -20,23 +20,13 @@ const obtenerEmprendimiento = async (setEmprendimiento, id_emprendimiento) => {
     }
 };
 
-const CardPublications = ({ nombre, precio, descuento, imagen, id_emprendimiento}) => {
+const CardPublications = ({ nombre, precioActual,precioOriginal, descuento, imagen, id_emprendimiento}) => {
     const formatPrice = (price) => `$ ${price.toLocaleString()}`
-    const calculateCurrentPrice = (precio, discount) => {
-        if (discount && discount > 0 && discount < 100) {
-            return (precio - (discount / 100 * precio ))
-        }
-        if(precio>0){
-            return precio;
-        }
-        return "A convenir";
-        }
-        const [emprendimiento, setEmprendimiento] = useState(null)
-        useEffect(() => {
-            obtenerEmprendimiento(setEmprendimiento, id_emprendimiento);
+    const [emprendimiento, setEmprendimiento] = useState(null)
+    useEffect(() => {
+        obtenerEmprendimiento(setEmprendimiento, id_emprendimiento);
             
-        }, []);
-    const currentPrice = calculateCurrentPrice(precio, descuento)
+    }, []);
     const [hoverCard, setHoverCard] = useState(false);
     const [hoverLink, setHoverLink] = useState(false);
     return (
@@ -76,9 +66,9 @@ const CardPublications = ({ nombre, precio, descuento, imagen, id_emprendimiento
             )}
         </div>
                     <div className={styles.postPriceContainer}>
-                        {currentPrice && currentPrice!==0 && currentPrice!= "A convenir" && <p className={styles.postCurrentPrice}>{formatPrice(currentPrice)}</p>}
-                        {currentPrice && currentPrice=="A convenir" && <p className={styles.noPrice}>{formatPrice(currentPrice)}</p>}
-                        {currentPrice && currentPrice!=precio && currentPrice!="A convenir" && <p className={styles.postOriginalPrice}>{formatPrice(precio)}</p>}
+                        {precioActual > 0 && <p className={styles.postCurrentPrice}>{formatPrice(precioActual)}</p>}
+                        {precioActual == 0 && <p className={styles.noPrice}>{formatPrice("A convenir")}</p>}
+                        {precioOriginal && <p className={styles.postOriginalPrice}>{formatPrice(precioOriginal)}</p>}
                         {descuento>0 && <p className={styles.postDiscount}>{descuento}% OFF</p>}
                     </div>
                 </div>

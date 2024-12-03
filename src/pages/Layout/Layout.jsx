@@ -85,11 +85,11 @@ const handleMouseEnter = () => {
                     <ul className="nav-links">
                     <li className="nav-link-item"><a href="#">Inicio</a>
                     </li>
-                    <li className="nav-link-item"><a href="#">Tienda <i className="icon-down-open"></i></a>
+                    <li className="nav-link-item"><a href="/publicaciones">Tienda <i className="icon-down-open"></i></a>
                         <ul className="dropdown_menu">
-                            <li className="dropdown-menu-item"><a href="#">Productos</a></li>
-                            <li className="dropdown-menu-item"><a href="#">Servicios</a></li>
-                            <li className="dropdown-menu-item"><a href="#">Emprendimientos</a></li>
+                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=producto">Productos</a></li>
+                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=servicio">Servicios</a></li>
+                            <li className="dropdown-menu-item"><a href="/emprendimientos">Emprendimientos</a></li>
                         </ul>
                     </li>
                     <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
