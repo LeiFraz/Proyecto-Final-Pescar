@@ -2,7 +2,21 @@
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount }) => {
-const formatPrice = (price) => `$ ${price.toLocaleString()}`
+    const formatPrice = (price) => {
+        if(price>0){
+          const isInteger = price % 1 === 0; // Verifica si el precio es entero
+          const formatter = new Intl.NumberFormat('es-AR', {
+            style: 'currency',
+            currency: 'ARS',
+            minimumFractionDigits: isInteger ? 0 : 2, // Si es entero, no muestra decimales
+            maximumFractionDigits: 2, // Siempre muestra hasta 2 decimales
+          });
+          return formatter.format(price);
+        }
+        else{
+            return "$ A convenir"
+        }
+      };
 
 const calculateCurrentPrice = (originalPrice, discount) => {
 if (discount && discount > 0 && discount < 100) {

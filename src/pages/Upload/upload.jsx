@@ -28,7 +28,9 @@ const obtenerCategorias = async (setCategorias) => {
 function Upload() {
     const [isPrecioVisible, setIsPrecioVisible] = useState(false);
     const [isUploadVisible, setIsUploadVisible] = useState(true);
+    const [calculoPrecio, setCalculoPrecio] = useState({});
     const [finalMaterials, setFinalMaterials] = useState([]);
+    const [pubId, setPublicationId] = useState("")
     const [categorias, setCategorias] = useState([]);
     const id_emprendimiento="673ec846a9c1f418e3397548"
     const [values, setValues] = useState({
@@ -46,7 +48,6 @@ function Upload() {
     const [nombreError, setNombreError] = useState('');
     const [tipoError, setTipoError] = useState('');
     const [catError, setCatError] = useState('');
-    const [isVisible, setIsVisible] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
         obtenerCategorias(setCategorias);
@@ -98,31 +99,14 @@ function Upload() {
         setIsUploadVisible(!isUploadVisible); 
     };
     const handleSubmit = async () => {
-        let urls = [""];
+        console.log(calculoPrecio);
+        let urls = [""]; // Manejo de imágenes
         let hasError = false;
     
-        // Validación de campos obligatorios
-        if (!nombre) {
-            setNombreError('Este campo es obligatorio');
-            hasError = true;
-        } else {
-            setNombreError('');
-        }
-    
-        if (!tipo) {
-            setTipoError('Este campo es obligatorio');
-            hasError = true;
-        } else {
-            setTipoError('');
-        }
-    
-        if (!id_categoria) {
-            setCatError('Este campo es obligatorio');
-            hasError = true;
-        } else {
-            setCatError('');
-        }
-    
+        // Validación de campos
+        if (!nombre) { setNombreError('Este campo es obligatorio'); hasError = true; }
+        if (!tipo) { setTipoError('Este campo es obligatorio'); hasError = true; }
+        if (!id_categoria) { setCatError('Este campo es obligatorio'); hasError = true; }
         if (hasError) return;
     
         setIsLoading(true);
@@ -136,14 +120,14 @@ function Upload() {
                 );
                 urls = await Promise.all(imageUploadPromises);
             } catch (error) {
-                console.error('Error al subir las imágenes:', error);
+                console.error('Error al subir imágenes:', error);
                 setIsLoading(false);
                 setIsOpen(false);
                 return;
             }
         }
     
-        // Crear el objeto de la publicación
+        // Crear el objeto de publicación
         const formData = {
             id_emprendimiento,
             nombre,
@@ -153,34 +137,33 @@ function Upload() {
             descripcion,
             id_categoria,
             imagenes: urls,
+            calculo_precio: calculoPrecio, // Incluye calculoPrecio aquí
         };
     
         try {
-            // Crear la publicación
             const response = await axios.post(
                 'http://localhost:5000/api/publicacion/crear',
                 formData
             );
-            const publicationId = response.data._id; // Obtener el ID de la publicación creada
     
-            // Actualizar materiales con el ID de la publicación
+            const publicationId = response.data._id;
+            setPublicationId(publicationId)
             const updatePromises = finalMaterials.map((material) =>
                 axios.put(
-                    `http://localhost:5000/api/materialusado/${material._id}`, // Asume que cada material tiene un campo `id`
+                    `http://localhost:5000/api/materialusado/${material._id}`,
                     { id_publicacion: publicationId }
                 )
             );
     
-            await Promise.all(updatePromises); // Ejecutar las actualizaciones en paralelo
-            console.log('Publicación y materiales creados exitosamente.');
-    
+            await Promise.all(updatePromises);
+            console.log('Publicación creada exitosamente.');
             setIsLoading(false);
             openModal();
         } catch (error) {
-            console.error('Error al crear publicación o actualizar materiales:', error);
+            console.error('Error al crear publicación:', error);
             setIsLoading(false);
             setIsOpen(false);
-            alert('Hubo un error al crear la publicación. Intenta nuevamente.');
+            alert('Hubo un error al crear la publicación.');
         }
     };
 
@@ -195,11 +178,15 @@ function Upload() {
             }));
         }
     };
+    const handleAccept = () => {
+        closeModal();
+        navigate(`/publicacion?publicacion=${pubId}`);
+    };
     return (
         <div>
             {/* Modal */}
             <ModalLoading isOpen={isOpen} isLoading={isLoading} text={'Se creó la publicación exitosamente'} loadingText={"Creando publicación..."}>
-                {!isLoading && <button className='btn btn-success' onClick={closeModal}>Aceptar</button>}
+                {!isLoading && <button className='btn btn-success' onClick={handleAccept}>Aceptar</button>}
             </ModalLoading>
 
             {/* Sección Principal */}
@@ -268,6 +255,7 @@ function Upload() {
             setIsPrecioVisible={setIsPrecioVisible} 
             setValues={setValues}
             setFinalMaterials={setFinalMaterials}
+            setCalculoPrecio={setCalculoPrecio}
             />}
         </div>
     );

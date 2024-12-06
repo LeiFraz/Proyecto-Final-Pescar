@@ -79,7 +79,7 @@ const Paso1 = ({ setMaterials, nextStep, id_emprendimiento, setIsUploadVisible, 
         return Object.keys(errors).length === 0; 
     };
     const validateOneMaterial = () => {
-        const error=null
+        let error=null
         if (selectedMaterials.length===0){
             error="Debe seleccionar al menos un material"
         }

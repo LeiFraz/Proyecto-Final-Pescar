@@ -4,7 +4,7 @@ import Paso2 from './Pasos/Paso2';
 import Paso3 from './Pasos/Paso3';
 
 
-const FormularioPrecio = ({ setIsUploadVisible, setIsPrecioVisible, setValues, setFinalMaterials }) => {
+const FormularioPrecio = ({ setIsUploadVisible, setIsPrecioVisible, setValues, setFinalMaterials, setCalculoPrecio }) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [materials, setMaterials] = useState([]); // Lista de materiales seleccionados o creados
     const [usedMaterials, setUsedMaterials] = useState([]); // Cantidades usadas y ganancia
@@ -48,6 +48,7 @@ const FormularioPrecio = ({ setIsUploadVisible, setIsPrecioVisible, setValues, s
                     setIsPrecioVisible={setIsPrecioVisible}
                     setValues={setValues}
                     setFinalMaterials={setFinalMaterials}
+                    setCalculoPrecio={setCalculoPrecio}
                 />
             )}
         </div>

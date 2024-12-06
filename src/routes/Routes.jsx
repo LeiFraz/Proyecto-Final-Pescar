@@ -8,7 +8,8 @@ import Entrepreneurs from "../pages/Entrepreneurs/Entrepreneurs";
 import CreateCategory from "../pages/CreateCategory/CreateCategory"
 import Categories from "../pages/Categories/Categories";
 import ReglaDeTres from "../pages/ReglaDeTres/ReglaDeTres";
-import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
+import SobreNosotros from "../pages/SobreNosotros/SobreNosotros"
+import PublicationPage from "../pages/PublicationPage/PublicationPage";
 export const Routes = () => {
 
     const routes = [
@@ -44,12 +45,16 @@ export const Routes = () => {
                     element: <CreateCategory/>
                 },
                 {
-                    path: '/testCalculo',
-                    element: <FormularioPrecio/>
+                    path: '/publicacion',
+                    element: <PublicationPage/>
                 },
                 {
                     path: '/testtres',
                     element: <ReglaDeTres/>
+                },
+                {
+                    path: '/nosotros',
+                    element: <SobreNosotros/>
                 },
                 {
                     path:'/emprendimientos/crearEmprendimiento',

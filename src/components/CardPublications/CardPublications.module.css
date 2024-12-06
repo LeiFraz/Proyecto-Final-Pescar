@@ -64,7 +64,7 @@
 .noPrice {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #007BFF;
+    color: #333;
     margin: 0;
 }
 .noPrice::first-letter{
@@ -76,7 +76,10 @@
     font-size: 0.875rem;
     margin: 0;
 }
-
+.verifiedPrice{
+    display: inline-block;
+    width: 15px;
+  }
 .postDiscount {
     color: #ef4444;
     font-size: 0.875rem;

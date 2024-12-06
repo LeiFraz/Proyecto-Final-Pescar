@@ -337,6 +337,8 @@ function Publications() {
                                         descuento={pub.descuento}
                                         imagen={pub.imagenes[0]}
                                         id_emprendimiento={pub.id_emprendimiento}
+                                        transparentPrice={pub.calculo_precio.precio_transparente}
+                                        id_publicacion={pub._id}
                                     />
                                 ) : (
                                     <CardPublications
@@ -345,6 +347,8 @@ function Publications() {
                                         precioActual={pub.precio_actual}
                                         imagen={pub.imagenes[0]}
                                         id_emprendimiento={pub.id_emprendimiento}
+                                        transparentPrice={pub.calculo_precio.precio_transparente}
+                                        id_publicacion={pub._id}
                                     />
                                 )
                                 
