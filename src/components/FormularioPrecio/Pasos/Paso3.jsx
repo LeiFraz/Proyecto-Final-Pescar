@@ -2,29 +2,49 @@ import React, { useState, useEffect } from 'react';
 import styles from './Pasos.module.css';
 import axios from 'axios';
 
-const Paso3 = ({ usedMaterials, setPrecioFinal, prevStep, setIsUploadVisible, setIsPrecioVisible,setValues,setFinalMaterials }) => {
+const Paso3 = ({ 
+    usedMaterials, 
+    setPrecioFinal, 
+    prevStep, 
+    setIsUploadVisible, 
+    setIsPrecioVisible, 
+    setValues, 
+    setFinalMaterials, 
+    setCalculoPrecio // Ahora usamos un setter más representativo
+}) => {
     const [profitType, setProfitType] = useState('percentage'); // Tipo de ganancia: 'percentage' o 'fixed'
-    const [profitValue, setProfitValue] = useState(''); // Permitir estado vacío
+    const [profitValue, setProfitValue] = useState(''); // Valor de ganancia (vacío inicialmente)
     const [finalPrice, setFinalPrice] = useState(0); // Precio final con ganancia
     const [materialsWithNames, setMaterialsWithNames] = useState([]);
+    const [precioTransparente, setPrecioTransparente] = useState(false); // Estado de la checkbox
 
     // Calcular el precio total de los materiales usados
     const totalPrice = usedMaterials.reduce((acc, material) => acc + material.precio, 0);
 
-    // Calcular el precio final con ganancia automáticamente al cambiar inputs
+    // Calcular el precio final y actualizar calculo_precio automáticamente
     useEffect(() => {
         const profit = parseFloat(profitValue) || 0; // Convertir el valor a número o usar 0 si está vacío
         let final = totalPrice;
+        let ganancia = 0;
 
         if (profitType === 'percentage') {
-            final += (profit / 100) * totalPrice; // Añadir porcentaje de ganancia
+            ganancia = (profit / 100) * totalPrice;
+            final += ganancia; // Añadir porcentaje de ganancia
         } else if (profitType === 'fixed') {
-            final += profit; // Añadir ganancia fija
+            ganancia = profit;
+            final += ganancia; // Añadir ganancia fija
         }
 
-        setFinalPrice(final); // Actualizar el precio final
+        // Actualizar estados
+        setFinalPrice(final);
         setPrecioFinal(final); // Guardar en el estado global
-    }, [profitType, profitValue, totalPrice, setPrecioFinal]);
+
+        // Actualizar el objeto completo de calculo_precio
+        setCalculoPrecio({
+            precio_transparente: precioTransparente,
+            ganancia: parseFloat(ganancia.toFixed(2)), // Redondear la ganancia a 2 decimales
+        });
+    }, [profitType, profitValue, totalPrice, precioTransparente, setPrecioFinal, setCalculoPrecio]);
 
     const obtenerNombre = async (id) => {
         try {
@@ -55,15 +75,15 @@ const Paso3 = ({ usedMaterials, setPrecioFinal, prevStep, setIsUploadVisible, se
         }
         return `${cantidad} ${unidad}`;
     };
+
     const handleConfirmarPrecio = () => {
-        // Actualizar el precio base en el formulario principal
+    
+        // Actualizar valores generales
         setValues(prevValues => ({
             ...prevValues,
-          precio: finalPrice.toFixed(2) // Convertir a string con 2 decimales
+            precio: finalPrice.toFixed(2),
         }));
-        console.log(usedMaterials);
         setFinalMaterials(usedMaterials);
-        // Volver al formulario principal
         setIsUploadVisible(true);
         setIsPrecioVisible(false);
     };
@@ -112,20 +132,20 @@ const Paso3 = ({ usedMaterials, setPrecioFinal, prevStep, setIsUploadVisible, se
                     </div>
 
                     <div>
-                    <label>
-                        {profitType === 'percentage' ? 'Porcentaje de Ganancia (%):' : 'Ganancia Fija ($):'}
-                    </label>
-                    <input
-                        type="number"
-                        value={profitValue}
-                        placeholder={profitType === 'percentage' ? 'Introduce un porcentaje' : 'Introduce una cantidad fija'}
-                        onChange={(e) => {
-                            const value = parseFloat(e.target.value);
-                            if (value >= 0 || e.target.value === '') {
-                                setProfitValue(e.target.value);
-                            }
-                        }}
-                    />
+                        <label>
+                            {profitType === 'percentage' ? 'Porcentaje de Ganancia (%):' : 'Ganancia Fija ($):'}
+                        </label>
+                        <input
+                            type="number"
+                            value={profitValue}
+                            placeholder={profitType === 'percentage' ? 'Introduce un porcentaje' : 'Introduce una cantidad fija'}
+                            onChange={(e) => {
+                                const value = parseFloat(e.target.value);
+                                if (value >= 0 || e.target.value === '') {
+                                    setProfitValue(e.target.value);
+                                }
+                            }}
+                        />
                     </div>
                 </section>
                 <section className={styles['info-general']}>
@@ -152,11 +172,21 @@ const Paso3 = ({ usedMaterials, setPrecioFinal, prevStep, setIsUploadVisible, se
                             <p><strong>Precio Final: ${finalPrice.toFixed(2)}</strong></p>
                         </ul>
                     </div>
+                    <label className={styles.labelPrecio}>
+                        <input 
+                            type="checkbox" 
+                            className={styles.inputPrecio}
+                            checked={precioTransparente}
+                            onChange={(e) => setPrecioTransparente(e.target.checked)}
+                        />
+                        <span className={styles.checkPrecio}></span>
+                        Activar precios transparentes
+                    </label>
                 </section>
             </main>
             <div className="buttons">
-            <button onClick={prevStep} className={styles['cancel-btn']}>Volver</button>
-            <button className={styles['next-btn']} onClick={handleConfirmarPrecio}>Confirmar Precio</button>
+                <button onClick={prevStep} className={styles['cancel-btn']}>Volver</button>
+                <button className={styles['next-btn']} onClick={handleConfirmarPrecio}>Confirmar Precio</button>
             </div>
         </div>
     );

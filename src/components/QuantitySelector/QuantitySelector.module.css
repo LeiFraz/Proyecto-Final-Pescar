@@ -1,0 +1,44 @@
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .controlButton {
+    background-color: #dddddd;
+    border: 1px solid #4e4e4e;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 38px; /* Botón cuadrado */
+    height: 38px; /* Botón cuadrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .controlButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .quantityInput {
+    width: 38px; /* Igual al tamaño de los botones */
+    height: 38px; /* Igual al tamaño de los botones */
+    text-align: center; /* Texto centrado horizontalmente */
+    font-size: 1.2rem; /* Ajuste del tamaño del texto */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0; /* Elimina espacios internos */
+    line-height: 40px; /* Centra el texto verticalmente */
+    appearance: none; /* Elimina los controles de navegador por defecto */
+    -moz-appearance: textfield; /* Específico para Firefox */
+  }
+  
+  .quantityInput::-webkit-inner-spin-button, 
+  .quantityInput::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Oculta los botones de los navegadores basados en WebKit */
+    margin: 0; /* Elimina márgenes internos */
+  }
+  

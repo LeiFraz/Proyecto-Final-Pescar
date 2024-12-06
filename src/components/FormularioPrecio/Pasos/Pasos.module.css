@@ -159,3 +159,112 @@ body {
     color: red;
     font-size: 0.8rem;
 }
+.labelPrecio:hover .checkPrecio {
+    background-color: #ccc;
+}
+
+/* Cuando el checkbox está marcado, cambia el fondo del indicador */
+.labelPrecio .inputPrecio:checked + .checkPrecio {
+    background-color: #2196F3;
+}
+.labelPrecio input{
+    appearance: none;
+    position: absolute;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.labelPrecio{
+    margin-top: 1rem;
+}
+/* Crear la marca de verificación (invisible por defecto) */
+.checkPrecio:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Mostrar la marca de verificación cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio:after {
+    display: block;
+}
+
+/* Estilo de la marca de verificación */
+.checkPrecio:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Estilo inicial del checkPrecio (indicador visual del checkbox) */
+.checkPrecio {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+}
+.inputPrecio{
+    margin: 0;
+}
+/* Ocultar completamente el checkbox nativo */
+.inputPrecio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Cambiar el estilo del indicador visual al pasar el ratón por el contenedor */
+.labelPrecio:hover .checkPrecio {
+    background-color: #ccc;
+}
+
+/* Cambiar el estilo del indicador visual cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio {
+    background-color: #12C258;
+}
+
+/* Crear la marca de verificación (invisible por defecto) */
+.checkPrecio:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Mostrar la marca de verificación cuando el checkbox está seleccionado */
+.labelPrecio .inputPrecio:checked + .checkPrecio:after {
+    display: block;
+}
+
+/* Estilo de la marca de verificación */
+.checkPrecio:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(8, 8, 8);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+/* Estilo inicial del checkPrecio (indicador visual del checkbox) */
+.checkPrecio {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
