@@ -12,6 +12,8 @@ import SobreNosotros from "../pages/SobreNosotros/SobreNosotros"
 import PublicationPage from "../pages/PublicationPage/PublicationPage";
 // import Login from "../pages/Login/Login";
 // import Register from "../pages/Register/Register";
+import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
+import UserProfile from "../pages/UserProfile/UserProfile"; 
 export const Routes = () => {
 
     const routes = [
@@ -69,8 +71,12 @@ export const Routes = () => {
                 {
                     path:'/emprendimientos/crearEmprendimiento',
                     element:<CreateEntrepreneur/>
+                },
+
+                {
+                    path: '/perfil',
+                    element: <UserProfile />
                 }
-                
             ],
         }
     ]

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
+import UserProfile from "../UserProfile/UserProfile";
 
 function Layout() {
     const[id,setId] = useState()
@@ -105,7 +106,7 @@ const handleMouseEnter = () => {
                     <ul className="nav-links">
                         <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Nombre Cuenta <i className="icon-down-open"></i></a>
                             <ul className="dropdown_menu">
-                                <li className="dropdown-menu-item profile"><a href="#">Perfil</a></li>
+                                <li className="dropdown-menu-item profile"><a href="/perfil">Perfil</a></li>
                                 {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
                                 {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
                                 <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
