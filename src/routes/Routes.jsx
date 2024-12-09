@@ -9,6 +9,7 @@ import CreateCategory from "../pages/CreateCategory/CreateCategory"
 import Categories from "../pages/Categories/Categories";
 import ReglaDeTres from "../pages/ReglaDeTres/ReglaDeTres";
 import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
+import UserProfile from "../pages/UserProfile/UserProfile"; 
 export const Routes = () => {
 
     const routes = [
@@ -54,8 +55,12 @@ export const Routes = () => {
                 {
                     path:'/emprendimientos/crearEmprendimiento',
                     element:<CreateEntrepreneur/>
+                },
+
+                {
+                    path: '/perfil',
+                    element: <UserProfile />
                 }
-                
             ],
         }
     ]
