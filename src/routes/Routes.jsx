@@ -10,6 +10,8 @@ import Categories from "../pages/Categories/Categories";
 import ReglaDeTres from "../pages/ReglaDeTres/ReglaDeTres";
 import SobreNosotros from "../pages/SobreNosotros/SobreNosotros"
 import PublicationPage from "../pages/PublicationPage/PublicationPage";
+// import Login from "../pages/Login/Login";
+// import Register from "../pages/Register/Register";
 export const Routes = () => {
 
     const routes = [
@@ -21,16 +23,24 @@ export const Routes = () => {
                     element: <Index/>
                 },
                 {
+                    path: '/inicio',
+                    element: <Index/>
+                },
+                // {
+                //     path: '/login',
+                //     element: <Login/>
+                // },
+                // {
+                //     path: '/registro',
+                //     element: <Register/>
+                // },
+                {
                     path: '/publicaciones',
                     element: <Publications/>
                 },
                 {
                     path: '/publicaciones/crearPublicacion',
                     element: <Upload/>
-                },
-                {
-                    path: '/inicio',
-                    element: <Index/>
                 },
                 {
                     path: '/emprendimientos',
