@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+ .container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+  }
+  
+  .container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .btn-google {
+    width: 100%;
+    padding: 10px;
+    background-color: #706DF8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-google:hover {
+    background-color: #5c5ada;
+  }
+  
+  .divider {
+    margin: 1rem 0;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+  }
+  
+  .divider hr {
+    flex-grow: 1;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .divider span {
+    margin: 0 10px;
+    color: #555;
+  }
+  
+  .btn-email {
+    width: 100%;
+    padding: 10px;
+    background-color: #91CDA9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-email:hover {
+    background-color: #78b892;
+  }
+  
+  .container p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .container p a {
+    color: #706DF8;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .container p a:hover {
+    text-decoration: underline;
+  }
+  
+  .container img {
+    width: 50px;
+    margin-bottom: 1rem;
+  }
+  
