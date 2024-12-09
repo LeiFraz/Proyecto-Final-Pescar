@@ -21,9 +21,6 @@ function Layout() {
     const navigate = useNavigate();
     const paginaLogin = () => navigate('/login') 
     const volverArriba = () => navigate('/#')
-// const recargar=()=>{
-//     window.location.reload();
-// }
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
