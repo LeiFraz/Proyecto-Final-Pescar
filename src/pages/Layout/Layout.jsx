@@ -12,18 +12,18 @@ function Layout() {
     const [isPlaying, setIsPlaying] = useState(false);
     useEffect(() => {
         // Verifica si el archivo CSS ya está en el he
-        localStorage.setItem("userId", "1234");
-        localStorage.setItem("tipoPerfil","emprendedor")
-        setId(localStorage.getItem("userId"));
-        setTipo(localStorage.getItem("tipoPerfil"))
+        // localStorage.setItem("userId", "1234");
+        // localStorage.setItem("tipoPerfil","emprendedor")
+        // setId(localStorage.getItem("userId"));
+        // setTipo(localStorage.getItem("tipoPerfil"))
     }, [id]);
 
     const navigate = useNavigate();
-    const paginaRegistro = () => navigate('/registro') 
+    const paginaLogin = () => navigate('/login') 
     const volverArriba = () => navigate('/#')
-const recargar=()=>{
-    window.location.reload();
-}
+// const recargar=()=>{
+//     window.location.reload();
+// }
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
@@ -99,7 +99,7 @@ const handleMouseEnter = () => {
                 <div className="nav-links-container">
                     {!id?(
                         <ul className="nav-links">
-                        <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
+                        <li className="nav-link-item" onClick={paginaLogin}><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
                         </ul>
                     ) : (
                     <ul className="nav-links">
