@@ -234,3 +234,14 @@
         font-size: 0.9rem;
     }
 }
+.swiper-container {
+    width: 100%;
+    height: auto; /* Ajusta la altura según sea necesario */
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Otras reglas CSS que desees agregar */
+  }
