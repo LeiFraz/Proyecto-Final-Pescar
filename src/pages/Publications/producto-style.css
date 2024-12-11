@@ -1,0 +1,270 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    background-color: rgba(0, 0, 0, 0.185);
+
+}
+
+
+header{
+    background-color: rgb(145, 205, 169);
+    margin: 0;
+    display: flex;
+    height: 100%;
+}
+
+.titulares{
+    text-align: center;
+}
+.menu a{
+    text-decoration: none;
+    color:beige;
+    text-shadow: whitesmoke;
+    padding: 10px;
+    margin-top: auto;
+    justify-content: space-around;
+    align-items: flex-end;
+ }
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    background-size: contain;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+
+
+  .productos {
+    display: flex;  
+    justify-content: center;
+    flex-direction: row;
+   
+    background-color: aliceblue;
+   
+}
+  .producto{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10%;
+    margin-top: 7%;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-bottom: 7%;
+    background-color: aliceblue;
+    
+  }
+
+  .sub-producto {
+    display: flex; 
+    flex-direction: column; 
+    align-items: left; 
+     }
+
+  .sub-producto2 {
+    display: flex;  
+    flex-direction: column; 
+    align-items: right; 
+    }
+    .tenue{
+        color: rgba(0, 0, 0, 0.342);
+    }
+  
+    .talles{
+    display: flex; 
+    flex-direction: row;
+    gap: 3%;
+    
+    }
+    
+    .tags h4{
+        margin: 0;
+        padding: 0;
+    }
+    .talles h3{
+        border: 2px, solid, black;
+        padding: 2%;
+        margin: 0;
+        border-radius: 10%;
+    }
+
+  
+
+    .circulos{
+        display: flex;
+        gap: 5%;
+        justify-content: left;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+    }
+
+    .botones h3{
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 15px;
+        margin-left: 0;
+        
+
+    }
+    .botones{
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        gap: 5%;
+        padding-left: 0;
+    }
+
+
+  .espacio-blanco{
+    padding: 60px;
+
+  }
+  .espacio{
+    padding: 10px;
+    margin: 0;
+  }
+
+
+  .filtros {
+    display: flex;                  
+    justify-content: space-between; 
+    align-items: center;           
+    padding: 0 3%;                 
+    background-color: #000000da;
+    color: aliceblue;
+}
+.filtros img{
+    width: 20px;
+    height: auto;
+    color: aliceblue ;
+    filter: brightness(0) invert(1); /*hace la imagen de color blanco*/
+
+  }
+
+.filtro-izquierdo, .filtro-derecho {
+    display: flex;                  
+    flex-direction: row;           
+    gap: 20px;               
+      
+}
+
+.espaciar-filtro {
+    display: flex;
+    align-items: center;           
+}
+  img{
+    width: 30%;
+    height: auto;
+  }
+
+
+
+ .sub-producto img{
+    width: 100%;
+    height: auto;
+    padding-left: 30%;
+    margin-top: 20%;
+ 
+ } 
+
+
+ .sub-producto2 img{
+    width: 3%;
+    height: auto;
+   
+ } 
+
+
+ 
+  .espaciar-filtro:hover,
+   a:hover{ 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+
+  }
+
+
+
+  footer{
+    background-color: rgb(145, 205, 169);
+    display: flex;
+    gap: 10%;
+    padding-left: 15%;
+    padding-bottom: 5%;
+
+
+   
+  }
+
+  .social{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10%;
+
+
+  }
+  .redes,
+  .grow,
+  .tienda,
+  .ayuda{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10%;
+
+
+  }
+
+  .social a{
+    width: 2rem;
+    height: 2rem;
+    background-size: contain;
+    justify-content: space-between;
+    display: block;   
+
+  }
+
+  .social h2{
+    text-align: center;
+  }
+
+  .whatsapp{
+    background-image: url("whatsapp-logo.png") ;
+    background-repeat: no-repeat;
+  }
+
+  .facebook{
+    background-image: url("facebook-logo.png");
+    background-repeat: no-repeat;
+  }
+
+  .instagram{
+    background-image: url("instragram-logo.png");
+    background-repeat: no-repeat;
+ }
+
+  .footer a{
+    text-decoration: none;
+    color:beige;
+    text-shadow: whitesmoke;
+  }
+
+
+.sub-producto2 h2,
+.sub-producto2 p {
+    margin: 0; 
+    padding: 0; 
+}
+
+.sub-producto2 .talles h3 {
+    margin: 0; 
+   
+}
