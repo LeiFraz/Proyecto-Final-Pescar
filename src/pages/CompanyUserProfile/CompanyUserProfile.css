@@ -26,6 +26,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+    width: 190px;
+    height: 190px;
+    margin: 0 auto;
 }
 
 .profile-pic img {
@@ -34,10 +38,18 @@ body {
     border-radius: 50%;
     border: 3px solid #022e18; /* Añade un borde para simular la burbuja */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de elevación */
-    transition: transform 0.3s ease; /* Transición para efecto de flotación */
+    cursor: pointer;
 }
 
-
+.profile-pic-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
 
 .sidebar-btn {
     display: block;
@@ -50,6 +62,23 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+}
+
+.edit-profile-btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-btn:hover {
+    background-color: #b9d2bb;
 }
 
 .sidebar-btn:hover {
@@ -66,6 +95,17 @@ body {
     margin-bottom: 20px;
     background-color: #4caf50;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.delete-product-btn {
+    padding: 10px px;
+    margin-bottom: 10px;
+    background-color: #f58856;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -99,4 +139,44 @@ body {
 .product-card p {
     font-size: 14px;
     color: #555;
+}
+
+.pagination {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #f9f9f9; /* Opcional: fondo para la paginación */
+    padding: 10px 20px;       /* Opcional: espaciado interno */
+    border-radius: 20px;      /* Opcional: bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Opcional: sombra */
+}
+
+.pagination-btn {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #285a2a;
+}
+
+.pagination-info {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px;
 }
