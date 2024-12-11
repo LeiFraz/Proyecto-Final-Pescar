@@ -3,6 +3,13 @@ import axios from "axios";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import 'swiper/swiper-bundle.min.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination]);
+
+
 const obtenerCategorias = async (setCategorias) => {
     try {
         // Realizar la solicitud GET
