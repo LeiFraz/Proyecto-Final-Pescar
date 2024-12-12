@@ -3,12 +3,13 @@ import axios from "axios";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
-
-import 'swiper/swiper-bundle.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination]);
+
 
 const obtenerCategorias = async (setCategorias) => {
     try {
@@ -137,18 +138,28 @@ function Index() {
                     <div className="products-container">
                         {/* ----------SWIPER-------------------- */}
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
@@ -200,18 +211,28 @@ function Index() {
                         {/* <!-- Cards services --> */}
                         {/* -------------SWIPER------------------------ */}
                         <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
@@ -261,22 +282,31 @@ function Index() {
                     </div>
                     <div className="products-container">
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
-                        {/* <!-- Cards services products discount --> */}
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="http://www.mesasdepool.com.ar/images/productos/Directorio/Directorio-01.jpg"
@@ -323,18 +353,28 @@ function Index() {
                     </div>
                     <div className="profiles-container">
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >

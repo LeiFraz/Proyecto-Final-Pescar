@@ -20,8 +20,7 @@ const NavBarLayout = ({id, tipo, logout}) => {
                                     <li className="dropdown-menu-item"><a href="/emprendimientos">Emprendimientos</a></li>
                                 </ul>
                             </li>
-                            <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
-                            <li className="nav-link-item"><a href="#">Contactanos</a></li>
+                            <li className="nav-link-item"><a href="/nosotros">Sobre nosotros</a></li>
                         </ul>
                     </div>
                     <div className="nav-links-container">
