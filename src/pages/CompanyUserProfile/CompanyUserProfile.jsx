@@ -151,7 +151,6 @@ function CompanyUserProfile() {
             >
               Siguiente
             </button>
-
           </div>
         </div>
       </div>

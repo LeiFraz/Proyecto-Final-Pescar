@@ -15,6 +15,7 @@ import Login from "../pages/Login/Login";
 // import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
 import UserProfile from "../pages/UserProfile/UserProfile"; 
 import Order from "../pages/Order/Order";
+import CompanyUserProfile from "../pages/CompanyUserProfile/CompanyUserProfile";
 
 export const Routes = () => {
 
@@ -71,6 +72,11 @@ export const Routes = () => {
                 {
                     path: '/perfil',
                     element: <UserProfile />
+                },
+
+                {
+                    path: '/PerfilDeEmprendimiento',
+                    element: <CompanyUserProfile />
                 },
 
                 {
