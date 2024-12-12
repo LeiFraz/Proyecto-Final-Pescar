@@ -1,7 +1,14 @@
 # GROW
 
-GROW es una plataforma diseñada para ayudar a emprendedores, microemprendimientos y pequeñas y medianas empresas (pymes)
+¡Bienvenidos a GROW! Nuestra plataforma nació para ayudar a emprendedores, microemprendimientos, pequeñas y medianas empresas (pymes)
 a crecer y destacar en un mercado cada vez más competitivo. 
+El nombre "GROW" significa "crecer" en inglés, y representa nuestra misión de ayudar a los emprendedores a alcanzar su máximo potencial.
+
+<div align="center">
+  <img src="src/assets/logo_slogan_verde.png" title="GROW" alt="GROW" width="600" height="300"/>
+</div>
+
+
 Sabemos que emprender es un desafío, ya que cada día surgen nuevos negocios y competidores. 
 Para tener éxito, es fundamental realizar un análisis detallado del mercado y enfrentar diversas necesidades.
 
@@ -13,14 +20,6 @@ Para tener éxito, es fundamental realizar un análisis detallado del mercado y 
 
 3. **Superar Barreras**: Reconocemos que muchos emprendedores enfrentan obstáculos que los estancan. GROW está aquí para ayudar a superar esos desafíos.
 
-## Presentación de GROW
-
-¡Bienvenidos a GROW! Nuestra plataforma nació para abordar las problemáticas ya mencionadas y facilitar el inicio de proyectos emprendedores. 
-El nombre "GROW" significa "crecer" en inglés, y representa nuestra misión de ayudar a los emprendedores a alcanzar su máximo potencial.
-
-<div align="center">
-  <img src="src/assets/logo_slogan_verde.png" title="GROW" alt="GROW" width="600" height="300"/>
-</div>
 
 ### ¿En qué nos diferenciamos de otras plataformas?
 
