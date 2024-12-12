@@ -43,6 +43,7 @@ El nombre "GROW" significa "crecer" en inglés, y representa nuestra misión de 
 | Mayra Araujo | [linkedin](https://www.linkedin.com/in/mayraaraujoj/) | Frontend |
 
 
+
 ## Tecnologias
 
 | UX UI| Frontend | Backend |
