@@ -41,6 +41,16 @@ body {
     cursor: pointer;
 }
 
+.profile-pic:hover {
+    background-color: #b9d2bb;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 3px solid #022e18; /* Añade un borde para simular la burbuja */
+    cursor: pointer;
+
+}
+
 .profile-pic-input {
     position: absolute;
     top: 0;
@@ -88,6 +98,9 @@ body {
 .main-content {
     width: 80%;
     padding: 20px;
+    position: relative; /* Habilita el posicionamiento relativo para que los elementos hijos puedan usar posición absoluta */
+    min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+
 }
 
 .add-product-btn {
@@ -142,10 +155,11 @@ body {
 }
 
 .pagination {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    
+    position: absolute; /* Posiciona la paginación dentro de .main-content */
+    bottom: 20px; /* Se posiciona a 20px del borde inferior del contenedor */
+    left: 50%; /* Centra horizontalmente en relación al contenedor */
+    transform: translateX(-50%); /* Ajusta el centrado */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,6 +171,11 @@ body {
 }
 
 .pagination-btn {
+    margin-top: auto; /* Empuja la paginación hacia abajo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     padding: 10px 15px;
     background-color: #4caf50;
     color: white;

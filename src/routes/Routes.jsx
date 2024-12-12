@@ -14,6 +14,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
 import UserProfile from "../pages/UserProfile/UserProfile"; 
+import CompanyUserProfile from "../pages/CompanyUserProfile/CompanyUserProfile";
 
 export const Routes = () => {
 
@@ -21,14 +22,7 @@ export const Routes = () => {
         {
             element: <Layout/>,
             children: [
-                {
-                    path: '/Home',
-                    element: <Index/>
-                },
-                {
-                    path: '/Perfil',
-                    element: <CompanyUserProfile/>
-                },
+                
                 {
                     path: '/',
                     element: <Index/>
@@ -85,6 +79,11 @@ export const Routes = () => {
                 {
                     path: '/perfil',
                     element: <UserProfile />
+                },
+
+                {
+                    path: '/PerfilDeEmprendimiento',
+                    element: <CompanyUserProfile />
                 }
             ],
         }
