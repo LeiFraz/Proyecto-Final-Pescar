@@ -1,0 +1,35 @@
+@import url(navigation.css);
+@import url(footer.css);
+@import url(fontello.css);
+
+*{
+    box-sizing: border-box;
+}
+
+.montserrat-regular {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font: weight 400px;
+    font-style: normal;
+}
+
+.montserrat-semibold {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font: weight 600px;
+    font-style: normal;
+}
+.montserrat-bold {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font: weight 800px;
+    font-style: normal;
+}
+
+
+
+
+
+.mycontainer{
+    max-width: 1440px;
+}

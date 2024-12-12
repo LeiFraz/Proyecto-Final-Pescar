@@ -1,0 +1,96 @@
+/* Contenedor principal */
+.user-profile-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  /* Foto de perfil */
+  .profile-picture-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #91cda9;
+    cursor: pointer;
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  .profile-picture-wrapper:hover .profile-picture-overlay {
+    opacity: 1;
+  }
+  
+  /* Información del usuario */
+  .user-info h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Botones */
+  .user-actions {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-btn {
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #333;
+  }
+  
+  .upgrade-btn {
+    background-color: #12c258;
+    color: white;
+  }
+  
+  .upgrade-btn:hover {
+    background-color: #0fa74c;
+  }
+  
