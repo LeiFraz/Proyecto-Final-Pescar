@@ -33,7 +33,7 @@ El nombre "GROW" significa "crecer" en inglés, y representa nuestra misión de 
 | Nombre  | Linkedin | Rol |
 |--------------|--------------|-------|
 | Leonardo Paz | [linkedin](http://www.linkedin.com/in/leonardofpaz) | Backend |
-| Leonardo Paz | [linkedin](http://www.linkedin.com/in/leonardofpaz) | Backend |
+| Carlos Sanchez | [linkedin](www.linkedin.com/in/carlos-alfredo-sánchez) | FrontEnd |
 | Leonardo Paz | [linkedin](http://www.linkedin.com/in/leonardofpaz) | Backend |
 | Leonardo Paz | [linkedin](http://www.linkedin.com/in/leonardofpaz) | Backend |
 | Leonardo Paz | [linkedin](http://www.linkedin.com/in/leonardofpaz) | Backend |
