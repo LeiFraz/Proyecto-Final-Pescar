@@ -4,24 +4,20 @@ import { useEffect, useState, useRef } from "react";
 import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
-import UserProfile from "../UserProfile/UserProfile";
+import NavBarLayout from "./NavBarLayout";
+// import UserProfile from "../UserProfile/UserProfile";
 
 function Layout() {
-    const[id,setId] = useState()
-    const[tipo,setTipo] = useState()
+    const[id,setId] = useState(localStorage.getItem('userId')? localStorage.getItem('userId') : null)
+    const[tipo,setTipo] = useState(localStorage.getItem('tipoPerfil')? localStorage.getItem('tipoPerfil') : null)
     const lottieRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    useEffect(() => {
-        // Verifica si el archivo CSS ya está en el he
-        // localStorage.setItem("userId", "1234");
-        // localStorage.setItem("tipoPerfil","emprendedor")
-        // setId(localStorage.getItem("userId"));
-        // setTipo(localStorage.getItem("tipoPerfil"))
-    }, [id]);
+    
 
     const navigate = useNavigate();
-    const paginaLogin = () => navigate('/login') 
+    // const paginaLogin = () => navigate('/login') 
     const volverArriba = () => navigate('/#')
+    const paginaInicio = () => navigate('/') 
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
@@ -47,75 +43,61 @@ const handleMouseEnter = () => {
       lottieRef.current.goToAndStop(0); // Nos aseguramos que se detenga en el frame 0
     }
   };
+
+  const logout = () => {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    localStorage.removeItem('tipoPerfil')
+    localStorage.removeItem('userName')
+    setId(null)
+    setTipo(null)
+    paginaInicio()
+  }
+
+  //USAR REDUX O CONTEXT PARA RENDERIZAR EL LOGIN
+  useEffect(() => {
+    // Verifica si el archivo CSS ya está en el he
+    const recargar = () => {
+        if (localStorage.getItem('userId') && localStorage.getItem('tipoPerfil')){
+            setId(localStorage.getItem("userId"));
+            setTipo(localStorage.getItem("tipoPerfil"))
+        }
+    }
+
+    recargar()
+
+    }, [id]);
     return(
 
         <>
             <div className="main-search" id="#">
-            <div className="nav mycontainer">
-                <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/inicio" className="logo-link">
-                <Lottie
-                    lottieRef={lottieRef}
-                    animationData={animationData}
-                    autoplay={false}
-                    loop={false}
-                    speed={isPlaying ? 1 : -1}
-                    onComplete={handleComplete}
-                />
-                </a>
-                </div>
-                
-                <div className="search">
-                    <input type="text" placeholder="Buscar..." className="montserrat-regular"/>
-                    <button className="montserrat-regular"><i className="icon-search"></i></button>
-                </div>
-                <div className="carrito">
-                    <div>
-                        <a href="#"><img src="/img/bag2.png" alt="Carrito"/></a>
-                        <p className="contador">0</p>
+                <div className="nav mycontainer">
+                    <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <a href="/inicio" className="logo-link">
+                    <Lottie
+                        lottieRef={lottieRef}
+                        animationData={animationData}
+                        autoplay={false}
+                        loop={false}
+                        speed={isPlaying ? 1 : -1}
+                        onComplete={handleComplete}
+                    />
+                    </a>
+                    </div>
+                    
+                    <div className="search">
+                        <input type="text" placeholder="Buscar..." className="montserrat-regular"/>
+                        <button className="montserrat-regular"><i className="icon-search"></i></button>
+                    </div>
+                    <div className="carrito">
+                        <div>
+                            <a href="#"><img src="/img/bag2.png" alt="Carrito"/></a>
+                            <p className="contador">0</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div className="main-nav montserrat-regular">
-                <div className="nav-container mycontainer">
-                <div className="nav-links-container">
-                    <ul className="nav-links">
-                    <li className="nav-link-item"><a href="#">Inicio</a>
-                    </li>
-                    <li className="nav-link-item"><a href="/publicaciones">Tienda <i className="icon-down-open"></i></a>
-                        <ul className="dropdown_menu">
-                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=producto">Productos</a></li>
-                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=servicio">Servicios</a></li>
-                            <li className="dropdown-menu-item"><a href="/emprendimientos">Emprendimientos</a></li>
-                        </ul>
-                    </li>
-                    <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
-                    <li className="nav-link-item"><a href="#">Contactanos</a></li>
-                </ul>
-                </div>
-                <div className="nav-links-container">
-                    {!id?(
-                        <ul className="nav-links">
-                        <li className="nav-link-item" onClick={paginaLogin}><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
-                        </ul>
-                    ) : (
-                    <ul className="nav-links">
-                        <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Nombre Cuenta <i className="icon-down-open"></i></a>
-                            <ul className="dropdown_menu">
-                                <li className="dropdown-menu-item profile"><a href="/perfil">Perfil</a></li>
-                                {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
-                                {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
-                                <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
-                                <li className="dropdown-menu-item profile"><a href="#" className="logout"><i className="icon-logout"></i>Cerrar Sesión</a></li>
-                            </ul>
-                            </li>
-                        </ul>
-                    )}
-                    
-                </div>
-            </div>
-            </div>
+            <NavBarLayout id={id} tipo={tipo} logout={logout}/>
             <Page/>
             <footer className="footer">
         <section className="footer-sections">

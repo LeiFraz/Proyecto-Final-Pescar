@@ -35,8 +35,6 @@ function Index() {
     useEffect(() => {
         obtenerCategorias(setCategorias);
         const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
-        const userData=localStorage.setItem("userId", "1234");
-        const userId=localStorage.getItem("userId");
         if (!existingLink) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
