@@ -4,33 +4,33 @@ import { useEffect, useState, useRef } from "react";
 import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
-import UserProfile from "../UserProfile/UserProfile";
+import NavBarLayout from "./NavBarLayout";
+import CartSidebar from "../../components/CartSidebar/CartSidebar";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import { useCart } from "../../common/CartContext";
+// import UserProfile from "../UserProfile/UserProfile";
 
 function Layout() {
-    const[id,setId] = useState()
-    const[tipo,setTipo] = useState()
+    const { cart, openCart, isCartOpen } = useCart();
+    const[id,setId] = useState(localStorage.getItem('userId')? localStorage.getItem('userId') : null)
+    const[tipo,setTipo] = useState(localStorage.getItem('tipoPerfil')? localStorage.getItem('tipoPerfil') : null)
     const lottieRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    useEffect(() => {
-        // Verifica si el archivo CSS ya está en el he
-        // localStorage.setItem("userId", "1234");
-        // localStorage.setItem("tipoPerfil","emprendedor")
-        // setId(localStorage.getItem("userId"));
-        // setTipo(localStorage.getItem("tipoPerfil"))
-    }, [id]);
+    
 
     const navigate = useNavigate();
-    const paginaLogin = () => navigate('/login') 
+    // const paginaLogin = () => navigate('/login') 
     const volverArriba = () => navigate('/#')
+    const paginaInicio = () => navigate('/') 
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
-      setIsPlaying(true);
-      lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
-      const currentFrame = lottieRef.current.currentFrame;
-      lottieRef.current.goToAndPlay(currentFrame, true);
+        setIsPlaying(true);
+        lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
+        const currentFrame = lottieRef.current.currentFrame;
+        lottieRef.current.goToAndPlay(currentFrame, true);
     }
-  };
+};
 
   const handleMouseLeave = () => {
     if (lottieRef.current) {
@@ -47,9 +47,49 @@ const handleMouseEnter = () => {
       lottieRef.current.goToAndStop(0); // Nos aseguramos que se detenga en el frame 0
     }
   };
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Maneja el cambio de tamaño de pantalla
+  useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    localStorage.removeItem('tipoPerfil')
+    localStorage.removeItem('userName')
+    setId(null)
+    setTipo(null)
+    paginaInicio()
+  }
+
+  //USAR REDUX O CONTEXT PARA RENDERIZAR EL LOGIN
+  useEffect(() => {
+    // Verifica si el archivo CSS ya está en el he
+    const recargar = () => {
+        if (localStorage.getItem('userId') && localStorage.getItem('tipoPerfil')){
+            setId(localStorage.getItem("userId"));
+            setTipo(localStorage.getItem("tipoPerfil"))
+        }
+    }
+
+    recargar()
+
+    }, [id]);
     return(
 
         <>
+        {isMobile ? (
+                <HamburgerMenu 
+                userId={id}
+                typeUser={tipo}
+                />
+            ) : (
+            <>
             <div className="main-search" id="#">
             <div className="nav mycontainer">
                 <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -70,53 +110,21 @@ const handleMouseEnter = () => {
                     <button className="montserrat-regular"><i className="icon-search"></i></button>
                 </div>
                 <div className="carrito">
-                    <div>
-                        <a href="#"><img src="/img/bag2.png" alt="Carrito"/></a>
-                        <p className="contador">0</p>
-                    </div>
+                        <div>
+                            <img src="/img/bag2.png" alt="Carrito" onClick={() => openCart()} />
+                            <p className="contador">{cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
+                        </div>
                 </div>
             </div>
             </div>
-            <div className="main-nav montserrat-regular">
-                <div className="nav-container mycontainer">
-                <div className="nav-links-container">
-                    <ul className="nav-links">
-                    <li className="nav-link-item"><a href="#">Inicio</a>
-                    </li>
-                    <li className="nav-link-item"><a href="/publicaciones">Tienda <i className="icon-down-open"></i></a>
-                        <ul className="dropdown_menu">
-                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=producto">Productos</a></li>
-                            <li className="dropdown-menu-item"><a href="/publicaciones?tipo=servicio">Servicios</a></li>
-                            <li className="dropdown-menu-item"><a href="/emprendimientos">Emprendimientos</a></li>
-                        </ul>
-                    </li>
-                    <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
-                    <li className="nav-link-item"><a href="#">Contactanos</a></li>
-                </ul>
-                </div>
-                <div className="nav-links-container">
-                    {!id?(
-                        <ul className="nav-links">
-                        <li className="nav-link-item" onClick={paginaLogin}><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
-                        </ul>
-                    ) : (
-                    <ul className="nav-links">
-                        <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Nombre Cuenta <i className="icon-down-open"></i></a>
-                            <ul className="dropdown_menu">
-                                <li className="dropdown-menu-item profile"><a href="/perfil">Perfil</a></li>
-                                {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
-                                {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
-                                <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
-                                <li className="dropdown-menu-item profile"><a href="#" className="logout"><i className="icon-logout"></i>Cerrar Sesión</a></li>
-                            </ul>
-                            </li>
-                        </ul>
-                    )}
-                    
-                </div>
-            </div>
-            </div>
+            <NavBarLayout id={id} tipo={tipo} logout={logout}/>
+            </>
+            )}
             <Page/>
+            {isCartOpen && (
+                <CartSidebar
+                />
+            )}
             <footer className="footer">
         <section className="footer-sections">
             <div className="footer-sections-container mycontainer">

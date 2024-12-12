@@ -1,0 +1,113 @@
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%); /* Inicialmente fuera de la pantalla */
+    transition: transform 0.8s ease; /* Define la animación */
+    will-change: transform;
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    transform: translateX(0);
+}
+
+.cart-items-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem; /* Espacio para el total */
+}
+
+.closeBtn {
+    width: 35px;
+    height: 35px;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #222;
+    border-radius: 5px;
+}
+
+.cartTotalPrice {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+}
+.clear-cart-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ff4d4f;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.clear-cart-btn:hover {
+    background-color: #ff7875;
+}
+
+.buy-cart-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #12C258;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.buy-cart-btn:hover {
+    background-color: #41ec86;
+}
+
+.empty-cart-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+}
+
+.empty-cart-img {
+    width: 350px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    opacity: 0.45; /* Hace que la imagen se vea más tenue */
+}
+
+.empty-cart {
+    position: absolute;
+    color: #333; /* Color del texto */
+    font-size: 1.2rem; /* Tamaño del texto */
+    font-weight: bold;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 999; /* Debe estar debajo del sidebar */
+}

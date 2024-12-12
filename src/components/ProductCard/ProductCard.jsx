@@ -1,22 +1,27 @@
 
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
-const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount }) => {
+import { useCart } from "../../common/CartContext";
+import { useState } from 'react';
+const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount, id_publicacion }) => {
+    const [product, setProduct] = useState([]);
     const formatPrice = (price) => {
         if(price>0){
           const isInteger = price % 1 === 0; // Verifica si el precio es entero
-          const formatter = new Intl.NumberFormat('es-AR', {
+            const formatter = new Intl.NumberFormat('es-AR', {
             style: 'currency',
             currency: 'ARS',
             minimumFractionDigits: isInteger ? 0 : 2, // Si es entero, no muestra decimales
             maximumFractionDigits: 2, // Siempre muestra hasta 2 decimales
-          });
-          return formatter.format(price);
+        });
+        return formatter.format(price);
         }
         else{
             return "$ A convenir"
         }
-      };
+    };
+    const { addToCart } = useCart();
+        
 
 const calculateCurrentPrice = (originalPrice, discount) => {
 if (discount && discount > 0 && discount < 100) {
@@ -26,7 +31,11 @@ return originalPrice;
 }
 
 const currentPrice = calculateCurrentPrice(originalPrice, discount)
-
+product.title=productName;
+product.price=currentPrice;
+product.quantity=1;
+product.image=imageUrl;
+product.id=id_publicacion;
 return (
 <div className="large-card">
     <div className="large-card-container">
@@ -35,7 +44,7 @@ return (
         {discount > 0 && <div className="discount-badge">-{discount}%</div>}
         <div className="hover-overlay">
         <Link href="#" className="overlay-link"></Link>
-        {currentPrice>0 && <button className="add-to-cart">Añadir al carrito</button>}
+        {currentPrice>0 && <button onClick={() => addToCart(product)} className="add-to-cart">Añadir al carrito</button>}
         {currentPrice==0 && <button className="add-to-cart">Contactar</button>}
         <div className="action-buttons">
             <button className="action-button">
