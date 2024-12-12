@@ -40,6 +40,7 @@ function PublicationPage() {
             transparentPrice={publicationData.calculo_precio.precio_transparente}
             profit={publicationData.calculo_precio.ganancia}
             id_publicacion={publicationData._id}
+            id_emprendimiento={publicationData.id_emprendimiento}
         />
     );
 }

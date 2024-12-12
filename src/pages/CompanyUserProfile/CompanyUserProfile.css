@@ -9,7 +9,11 @@ body {
     background-color: #f5f5f5;
 }
 
-.container {
+.container-entrepreneur-profile {
+    width: 80%;                /* El ancho será el 80% del contenedor padre */
+    max-width: 1200px;         /* El ancho no superará los 1200px */
+    margin: 0 auto;            /* Centra el contenedor horizontalmente */
+
     display: flex;
 }
 
@@ -27,27 +31,25 @@ body {
     align-items: center;
     margin-bottom: 20px;
     position: relative;
-    width: 190px;
+    width: 100%; /* Haz que el contenedor sea responsivo */
+    max-width: 190px; /* Tamaño máximo de la imagen */
     height: 190px;
-    margin: 0 auto;
+    aspect-ratio: 1; /* Mantiene una proporción cuadrada */
 }
 
 .profile-pic img {
-    width: 190px;
-    height: 190px;
+    width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+    height: auto; /* Mantendrá la proporción */
     border-radius: 50%;
-    border: 3px solid #022e18; /* Añade un borde para simular la burbuja */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de elevación */
+    border: 3px solid #022e18; /* Borde circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover; /* Asegura que la imagen se recorte correctamente */
     cursor: pointer;
 }
 
-.profile-pic:hover {
-    background-color: #b9d2bb;
-    width: 190px;
-    height: 190px;
-    border-radius: 50%;
-    border: 3px solid #022e18; /* Añade un borde para simular la burbuja */
-    cursor: pointer;
+.profile-pic:hover img{
+    width: 95%;
+    box-shadow: 0 4px 8px rgba(160, 160, 160, 0.2);
 
 }
 
@@ -100,7 +102,7 @@ body {
     padding: 20px;
     position: relative; /* Habilita el posicionamiento relativo para que los elementos hijos puedan usar posición absoluta */
     min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
-
+    padding-bottom: 125px;
 }
 
 .add-product-btn {
@@ -126,8 +128,9 @@ body {
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -198,4 +201,21 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin: 0 10px;
+}
+@media (max-width: 768px) {
+    .container-entrepreneur-profile{
+        flex-direction: column;
+    }
+    .sidebar{
+        margin-top: 40px;
+        width: 100%;
+        min-height: auto;
+    }
+    .main-content{
+        width: 100%;
+    }
+    .profile-pic{
+        margin: auto;
+    }
+
 }

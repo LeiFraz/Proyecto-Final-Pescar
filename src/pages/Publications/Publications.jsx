@@ -25,6 +25,7 @@ function Publications() {
     const descuento=params.get('descuento');
     const orden=params.get('orden');
     const categoria=params.get('categoria');
+    const nombre=params.get('query');
     const options = [
         { value: "", label: <><i className="icon-th-list"></i> Ordenar por</> },
         { value: "A-Z", label: "A - Z" },
@@ -171,18 +172,36 @@ function Publications() {
 
     useEffect(() => {
         obtenerCategorias(setCategorias);
+    }, []);
+    useEffect(() => {
         
-        if(tipo){
-            filtros.tipo=tipo
+        if (tipo) {
+            filtros.tipo = tipo;
         }
-        if(descuento && orden){
-            filtros.descuento=descuento
-            filtros.ordenar=orden
+        if (descuento && orden) {
+            filtros.descuento = descuento;
+            filtros.ordenar = orden;
         }
-        if(categoria){
-            filtros.categoria=categoria
+        if (categoria) {
+            filtros.categoria = categoria;
+        }
+        if (nombre) {
+            filtros.nombre = nombre;
         }
     }, []);
+
+    useEffect(() => {
+
+        setFiltros((prevFiltros) => ({
+            ...prevFiltros,
+            tipo: tipo || '',
+            categoria: categoria || '',
+            descuento: descuento || '',
+            nombre: nombre || '',
+            ordenar: orden || ''
+        }));
+    }, [location.search]);
+
 
     useEffect(() => {
         obtenerPublicaciones(1); // Reset a la primera página cuando cambian los filtros
@@ -194,16 +213,38 @@ function Publications() {
             label: categoria.nombre,
         }))
     ];
+    const [mostrarFiltros, setMostrarFiltros] = useState(false);
+
+    const toggleFiltros = () => {
+        setMostrarFiltros(!mostrarFiltros);
+    };
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     return (
         <div className={styles.mainContainer}>
             <div className={styles.filterProductsContainer}>
                 <div className={styles.filterContainer}>
-                    <div className={styles.filters}>
+                    
                         <div className={`${styles.mainTitle} ${styles.filter}`}>
-                            <h1 className="title"><i className="icon-sliders"></i>Filtros</h1>
+                            <div onClick={toggleFiltros} className={styles.flexTitle}>
+                            <h1  
+                            className={styles.title}><i className="icon-sliders"></i>Filtros
+                            </h1>
+                            {isMobile && (
+                                    <h1 className={styles.title}>
+                                        <i
+                                            className={`icon-down-open ${styles.icon} ${mostrarFiltros ? styles.rotated : ''}`}
+                                        />
+                                    </h1>
+                            )}
+                            </div>
                             <a href="" onClick={limpiarFiltros}><i className="icon-cancel"></i> Borrar Filtros</a>
                         </div>
-                        
+                        <div className={`${styles.filters} ${mostrarFiltros ? styles.mostrar : styles.ocultar}`}>
                         <div className={`${styles.typePost} ${styles.filter}`}>
                             <h2 className={styles.subtitle}>Tipo</h2>
                             <select 

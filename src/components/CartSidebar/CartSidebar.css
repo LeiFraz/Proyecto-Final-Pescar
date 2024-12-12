@@ -111,3 +111,8 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
     z-index: 999; /* Debe estar debajo del sidebar */
 }
+@media (max-width: 425px) {
+    .cart-sidebar{
+        width: 90%;
+    }
+}

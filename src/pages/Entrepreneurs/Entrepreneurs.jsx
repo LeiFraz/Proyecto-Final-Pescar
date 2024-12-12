@@ -116,7 +116,7 @@ function Entrepreneurs() {
                             onChange={manejarCambioFiltro}
                         />
                         <Select 
-                            className={styles.orderBy}
+                            className={styles.orderByZ}
                             options={types}
                             value={types.find(option => option.value === filtros.tipo) || types[0]}
                             onChange={manejarCambioTipo}
@@ -140,6 +140,7 @@ function Entrepreneurs() {
                                 profileName={emp.nombre_emprendimiento}
                                 description={emp.descripcion}
                                 imageUrl={emp.foto_perfil}
+                                id_emprendimiento={emp._id}
                                 />
                             ))}
                         </div>

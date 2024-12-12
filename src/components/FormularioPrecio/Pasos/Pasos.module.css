@@ -268,3 +268,9 @@ body {
     margin-right: 8px;
     vertical-align: middle;
 }
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+}

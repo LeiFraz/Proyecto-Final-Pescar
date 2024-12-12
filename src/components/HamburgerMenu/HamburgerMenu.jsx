@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import styles from './HamburgerMenu.module.css';
 import { useCart } from "../../common/CartContext";
-const HamburgerMenu = ({userId, typeUser}) => {
+import { useNavigate } from 'react-router-dom';
+const HamburgerMenu = ({userId, typeUser, logout, id_emprendimiento}) => {
+    const navigate = useNavigate();
+    const paginaLogin = () => navigate('/login') 
     const [isOpen, setIsOpen] = useState(false); // Controla el estado del menú
+    const [searchTerm, setSearchTerm] = useState("");
     const { cart, openCart, isCartOpen } = useCart();
+    const handleSearch = () => {
+        if (searchTerm.trim()) {
+          navigate(`/publicaciones?query=${encodeURIComponent(searchTerm)}`);
+          setSearchTerm("");
+        }
+      };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
     return (
         <nav className={styles.hamburgerMenu}>
             <div className={styles.mainHeader}>
@@ -13,6 +29,9 @@ const HamburgerMenu = ({userId, typeUser}) => {
             >
                 ☰
             </button>
+            <a href='/inicio' className={styles.logoHamburguesa}>
+                <img className={styles.logoHamburguesaImg} src="\img\logo_negro.png" alt="" />
+            </a>
             <div className={styles.carrito}>
                         <div>
                             <img src="/img/bag2.png" alt="Carrito" onClick={() => openCart()} />
@@ -29,8 +48,11 @@ const HamburgerMenu = ({userId, typeUser}) => {
                             type="text"
                             placeholder="Buscar..."
                             className={styles.searchInput}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleKeyDown}
                         />
-                        <button className={styles.searchButton}>
+                        <button onClick={handleSearch} className={styles.searchButton}>
                             <i className="icon-search"></i>
                         </button>
                     </div>
@@ -42,7 +64,7 @@ const HamburgerMenu = ({userId, typeUser}) => {
                     <ul className={styles.menuLinks}>
                         <li><a href="/inicio">Inicio</a></li>
                         <li>
-                            <a href="/publicaciones">Tienda <i className="icon-down-open"></i></a>
+                            <a href="#">Tienda <i className="icon-down-open"></i></a>
                             <ul className={styles.dropdown}>
                                 <li><a href="/publicaciones?tipo=producto">Productos</a></li>
                                 <li><a href="/publicaciones?tipo=servicio">Servicios</a></li>
@@ -52,16 +74,16 @@ const HamburgerMenu = ({userId, typeUser}) => {
                         <li><a href="/nosotros">Sobre nosotros</a></li>
                         
                         {!userId ?
-                        (<li><a href="/iniciar-sesion">Iniciar Sesión</a></li>
+                        (<li><a href="#" onClick={paginaLogin}>Iniciar Sesión</a></li>
                         ):(
                         <li>
-                            <a href="#">Nombre Usuario <i className="icon-down-open"></i></a>
+                            <a href="#">{localStorage.getItem('userName')}<i className="icon-down-open"></i></a>
                             <ul className={styles.dropdown}>
-                                <li><a href="">Perfil</a></li>
-                                {typeUser!="emprendedor" && <li><a href="#">Emprender</a></li>}
-                                {typeUser==="emprendedor" && <li><a href="#">Tu emprendimiento</a></li>}
+                                <li><a href={`/perfil?usuario=${userId}`}>Perfil</a></li>
+                                {typeUser!="emprendedor" && <li><a href="/emprendimientos/crearEmprendimiento">Emprender</a></li>}
+                                {typeUser==="emprendedor" && id_emprendimiento===localStorage.getItem('entrepreneurId') && <li><a href={`/emprendimiento?emprendimiento=${localStorage.getItem('entrepreneurId')}`}>{localStorage.getItem('entrepreneurName')}</a></li>}
                                 <li><a href="#">Ajustes</a></li>
-                                <li><a href="#" className={styles.logout}><i className="icon-logout"></i>Cerrar Sesión</a></li>
+                                <li><a href="#" className={styles.logout} onClick={logout}><i className="icon-logout"></i>Cerrar Sesión</a></li>
                             </ul>
                         </li>
                         )}
