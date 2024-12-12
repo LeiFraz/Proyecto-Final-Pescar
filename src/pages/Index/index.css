@@ -199,41 +199,6 @@
     gap: 20px 0; /* 20px de separación vertical, 0px horizontal */
     flex-wrap: wrap;
 }
-
-/* Mobile styles */
-@media (max-width: 768px) {
-    .banner > a {
-        flex: 1 1 100%; /* Full width for each item */
-    }
-
-    .section-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .section-title a {
-        margin-top: 10px;
-    }
-
-    .notes-container .notes {
-        grid-template-columns: 1fr; /* Single column */
-    }
-
-    .categories-container, .products-container {
-        grid-template-columns: 1fr; /* Single column */
-    }
-}
-
-/* Small screens (less than 480px) */
-@media (max-width: 480px) {
-    .section-title h2 {
-        font-size: 1.2rem;
-    }
-
-    .banner .more-info {
-        font-size: 0.9rem;
-    }
-}
 .swiper-container {
     width: 100%;
     height: auto; /* Ajusta la altura según sea necesario */
@@ -245,3 +210,25 @@
     align-items: center;
     /* Otras reglas CSS que desees agregar */
   }
+
+@media (max-width: 768px) {
+    .banner {
+        display: flex;
+        flex-direction: column;
+    }
+    .notes{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 10px;
+    }
+    .section-title{
+        display: inline-block;
+    }
+    .section-title a{
+        display: block;
+    }
+}
+
+

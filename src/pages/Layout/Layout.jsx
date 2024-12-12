@@ -5,9 +5,13 @@ import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
 import NavBarLayout from "./NavBarLayout";
+import CartSidebar from "../../components/CartSidebar/CartSidebar";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import { useCart } from "../../common/CartContext";
 // import UserProfile from "../UserProfile/UserProfile";
 
 function Layout() {
+    const { cart, openCart, isCartOpen } = useCart();
     const[id,setId] = useState(localStorage.getItem('userId')? localStorage.getItem('userId') : null)
     const[tipo,setTipo] = useState(localStorage.getItem('tipoPerfil')? localStorage.getItem('tipoPerfil') : null)
     const lottieRef = useRef(null);
@@ -21,12 +25,12 @@ function Layout() {
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
-      setIsPlaying(true);
-      lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
-      const currentFrame = lottieRef.current.currentFrame;
-      lottieRef.current.goToAndPlay(currentFrame, true);
+        setIsPlaying(true);
+        lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
+        const currentFrame = lottieRef.current.currentFrame;
+        lottieRef.current.goToAndPlay(currentFrame, true);
     }
-  };
+};
 
   const handleMouseLeave = () => {
     if (lottieRef.current) {
@@ -43,6 +47,15 @@ const handleMouseEnter = () => {
       lottieRef.current.goToAndStop(0); // Nos aseguramos que se detenga en el frame 0
     }
   };
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Maneja el cambio de tamaño de pantalla
+  useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const logout = () => {
     localStorage.removeItem('userId')
@@ -70,35 +83,46 @@ const handleMouseEnter = () => {
     return(
 
         <>
+        {isMobile ? (
+                <HamburgerMenu 
+                userId={id}
+                typeUser={tipo}
+                />
+            ) : (
             <div className="main-search" id="#">
-                <div className="nav mycontainer">
-                    <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <a href="/inicio" className="logo-link">
-                    <Lottie
-                        lottieRef={lottieRef}
-                        animationData={animationData}
-                        autoplay={false}
-                        loop={false}
-                        speed={isPlaying ? 1 : -1}
-                        onComplete={handleComplete}
-                    />
-                    </a>
-                    </div>
-                    
-                    <div className="search">
-                        <input type="text" placeholder="Buscar..." className="montserrat-regular"/>
-                        <button className="montserrat-regular"><i className="icon-search"></i></button>
-                    </div>
-                    <div className="carrito">
+            <div className="nav mycontainer">
+                <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <a href="/inicio" className="logo-link">
+                <Lottie
+                    lottieRef={lottieRef}
+                    animationData={animationData}
+                    autoplay={false}
+                    loop={false}
+                    speed={isPlaying ? 1 : -1}
+                    onComplete={handleComplete}
+                />
+                </a>
+                </div>
+                
+                <div className="search">
+                    <input type="text" placeholder="Buscar..." className="montserrat-regular"/>
+                    <button className="montserrat-regular"><i className="icon-search"></i></button>
+                </div>
+                <div className="carrito">
                         <div>
-                            <a href="#"><img src="/img/bag2.png" alt="Carrito"/></a>
-                            <p className="contador">0</p>
+                            <img src="/img/bag2.png" alt="Carrito" onClick={() => openCart()} />
+                            <p className="contador">{cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
                         </div>
-                    </div>
                 </div>
             </div>
+            </div>
             <NavBarLayout id={id} tipo={tipo} logout={logout}/>
+            )}
             <Page/>
+            {isCartOpen && (
+                <CartSidebar
+                />
+            )}
             <footer className="footer">
         <section className="footer-sections">
             <div className="footer-sections-container mycontainer">
