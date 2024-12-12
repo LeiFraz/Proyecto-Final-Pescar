@@ -1,0 +1,165 @@
+.hamburgerMenu {
+    position: relative;
+    background-color: #91cda9;
+    padding: 10px;
+}
+
+.menuToggle {
+    font-size: 1.5rem;
+    color: #222;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menuContent {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #91cda9, #1a1a1a 50px); /* Gradiente verde a negro */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 20px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    flex: 4;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.searchButton {
+    flex: 1;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.mainHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchButton:hover {
+    background-color: #12c258;
+}
+
+.cartContainer {
+    display: inline-block;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cartIcon {
+    width: 30px;
+    margin-right: 10px;
+    transition: 0.3s ease;
+}
+
+.cartCount {
+    background-color: #074910;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    left: 1px;
+}
+
+.menuLinks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuLinks li {
+    border-bottom: 1px solid #333;
+}
+
+.menuLinks li a {
+    display: block;
+    color: #999;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.menuLinks li a:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+.dropdown {
+    display: none;
+    background-color: #333;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuLinks li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li a {
+    padding: 10px 40px;
+}
+.cartIcon:hover{
+    -webkit-filter: invert(100%); 
+    filter: invert(100%);
+}
+
+.carrito > div > img{
+    width: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.carrito > div > img:hover{
+    -webkit-filter: invert(100%); 
+    filter: invert(100%);
+}
+.carrito{
+    position: relative;
+    
+}
+.contador{
+    position: absolute;
+    background-color: #074910;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: 2px solid white; /* Borde blanco de 2px */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    bottom: 1rem;
+    right: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+li .dropdown .logout{
+    color: #c20d0d;
+}

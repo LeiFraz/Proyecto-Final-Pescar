@@ -12,9 +12,9 @@ import SobreNosotros from "../pages/SobreNosotros/SobreNosotros"
 import PublicationPage from "../pages/PublicationPage/PublicationPage";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
-import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
+// import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
 import UserProfile from "../pages/UserProfile/UserProfile"; 
-import CompanyUserProfile from "../pages/CompanyUserProfile/CompanyUserProfile";
+import Order from "../pages/Order/Order";
 
 export const Routes = () => {
 
@@ -30,14 +30,6 @@ export const Routes = () => {
                 {
                     path: '/inicio',
                     element: <Index/>
-                },
-                {
-                    path: '/login',
-                    element: <Login/>
-                },
-                {
-                    path: '/registro',
-                    element: <Register/>
                 },
                 {
                     path: '/publicaciones',
@@ -82,11 +74,19 @@ export const Routes = () => {
                 },
 
                 {
-                    path: '/PerfilDeEmprendimiento',
-                    element: <CompanyUserProfile />
-                }
+                    path: '/orden',
+                    element: <Order/>
+                },
             ],
-        }
+        },
+        {
+            path: '/login',
+            element: <Login/>
+        },
+        {
+            path: '/registro',
+            element: <Register/>
+        },
     ]
 
     return useRoutes(routes);

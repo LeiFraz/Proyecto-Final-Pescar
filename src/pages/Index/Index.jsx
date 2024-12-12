@@ -3,12 +3,12 @@ import axios from "axios";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
-
-import 'swiper/swiper-bundle.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination]);
 
 
 const obtenerCategorias = async (setCategorias) => {
@@ -35,8 +35,6 @@ function Index() {
     useEffect(() => {
         obtenerCategorias(setCategorias);
         const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
-        const userData=localStorage.setItem("userId", "1234");
-        const userId=localStorage.getItem("userId");
         if (!existingLink) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -140,18 +138,28 @@ function Index() {
                     <div className="products-container">
                         {/* ----------SWIPER-------------------- */}
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
@@ -163,14 +171,16 @@ function Index() {
                         profileName="Crochetizate"
                         originalPrice={30000}
                         discount={20}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://d22fxaf9t8d39k.cloudfront.net/d77b447786f2bdd7994fddc3bfd4e52d190a7c608926e912dc7d16a96500ab1d14657.png"
                         productName="Mazo de Cartas Personalizado"
                         profileName="CarteandoAndo"
                         originalPrice={25000}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://fbi.cults3d.com/uploaders/14619068/illustration-file/84bee593-e0c1-4a9d-ab3d-4e4846df1a12/017.jpg"
@@ -178,7 +188,8 @@ function Index() {
                         profileName="Impresiones Xtreme"
                         originalPrice={0}
                         discount={0}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://i.pinimg.com/736x/f0/6c/88/f06c88e5b39d2c878be2427db5d09a1c.jpg"
@@ -200,18 +211,28 @@ function Index() {
                         {/* <!-- Cards services --> */}
                         {/* -------------SWIPER------------------------ */}
                         <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
@@ -221,14 +242,16 @@ function Index() {
                         productName="Instalación de aire acondicionado"
                         profileName="Juan Instalaciones"
                         originalPrice={70000}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://www.spaoneandonly.cl/wp-content/uploads/2024/09/C7AD8ED4-BA67-4775-BA6A-BFC6832F6BC7-1-1000x1000.jpg"
                         productName="Sesión de masaje por hora"
                         profileName="MAXajes"
                         originalPrice={10000}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://siberiasalon.com/wp-content/smush-webp/2023/09/Glitter-1000x1000.jpg.webp"
@@ -236,7 +259,8 @@ function Index() {
                         profileName="Marlu Nails"
                         originalPrice={8000}
                         discount={25}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://grupolasser.com/wp-content/uploads/2022/07/empresa-instalacion-camaras-empresas-comunidades-hogares-madrid.jpg"
@@ -244,8 +268,8 @@ function Index() {
                         profileName="SecurityCam"
                         originalPrice={110000}
                         discount={10}
-                        /></SwiperSlide>
-
+                        />
+                        </SwiperSlide>
                     </Swiper>
                     </div>
                 </section>
@@ -258,22 +282,31 @@ function Index() {
                     </div>
                     <div className="products-container">
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
-                        {/* <!-- Cards services products discount --> */}
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="http://www.mesasdepool.com.ar/images/productos/Directorio/Directorio-01.jpg"
@@ -281,7 +314,8 @@ function Index() {
                         profileName="Piramide Pool"
                         originalPrice={1000000}
                         discount={70}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi8vNpeOn4mAIBd8SIfu7BqHUlmD-Qcj0Pmw&s"
@@ -289,7 +323,8 @@ function Index() {
                         profileName="Surfear"
                         originalPrice={30000}
                         discount={60}
-                        /></SwiperSlide>
+                        />
+                        </SwiperSlide>
                         <SwiperSlide>
                         <ProductCard
                         imageUrl=""
@@ -318,18 +353,28 @@ function Index() {
                     </div>
                     <div className="profiles-container">
                     <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            slidesPerGroup={1}
                             spaceBetween={10}  // Espacio entre los slides
                             slidesPerView={1}  // Siempre muestra un slide por vista
-                            loop={true}         // Hace que el swiper sea cíclico, puedes quitarlo si no lo necesitas
                             breakpoints={{
                               320: {
                                 slidesPerView: 1,  // En pantallas pequeñas solo muestra un slide
+                                slidesPerGroup: 1,
                               },
                               768: {
                                 slidesPerView: 2,  // Muestra 2 slides cuando la pantalla es más grande
+                                slidesPerGroup: 2,
                               },
                               1024: {
                                 slidesPerView: 3,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 3,
+                                },
+                              1280: {
+                                slidesPerView: 4,  // Muestra 3 slides cuando la pantalla es aún más grande
+                                slidesPerGroup: 4,
                                 },
                             }}
                         >
