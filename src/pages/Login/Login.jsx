@@ -42,7 +42,8 @@ const Login = () => {
                     localStorage.setItem('userId', response.data._id)
                     localStorage.setItem('userName', response.data.nombre + ' ' +response.data.apellido)
                     localStorage.setItem('tipoPerfil', response.data.rol)
-
+                    localStorage.setItem('entrepreneurId', response.id_emprendimiento)
+                    localStorage.setItem('entrepreneurName', response.nombre_emprendimiento)
                     console.log('Inicio de sesion exitoso')
 
                     paginaInicio()
@@ -55,6 +56,10 @@ const Login = () => {
     }
 
     return (
+            <>
+        <div className={style.backButton}>
+            <a href="/inicio">← Volver al inicio</a>
+        </div>
         <div className={style.containerMayra}>
             <div className={style.loginBox}>
                 <h1>iniciar sesión en Grow</h1>
@@ -78,6 +83,7 @@ const Login = () => {
             </div>
             <img src= "src\pages\Login\logo_slogan_verde (1).png" alt="icono de Grow" className={style.imagenLogin}/>
         </div>
+        </>
     )
 }
 

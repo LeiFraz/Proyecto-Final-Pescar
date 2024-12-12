@@ -12,7 +12,8 @@ function CreateEntrepreneur() {
     const [tipo_emprendimiento, setTipo] = useState('');
     const [foto_perfil, setFotoPerfil] = useState(null);
     const [foto_banner, setFotoBanner] = useState(null);
-    const id_usuario="673d0d5b598fff8480abccd6";
+    const id_usuario=localStorage.getItem("userId") || null;
+    console.log(id_usuario)
     const [nombreError, setNombreError] = useState('');
     const [tipoError, setTipoError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,11 @@ function CreateEntrepreneur() {
         setFotoBanner(file);
     };
     
-
+    useEffect(() => {
+        if(id_usuario == null){
+            navigate("/inicio");
+        }
+    }, []);
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
     const handleImageUpload = async (file) => {
@@ -105,7 +110,14 @@ function CreateEntrepreneur() {
         console.log(formData)
     
         try {
-        await axios.post('http://localhost:5000/api/emprendimiento/crear', formData);
+        const entrepreneurResponse = await axios.post('http://localhost:5000/api/emprendimiento/crear', formData);
+        console.log(entrepreneurResponse)
+        localStorage.setItem('entrepreneurId', entrepreneurResponse.data._id)
+        localStorage.setItem('entrepreneurName', entrepreneurResponse.data.nombre_emprendimiento)
+        await axios.put(`http://localhost:5000/api/usuario/${id_usuario}`, {
+            rol: "emprendedor",
+        });
+        localStorage.setItem('tipoPerfil',"emprendedor")
         setIsLoading(false);
         openModal();
         } catch (error) {

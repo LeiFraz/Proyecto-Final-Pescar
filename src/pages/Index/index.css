@@ -203,7 +203,10 @@
     
     width: 100%;
     height: auto; /* Ajusta la altura según sea necesario */
-  }
+}
+.swiper-wrapper{
+    padding-bottom: 40px;
+}
   
   .swiper-slide {
     display: flex;

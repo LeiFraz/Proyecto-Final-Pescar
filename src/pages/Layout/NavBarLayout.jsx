@@ -32,9 +32,9 @@ const NavBarLayout = ({id, tipo, logout}) => {
                         <ul className="nav-links">
                             <li className="nav-link-item"><a href="#"><i className="icon-user"></i>{localStorage.getItem('userName')} <i className="icon-down-open"></i></a>
                                 <ul className="dropdown_menu">
-                                    <li className="dropdown-menu-item profile"><a href="/perfil">Perfil</a></li>
-                                    {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
-                                    {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
+                                    <li className="dropdown-menu-item profile"><a href={`/perfil?usuario=${id}`}>Perfil</a></li>
+                                    {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="/emprendimientos/crearEmprendimiento">Emprender</a></li>}
+                                    {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">{localStorage.getItem("entrepreneurName")}</a></li>}
                                     <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
                                     <li className="dropdown-menu-item profile"><a href="#" className="logout" onClick={logout}><i className="icon-logout"></i>Cerrar Sesión</a></li>
                                 </ul>

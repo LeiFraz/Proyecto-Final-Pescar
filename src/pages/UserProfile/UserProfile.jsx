@@ -1,20 +1,57 @@
 // UserProfile.js
-import React from "react";
-import CardSection from "./CardSection";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./UserProfile.css";
-
+import axios from "axios";
+import ProfileOrderCard from "../../components/ProfileOrderCard/ProfileOrderCard";
+const obtenerUsuario = async (id_usuario, setUsuario) => {
+  
+  try {
+      // Realizar la solicitud GET
+      const response = await axios.get(`http://localhost:5000/api/usuario/${id_usuario}`);
+      
+      const usData = response.data
+      console.log(usData)
+      setUsuario(usData);
+  } catch (error) {
+      console.error('Error al obtener el publicacion:', error);
+  }
+};
+const obtenerCompras = async (id_usuario, setCompras) => {
+  try{
+  const response = await axios.get(`http://localhost:5000/api/orden/usuario/${id_usuario}`);
+  const orderData = response.data;
+  console.log(orderData)
+  setCompras(orderData);
+  }
+  catch(error){
+    console.error('Error al obtener compras:', error);
+  }
+}
 const UserProfile = () => {
-  const recentViews = [
-    { id: 1, title: "Producto 1", image: "https://via.placeholder.com/100" },
-    { id: 2, title: "Producto 2", image: "https://via.placeholder.com/100" },
-    { id: 3, title: "Producto 3", image: "https://via.placeholder.com/100" },
-  ];
+  const location = useLocation(); // Usa el hook en la raíz del componente
+  const [usuario, setUsuario] = useState(null);
+  const [compras, setCompras] = useState(null)
+  const id_emprendimiento=localStorage.getItem("entrepreneurId");
+  console.log(id_emprendimiento)
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const user = params.get('usuario');
+    if (user) {
+      obtenerUsuario(user, setUsuario);
+    }
+}, [location]);
+useEffect(() => {
+  if(usuario && usuario._id === localStorage.getItem("userId")){
+    obtenerCompras(usuario._id, setCompras)
+  }
+}, [usuario]);
+  const navigate = useNavigate();
 
-  const favorites = [
-    { id: 4, title: "Publicación Favorita 1", image: "https://via.placeholder.com/100" },
-    { id: 5, title: "Publicación Favorita 2", image: "https://via.placeholder.com/100" },
-  ];
-
+  const handleNavigation = () => {
+    navigate("/emprendimientos/crearEmprendimiento");
+  };
   return (
     <div className="profile-container">
       {/* Perfil del usuario */}
@@ -26,26 +63,34 @@ const UserProfile = () => {
             className="profile-picture"
           />
           <div className="profile-picture-overlay">
-            <span>Agregar foto de perfil</span>
+            {usuario && usuario._id === localStorage.getItem("userId") && <span>Agregar foto de perfil</span>}
           </div>
         </div>
         <div className="user-info">
-          <h2>Federico Zapata</h2>
-          <p>DNI: 12345678</p>
-          <p>Email: federico@example.com</p>
-          <p>Telefono: 1234567890</p>
+          {usuario && <h2>{usuario.nombre} {usuario.apellido}</h2>}
+          {usuario && usuario._id === localStorage.getItem("userId") && <p>Email: {usuario.email}</p>}
+          {usuario && usuario._id === localStorage.getItem("userId") && <p>Telefono: {usuario.telefono}</p>}
         </div>
         <div className="user-actions">
-          <button className="btn edit-btn">Cambiar datos</button>
-          <button className="btn upgrade-btn">Actualizar a cuenta de emprendedor</button>
+          {usuario && usuario._id === localStorage.getItem("userId") && <button className="btn edit-btn">Cambiar datos</button>}
+          {usuario && usuario.rol=="consumidor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento==="" && <button onClick={handleNavigation} className="btn upgrade-btn">Emprender</button>}
+          {usuario && usuario.rol=="emprendedor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento!=="" && <button className="btn upgrade-btn">{localStorage.getItem('entrepreneurName')}</button>}
         </div>
       </div>
 
       {/* Secciones de cards */}
-      <div className="extra-section">
-        <CardSection title="Vistos Recientemente" items={recentViews} />
-        <CardSection title="Favoritos" items={favorites} />
-      </div>
+      {usuario && usuario._id === localStorage.getItem("userId") && <div className="extra-section">
+        <div className="card-section">
+          <h2>Historial de Compras</h2>
+          <div className="card-container">
+          {compras && compras.map((com) => (
+                        <ProfileOrderCard
+                        id_orden={com._id}
+                        />
+          ))}
+          </div>
+        </div>
+      </div>}
     </div>
   );
 };

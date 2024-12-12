@@ -54,6 +54,10 @@ const Register = () => {
     }
 
     return (
+        <>
+        <div className={style.backButton}>
+            <a href="/inicio">← Volver al inicio</a>
+        </div>
         <div className={style.containerMayra}>
             <div className={style.formSection}>
                 <h1>Regístrese con el correo electrónico</h1>
@@ -95,6 +99,7 @@ const Register = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
