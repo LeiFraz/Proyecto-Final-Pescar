@@ -1,108 +1,264 @@
 // Importamos el CSS y otros recursos
-import './upload.css';
+import axios from 'axios';
 import logo from '../../assets/img-upload/logo_reducido_negro.png';
 import carrito from '../../assets/img-upload/carrito.png';
-import ModalSuccess from '../../components/Modals/ModalSuccess';
-import { useState } from 'react';
+import ModalLoading from '../../components/Modals/ModalLoading';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import FilesDropzone from '../../components/FilesDropzone/FilesDropzone';
+import FormularioPrecio from '../../components/FormularioPrecio/FormularioPrecio';
+const obtenerCategorias = async (setCategorias) => {
+    try {
+        // Realizar la solicitud GET
+        const response = await axios.get('http://localhost:5000/api/categoria');
+        
+        // Desestructurar y obtener solo los campos "id" y "nombre" de cada publicación
+        const categoriasData = response.data.map(categoria => ({
+            id: categoria._id,
+            nombre: categoria.nombre
+        }));
+
+        // Actualizar el estado con los datos filtrados
+        setCategorias(categoriasData);
+    } catch (error) {
+        console.error('Error al obtener las categorias:', error);
+    }
+};
 
 function Upload() {
-
+    const [isPrecioVisible, setIsPrecioVisible] = useState(false);
+    const [isUploadVisible, setIsUploadVisible] = useState(true);
+    const [calculoPrecio, setCalculoPrecio] = useState({});
+    const [finalMaterials, setFinalMaterials] = useState([]);
+    const [pubId, setPublicationId] = useState("")
+    const [categorias, setCategorias] = useState([]);
+    const id_emprendimiento="673ec846a9c1f418e3397548"
+    const [values, setValues] = useState({
+        precio: "",
+        descuento: "",
+    });
+    const[nombre, setNombre] = useState("")
+    const[tipo, setTipo] = useState("")
+    const[descripcion, setDescripcion] = useState("")
+    const [id_categoria, setCategoria] = useState("")
+    const[imgfiles, setImgfile] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [nombreError, setNombreError] = useState('');
+    const [tipoError, setTipoError] = useState('');
+    const [catError, setCatError] = useState('');
+    const navigate = useNavigate();
+    useEffect(() => {
+        obtenerCategorias(setCategorias);
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/src/pages/Upload/upload.css'; // Ruta al archivo CSS
+        document.head.appendChild(link);
+    
+        return () => {
+          document.head.removeChild(link); // Elimina el CSS cuando el componente se desmonta
+        };
+        
+    }, []);
+    const handleCheckboxChange = (e) => {
+        setIsDisabled(e.target.checked); // Habilita o deshabilita el input según el estado del checkbox
+        if(e.target.checked){
+            setValues({
+                precio: "",
+                descuento: "",
+            });
+        }
+    };
+    const handleGoBack = () => {
+        navigate(-1); // Navega a la página anterior
+    };
+    
+    const handleImageChanges = (files) => {
+        setImgfile(files)
+    };
+    
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
+    const handleImageUpload = async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'Products'); // Reemplaza con tu preset
+        formData.append('cloud_name', 'dgchowyad'); // Reemplaza con tu nombre de cloud
+    
+        try {
+            const response = await axios.post('https://api.cloudinary.com/v1_1/dgchowyad/image/upload', formData);
+            return response.data.secure_url;
+        } catch (error) {
+            console.error('Error al subir la imagen:', error);
+            return null;
+        }
+    };
+    const togglePrecioVisibility = () => {
+        setIsPrecioVisible(!isPrecioVisible);
+        setIsUploadVisible(!isUploadVisible); 
+    };
+    const handleSubmit = async () => {
+        console.log(calculoPrecio);
+        let urls = [""]; // Manejo de imágenes
+        let hasError = false;
+    
+        // Validación de campos
+        if (!nombre) { setNombreError('Este campo es obligatorio'); hasError = true; }
+        if (!tipo) { setTipoError('Este campo es obligatorio'); hasError = true; }
+        if (!id_categoria) { setCatError('Este campo es obligatorio'); hasError = true; }
+        if (hasError) return;
+    
+        setIsLoading(true);
+        setIsOpen(true);
+    
+        // Subir imágenes
+        if (imgfiles.length > 0) {
+            try {
+                const imageUploadPromises = imgfiles.map((file) =>
+                    handleImageUpload(file) // Subir cada archivo
+                );
+                urls = await Promise.all(imageUploadPromises);
+            } catch (error) {
+                console.error('Error al subir imágenes:', error);
+                setIsLoading(false);
+                setIsOpen(false);
+                return;
+            }
+        }
+    
+        // Crear el objeto de publicación
+        const formData = {
+            id_emprendimiento,
+            nombre,
+            tipo,
+            precio: parseFloat(parseFloat(values.precio || 0).toFixed(2)),
+            descuento: parseInt(values.descuento, 10) || 0,
+            descripcion,
+            id_categoria,
+            imagenes: urls,
+            calculo_precio: calculoPrecio, // Incluye calculoPrecio aquí
+        };
+    
+        try {
+            const response = await axios.post(
+                'http://localhost:5000/api/publicacion/crear',
+                formData
+            );
+    
+            const publicationId = response.data._id;
+            setPublicationId(publicationId)
+            const updatePromises = finalMaterials.map((material) =>
+                axios.put(
+                    `http://localhost:5000/api/materialusado/${material._id}`,
+                    { id_publicacion: publicationId }
+                )
+            );
+    
+            await Promise.all(updatePromises);
+            console.log('Publicación creada exitosamente.');
+            setIsLoading(false);
+            openModal();
+        } catch (error) {
+            console.error('Error al crear publicación:', error);
+            setIsLoading(false);
+            setIsOpen(false);
+            alert('Hubo un error al crear la publicación.');
+        }
+    };
 
+    const comprobarNegativo = (e) => {
+        const { name, value } = e.target;
+    
+        // Valida que el valor no sea negativo
+        if (value === "" || (Number(value) >= 1 && !isNaN(value))) {
+            setValues((prevValues) => ({
+            ...prevValues,
+            [name]: value, // Actualiza solo el input correspondiente
+            }));
+        }
+    };
+    const handleAccept = () => {
+        closeModal();
+        navigate(`/publicacion?publicacion=${pubId}`);
+    };
     return (
-    <div>
-      {/* Header Superior */}
-    <header className="header">
-        <div className="header-container">
-        <div className="header-left">
-            <img src={logo} alt="Logo Grow" className="logo" />
-        </div>
+        <div>
+            {/* Modal */}
+            <ModalLoading isOpen={isOpen} isLoading={isLoading} text={'Se creó la publicación exitosamente'} loadingText={"Creando publicación..."}>
+                {!isLoading && <button className='btn btn-success' onClick={handleAccept}>Aceptar</button>}
+            </ModalLoading>
 
-        <div className="search-container">
-            <input type="text" placeholder="⌕ Search" className="search-bar" />
-            <button className="search-btn">Search</button>
-        </div>
+            {/* Sección Principal */}
+            <div style={{ display: isUploadVisible ? 'block' : 'none' }}>
+            (<main className="main-container" >
+                <section className="info-general">
+                    <h2>Información General</h2>
+                    <label>Nombre</label>
+                    <input type="text" placeholder="Introducir nombre" onChange={(e) => setNombre(e.target.value)}/>
+                    {nombreError && <p className="error-message">{nombreError}</p>}
+                    <label>Tipo</label>
+                    <select defaultValue="" onChange={(e) => setTipo(e.target.value)}>
+                        <option value="" disabled hidden>Seleccione una opción</option>
+                        <option value="producto">Producto</option>
+                        <option value="servicio">Servicio</option>
+                    </select>
+                    {tipoError && <p className="error-message">{tipoError}</p>}
+                    <label>Descripción</label>
+                    <textarea placeholder="..." onChange={(e) => setDescripcion(e.target.value)}/>
+                </section>
 
-        <div className="header-right">
-            <div className="shopping-cart">
-            Shopping cart: <span>$57.00</span>
+                <section className="imagen">
+                    <h2>Imagen</h2>
+                    <div className="image-upload">
+                        <FilesDropzone setFile={handleImageChanges}/>
+                    </div>
+                </section>
+
+                <section className="precios">
+                    <h2>Precios</h2>
+                    <input type="number" placeholder="Precio base" name='precio' value={values.precio} onChange={comprobarNegativo} disabled={isDisabled}/>
+                    <div className="calcContainer">
+                        <button onClick={togglePrecioVisibility} className='botonPrecio'>Calcular Precio</button>
+                        <label className='labelPrecio'>
+                        <input type="checkbox" className='inputPrecio' value={0} checked={isDisabled} onChange={handleCheckboxChange} />
+                        <span className='checkPrecio'></span>
+                        Precio a convenir
+                        </label>
+                    </div>
+                    <input type="number" placeholder="Porcentaje de descuento (%)" name='descuento' value={values.descuento} onChange={comprobarNegativo} disabled={isDisabled}/>
+                </section>
+
+                <section className="categoria">
+                    <h2>Categoría</h2>
+                    <select onChange={(e) => setCategoria(e.target.value)}>
+                        <option>Selecciona una Categoría</option>
+                        {categorias.map(categoria => (
+                            <option value={categoria.id}>
+                                {categoria.nombre}
+                            </option>
+                ))}
+                    </select>
+                    {catError && <p className="error-message">{catError}</p>}
+                </section>
+
+                <div className="buttons">
+                    <button className="save-btn">Guardar como borrador</button>
+                    <button className="publish-btn" onClick={handleSubmit}>Publicar ahora</button>
+                </div>
+                
+            </main>)
             </div>
-            <button className="cart-btn">
-            <img src={carrito} alt="Carrito" className="cart-icon" />
-            </button>
+            {isPrecioVisible && 
+            <FormularioPrecio 
+            setIsUploadVisible={setIsUploadVisible}
+            setIsPrecioVisible={setIsPrecioVisible} 
+            setValues={setValues}
+            setFinalMaterials={setFinalMaterials}
+            setCalculoPrecio={setCalculoPrecio}
+            />}
         </div>
-        </div>
-    </header>
-
-    {/* Modal*/}
-    <ModalSuccess isOpen={isOpen} text={'Se creo la publicación exitosamente'}>
-        <button className='btn btn-success' onClick={closeModal}> Aceptar </button>
-    </ModalSuccess>
-
-      {/* Barra de Navegación Inferior */}
-    <nav className="nav-bar">
-        <a href="#">Home 🡣</a>
-        <a href="#">Shop 🡣</a>
-        <a href="#">Pages 🡣</a>
-        <a href="#">Blog 🡣</a>
-        <a href="#">About Us 🡣</a>
-        <a href="#">Contact Us 🡣</a>
-        <button className="login-btn">Iniciar Sesión</button>
-    </nav>
-
-      {/* Sección Principal */}
-    <main className="main-container">
-        <section className="info-general">
-        <h2>Información General</h2>
-        <a>Nombre del producto/servicio</a>
-        <br />
-        <input type="text" placeholder="Introducir nombre" />
-        <br />
-        <a>Descripción</a>
-        <textarea placeholder="..." />
-        </section>
-
-        <section className="imagen">
-        <h2>Imagen</h2>
-        <div className="image-upload">
-            <input type="file" id="imageInput" style={{ display: 'none' }} />
-            <label htmlFor="imageInput">Añadir una imagen</label>
-        </div>
-        </section>
-
-        <section className="precios">
-        <h2>Precios</h2>
-        <input type="number" placeholder="Precio base" />
-        <input type="number" placeholder="Porcentaje de descuento (%)" />
-        <select>
-            <option>Selecciona un tipo de descuento</option>
-        </select>
-        </section>
-
-        <section className="categoria">
-        <h2>Categoría</h2>
-        <select>
-            <option>Selecciona una Categoría</option>
-        </select>
-        <input type="text" placeholder="Agregar Tags" />
-        </section>
-
-        <section className="inventario">
-        <h2>Inventario/Disponibilidad</h2>
-        <input type="number" placeholder="Cantidad" />
-        <input type="date" />
-        </section>
-
-        <div className="buttons">
-        <button className="save-btn">Guardar como borrador</button>
-        <button className="publish-btn" onClick={openModal}>Publicar ahora</button>
-        </div>
-    </main>
-    </div>
-);
+    );
 }
 
 export default Upload;

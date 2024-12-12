@@ -108,6 +108,8 @@ function CompanyUserProfile() {
           </button>
         </div>
 
+
+
         {/* Main Content */}
         <div className="main-content">
           <button className="add-product-btn" onClick={handleAddProduct}>
@@ -126,9 +128,10 @@ function CompanyUserProfile() {
                   Eliminar
                 </button>
               </div>
+
+              
             ))}
           </div>
-
           {/* Paginación */}
           <div className="pagination">
             <button
@@ -148,6 +151,7 @@ function CompanyUserProfile() {
             >
               Siguiente
             </button>
+
           </div>
         </div>
       </div>

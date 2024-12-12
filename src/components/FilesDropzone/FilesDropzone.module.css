@@ -1,0 +1,53 @@
+.dropzone .centerDrop{
+    margin: 0;
+    margin-top: 0;
+}
+.dropzone p{
+    margin: 0;
+    margin-top: 0.5rem;
+}
+.error-dropzone{
+    margin: 0;
+    margin-top: 0.5rem;
+    color: #d84242;
+}
+.dropzone:focus{
+    outline: none !important;
+    border: 2px dashed #007BFF !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5) !important;
+}
+.img-preview{
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.formDropzone ul{
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    list-style: none;
+    
+}
+.formDropzone .li-image{
+    display: inline-block;
+    height: 150px;
+    width: 145px;
+    overflow: hidden;
+}
+.formDropzone button{
+        background-color: red; /* Color de fondo */
+        color: white; /* Color del texto */
+        border: none; /* Sin bordes */
+        border-radius: 50%; /* Hace el botón redondo */
+        width: 38px; /* Anchura del botón */
+        height: 38px; /* Altura del botón (igual que el ancho para que sea redondo) */
+        font-size: 1rem; /* Tamaño del texto */
+        cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+        position: relative;
+        bottom: 2rem;
+        right: 2rem;
+    
+}
