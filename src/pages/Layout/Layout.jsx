@@ -89,6 +89,7 @@ const handleMouseEnter = () => {
                 typeUser={tipo}
                 />
             ) : (
+            <> 
             <div className="main-search" id="#">
             <div className="nav mycontainer">
                 <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -117,6 +118,7 @@ const handleMouseEnter = () => {
             </div>
             </div>
             <NavBarLayout id={id} tipo={tipo} logout={logout}/>
+            </>
             )}
             <Page/>
             {isCartOpen && (
