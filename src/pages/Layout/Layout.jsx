@@ -62,6 +62,8 @@ const handleMouseEnter = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('tipoPerfil')
     localStorage.removeItem('userName')
+    localStorage.removeItem('entrepreneurId')
+    localStorage.removeItem('entrepreneurName')
     setId(null)
     setTipo(null)
     paginaInicio()

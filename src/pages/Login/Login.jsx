@@ -42,7 +42,8 @@ const Login = () => {
                     localStorage.setItem('userId', response.data._id)
                     localStorage.setItem('userName', response.data.nombre + ' ' +response.data.apellido)
                     localStorage.setItem('tipoPerfil', response.data.rol)
-
+                    localStorage.setItem('entrepreneurId', response.id_emprendimiento)
+                    localStorage.setItem('entrepreneurName', response.nombre_emprendimiento)
                     console.log('Inicio de sesion exitoso')
 
                     paginaInicio()

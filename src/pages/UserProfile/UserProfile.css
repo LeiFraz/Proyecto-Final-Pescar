@@ -71,6 +71,8 @@
   /* Botones */
   .user-actions {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
   }
   
   .btn {
@@ -99,5 +101,20 @@
   
   .upgrade-btn:hover {
     background-color: #0fa74c;
+  }
+  .card-section {
+    margin-bottom: 20px;
+  }
+  
+  .card-section h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 5px 0;
   }
   
