@@ -75,7 +75,7 @@ export const Routes = () => {
                 },
 
                 {
-                    path: '/PerfilDeEmprendimiento',
+                    path: '/emprendimiento',
                     element: <CompanyUserProfile />
                 },
 

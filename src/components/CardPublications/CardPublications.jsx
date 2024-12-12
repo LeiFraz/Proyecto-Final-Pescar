@@ -70,7 +70,7 @@ const CardPublications = ({ nombre, precioActual,precioOriginal, descuento, imag
         >
             {emprendimiento && (
                 <a
-                    href=""
+                    href={`/emprendimiento?emprendimiento=${id_emprendimiento}`}
                     className={`${styles.profileLink} ${
                         hoverLink ? styles.greenText : styles.blackText
                     }`}

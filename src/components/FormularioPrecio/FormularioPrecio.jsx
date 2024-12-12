@@ -4,7 +4,7 @@ import Paso2 from './Pasos/Paso2';
 import Paso3 from './Pasos/Paso3';
 
 
-const FormularioPrecio = ({ setIsUploadVisible, setIsPrecioVisible, setValues, setFinalMaterials, setCalculoPrecio }) => {
+const FormularioPrecio = ({ id_emprendimiento, setIsUploadVisible, setIsPrecioVisible, setValues, setFinalMaterials, setCalculoPrecio }) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [materials, setMaterials] = useState([]); // Lista de materiales seleccionados o creados
     const [usedMaterials, setUsedMaterials] = useState([]); // Cantidades usadas y ganancia
@@ -12,7 +12,6 @@ const FormularioPrecio = ({ setIsUploadVisible, setIsPrecioVisible, setValues, s
 
     const nextStep = () => setCurrentStep((prev) => prev + 1);
     const prevStep = () => setCurrentStep((prev) => prev - 1);
-    const id_emprendimiento = "674660e6d82f17d3abaac760"
     const handleCancel = () => {
         // Volver al formulario principal
         setIsUploadVisible(true);

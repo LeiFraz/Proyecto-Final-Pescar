@@ -196,6 +196,7 @@ function Index() {
                         productName="Torta personalizada"
                         profileName="Beli Pasteleria"
                         originalPrice={35500}
+                        discount={0}
                         /></SwiperSlide>
                         </Swiper>
                     </div>

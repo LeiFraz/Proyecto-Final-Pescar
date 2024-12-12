@@ -15,3 +15,8 @@
 .orderNumber{
     font-size: 2rem;
 }
+@media (max-width: 490px) {
+    .orderNumber{
+        font-size: 1rem;
+    }
+}

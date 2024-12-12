@@ -52,6 +52,9 @@ useEffect(() => {
   const handleNavigation = () => {
     navigate("/emprendimientos/crearEmprendimiento");
   };
+  const paginaEmprendimiento = () =>{
+    navigate(`/emprendimiento?emprendimiento=${id_emprendimiento}`);
+  }
   return (
     <div className="profile-container">
       {/* Perfil del usuario */}
@@ -74,7 +77,7 @@ useEffect(() => {
         <div className="user-actions">
           {usuario && usuario._id === localStorage.getItem("userId") && <button className="btn edit-btn">Cambiar datos</button>}
           {usuario && usuario.rol=="consumidor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento==="" && <button onClick={handleNavigation} className="btn upgrade-btn">Emprender</button>}
-          {usuario && usuario.rol=="emprendedor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento!=="" && <button className="btn upgrade-btn">{localStorage.getItem('entrepreneurName')}</button>}
+          {usuario && usuario.rol=="emprendedor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento!=="" && <button onClick={paginaEmprendimiento} className="btn upgrade-btn">{localStorage.getItem('entrepreneurName')}</button>}
         </div>
       </div>
 

@@ -53,7 +53,7 @@ body {
     margin-bottom: 16px;
 }
 .botonPrecio{
-    height: 40px;
+    min-height: 40px;
     background-color: #007BFF;
     border: none;
     border-radius: 5px;
@@ -195,6 +195,8 @@ textarea {
 .buttons {
     grid-column: span 2;
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
     justify-content: space-between;
 }
 
@@ -224,4 +226,19 @@ textarea {
 .error-message{
     color: red;
     font-size: 0.8rem;
+}
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width: 490px) {
+    .calcContainer{
+        flex-wrap: wrap;
+    }
+    .main-container .precios .labelPrecio{
+        margin-top: 0.5rem;
+        display: block;
+    }
 }

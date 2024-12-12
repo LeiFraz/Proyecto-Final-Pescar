@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const NavBarLayout = ({id, tipo, logout}) => {
+const NavBarLayout = ({id, tipo, logout, id_emprendimiento}) => {
 
     const navigate = useNavigate();
     const paginaLogin = () => navigate('/login') 
@@ -11,7 +11,7 @@ const NavBarLayout = ({id, tipo, logout}) => {
                 <div className="nav-container mycontainer">
                     <div className="nav-links-container">
                         <ul className="nav-links">
-                            <li className="nav-link-item"><a href="#">Inicio</a>
+                            <li className="nav-link-item"><a href="/inicio">Inicio</a>
                             </li>
                             <li className="nav-link-item"><a href="/publicaciones">Tienda <i className="icon-down-open"></i></a>
                                 <ul className="dropdown_menu">
@@ -34,7 +34,7 @@ const NavBarLayout = ({id, tipo, logout}) => {
                                 <ul className="dropdown_menu">
                                     <li className="dropdown-menu-item profile"><a href={`/perfil?usuario=${id}`}>Perfil</a></li>
                                     {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="/emprendimientos/crearEmprendimiento">Emprender</a></li>}
-                                    {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">{localStorage.getItem("entrepreneurName")}</a></li>}
+                                    {tipo == "emprendedor"&& tipo!="admin" && id_emprendimiento===localStorage.getItem('entrepreneurId') && <li className="dropdown-menu-item profile"><a href={`/emprendimiento?emprendimiento=${localStorage.getItem('entrepreneurId')}`}>{localStorage.getItem("entrepreneurName")}</a></li>}
                                     <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
                                     <li className="dropdown-menu-item profile"><a href="#" className="logout" onClick={logout}><i className="icon-logout"></i>Cerrar Sesión</a></li>
                                 </ul>

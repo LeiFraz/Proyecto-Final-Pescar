@@ -163,3 +163,9 @@
 li .dropdown .logout{
     color: #c20d0d;
 }
+.logoHamburguesa{
+    z-index: 101;
+}
+.logoHamburguesaImg{
+    width: 150px;
+}

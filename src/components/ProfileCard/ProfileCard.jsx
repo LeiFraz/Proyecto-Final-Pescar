@@ -1,7 +1,9 @@
 
 import './ProfileCard.css';
-const ProfileCard = ({ imageUrl, profileName, description}) => {
-
+import { useNavigate } from 'react-router-dom';
+const ProfileCard = ({ imageUrl, profileName, description, id_emprendimiento}) => {
+    const navigate = useNavigate();
+    const perfilEmprendedor = () => navigate(`/emprendimiento?emprendimiento=${id_emprendimiento}`) 
     return (
         <div className="card-profile">
         <div className="card-profile-image">
@@ -12,7 +14,7 @@ const ProfileCard = ({ imageUrl, profileName, description}) => {
             <p className="card-profile-description">
             {description}
             </p>
-            <button className="card-profile-button">Visitar Perfil</button>
+            <button onClick={perfilEmprendedor} className="card-profile-button">Visitar Perfil</button>
         </div>
     </div>
     )

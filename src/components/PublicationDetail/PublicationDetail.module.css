@@ -7,7 +7,6 @@
 }
 .detailContainer {
     margin-top: 45px;
-    margin-bottom: 45px;
     display: flex;
     gap: 30px;
     justify-content: center;
@@ -49,6 +48,7 @@
     
 }
 .descriptionContainer{
+    
     padding: 1rem;
     margin-top: 1rem;
     background-color: #fff;
@@ -225,3 +225,21 @@
   .strongColor{
     color: #249c82;
   }
+  @media (max-width: 768px) {
+    .detailContainer{
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-content: center;
+    }
+    .descriptionContainer{
+      margin-top: 1.5rem;
+    }
+    .imageSlider{
+      max-width: 400px;
+    }
+}
+@media (max-width: 400px) {
+  .imageSlider{
+    max-width: 250px;
+  }
+}

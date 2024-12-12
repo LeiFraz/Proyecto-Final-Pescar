@@ -12,8 +12,10 @@ import { useCart } from "../../common/CartContext";
 
 function Layout() {
     const { cart, openCart, isCartOpen } = useCart();
+    const [searchTerm, setSearchTerm] = useState("");
     const[id,setId] = useState(localStorage.getItem('userId')? localStorage.getItem('userId') : null)
     const[tipo,setTipo] = useState(localStorage.getItem('tipoPerfil')? localStorage.getItem('tipoPerfil') : null)
+    const[id_emprendimiento,setIdEmprendimiento] = useState(localStorage.getItem('entrepreneurId')? localStorage.getItem('entrepreneurId') : null)
     const lottieRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     
@@ -78,15 +80,32 @@ const handleMouseEnter = () => {
             setTipo(localStorage.getItem("tipoPerfil"))
         }
     }
+    
+    
+    
 
     recargar()
 
     }, [id]);
+    const handleSearch = () => {
+        if (searchTerm.trim()) {
+          navigate(`/publicaciones?query=${encodeURIComponent(searchTerm)}`);
+          setSearchTerm("");
+        }
+      };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
     return(
 
         <>
         {isMobile ? (
                 <HamburgerMenu 
+                logout={logout}
+                id_emprendimiento={id_emprendimiento}
                 userId={id}
                 typeUser={tipo}
                 />
@@ -108,8 +127,20 @@ const handleMouseEnter = () => {
                 </div>
                 
                 <div className="search">
-                    <input type="text" placeholder="Buscar..." className="montserrat-regular"/>
-                    <button className="montserrat-regular"><i className="icon-search"></i></button>
+                    <input
+                        type="text"
+                        placeholder="Buscar..."
+                        className="montserrat-regular"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleKeyDown} // Maneja el evento Enter
+                    />
+                    <button
+                        className="montserrat-regular"
+                        onClick={handleSearch} // Maneja el clic del botón
+                    >
+                        <i className="icon-search"></i>
+                    </button>
                 </div>
                 <div className="carrito">
                         <div>
@@ -119,7 +150,7 @@ const handleMouseEnter = () => {
                 </div>
             </div>
             </div>
-            <NavBarLayout id={id} tipo={tipo} logout={logout}/>
+            <NavBarLayout id={id} tipo={tipo} logout={logout} id_emprendimiento={id_emprendimiento}/>
             </>
             )}
             <Page/>

@@ -32,7 +32,8 @@ function Upload() {
     const [finalMaterials, setFinalMaterials] = useState([]);
     const [pubId, setPublicationId] = useState("")
     const [categorias, setCategorias] = useState([]);
-    const id_emprendimiento="673ec846a9c1f418e3397548"
+    const id_emprendimiento=localStorage.getItem('entrepreneurId') || null;
+    console.log(id_emprendimiento)
     const [values, setValues] = useState({
         precio: "",
         descuento: "",
@@ -191,7 +192,7 @@ function Upload() {
 
             {/* Sección Principal */}
             <div style={{ display: isUploadVisible ? 'block' : 'none' }}>
-            (<main className="main-container" >
+            <main className="main-container" >
                 <section className="info-general">
                     <h2>Información General</h2>
                     <label>Nombre</label>
@@ -247,10 +248,11 @@ function Upload() {
                     <button className="publish-btn" onClick={handleSubmit}>Publicar ahora</button>
                 </div>
                 
-            </main>)
+            </main>
             </div>
             {isPrecioVisible && 
-            <FormularioPrecio 
+            <FormularioPrecio
+            id_emprendimiento={id_emprendimiento}
             setIsUploadVisible={setIsUploadVisible}
             setIsPrecioVisible={setIsPrecioVisible} 
             setValues={setValues}

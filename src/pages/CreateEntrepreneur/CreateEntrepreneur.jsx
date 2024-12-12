@@ -32,12 +32,15 @@ function CreateEntrepreneur() {
     };
     
     useEffect(() => {
-        if(id_usuario == null){
+        if(id_usuario == null || localStorage.getItem("entrepreneurId")){
             navigate("/inicio");
         }
     }, []);
     const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+    const closeModal = () => {
+        setIsOpen(false)
+        window.location.href = `/emprendimiento?emprendimiento=${localStorage.getItem('entrepreneurId')}`;
+    };
     const handleImageUpload = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
