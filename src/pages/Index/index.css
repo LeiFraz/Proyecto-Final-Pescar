@@ -1,20 +1,27 @@
 *{
     box-sizing: border-box;
 }
-.main-container{
-    width: 80%;                /* El ancho será el 80% del contenedor padre */
-    max-width: 1200px;         /* El ancho no superará los 1200px */
-    margin: 0 auto;            /* Centra el contenedor horizontalmente */
-    margin-top: 45px;
-    margin-bottom: 45px;
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
+/* Responsive banner */
 .banner {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    grid-template-rows: repeat(2, 6fr);
-    grid-column-gap: 1.2rem;
-    grid-row-gap: 1.2rem;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+.banner > a {
+    flex: 1 1 calc(50% - 15px); /* Two columns */
+    text-align: center;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .banner a{
     text-decoration: none;
     color: #000;
@@ -134,6 +141,12 @@
     min-height: 150px;
     font-size: 0.75rem;
 }
+/* Notes container */
+.notes-container .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
 .notes{
     width: 98%;
     display: flex;
@@ -186,11 +199,18 @@
     gap: 20px 0; /* 20px de separación vertical, 0px horizontal */
     flex-wrap: wrap;
 }
+.swiper-container {
+    width: 100%;
+    height: auto; /* Ajusta la altura según sea necesario */
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Otras reglas CSS que desees agregar */
+  }
 
-.carrousel-index{
-    padding: 3px;
-    padding-bottom: 50px;
-}
 @media (max-width: 768px) {
     .banner {
         display: flex;
@@ -210,3 +230,5 @@
         display: block;
     }
 }
+
+
