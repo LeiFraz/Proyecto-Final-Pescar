@@ -186,3 +186,27 @@
     gap: 20px 0; /* 20px de separación vertical, 0px horizontal */
     flex-wrap: wrap;
 }
+
+.carrousel-index{
+    padding: 3px;
+    padding-bottom: 50px;
+}
+@media (max-width: 768px) {
+    .banner {
+        display: flex;
+        flex-direction: column;
+    }
+    .notes{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 10px;
+    }
+    .section-title{
+        display: inline-block;
+    }
+    .section-title a{
+        display: block;
+    }
+}

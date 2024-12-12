@@ -14,6 +14,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import FormularioPrecio from "../components/FormularioPrecio/FormularioPrecio";
 import UserProfile from "../pages/UserProfile/UserProfile"; 
+import Order from "../pages/Order/Order";
 
 export const Routes = () => {
 
@@ -77,7 +78,12 @@ export const Routes = () => {
                 {
                     path: '/perfil',
                     element: <UserProfile />
-                }
+                },
+
+                {
+                    path: '/orden',
+                    element: <Order/>
+                },
             ],
         }
     ]

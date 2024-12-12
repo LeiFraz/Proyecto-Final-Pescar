@@ -8,6 +8,7 @@ import { Navigation, Pagination } from 'swiper';
 import { Link } from 'react-router-dom';
 import styles from './PublicationDetail.module.css';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
+import { useCart } from "../../common/CartContext";
 const obtenerMateriales = async (setMateriales, id_publicacion) => {
   try {
     // Obtener los materiales usados
@@ -36,7 +37,15 @@ const obtenerMateriales = async (setMateriales, id_publicacion) => {
 };
 const PublicationDetail = ({ images, productName, profileName, originalPrice, discount, description, transparentPrice, id_publicacion, profit }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
+  const [product, setProduct] = useState({
+    title: '',
+    price: 0,
+    quantity: 1,
+    image: '',
+    id: '',
+  });
+  const [sentProduct, setSentProduct] = useState([])
+  const { addToCart } = useCart();
   const formatPrice = (price) => {
     if(price>0){
       const isInteger = price % 1 === 0; // Verifica si el precio es entero
@@ -65,6 +74,24 @@ const PublicationDetail = ({ images, productName, profileName, originalPrice, di
   const contentRef = useRef(null);
   const [materiales, setMateriales] = useState([]);
 
+  useEffect(() => {
+    setProduct({
+      title: productName,
+      price: currentPrice,
+      quantity: 1,
+      image: images[0],
+      id: id_publicacion,
+    });
+  }, [productName, currentPrice, images, id_publicacion]);
+  useEffect(() => {
+    console.log("Product updated:", product);
+    setSentProduct({
+      id_publicacion: product.id,
+      cantidad: product.quantity,
+      precio: product.price,
+    });
+  }, [product]);
+  
   const color = transparentPrice ? '#1D7A66' : '#000';
 
   // Manejar el clic en el título
@@ -89,6 +116,7 @@ const PublicationDetail = ({ images, productName, profileName, originalPrice, di
     }
     return `${cantidad} ${unidad}`;
 };
+
   const totalPrice = materiales.reduce((acc, material) => acc + material.precio, 0);
   useEffect(() => {
     obtenerMateriales(setMateriales,id_publicacion);
@@ -104,6 +132,22 @@ useEffect(() => {
     }
   }
 }, [isOpen]);
+  const handleSubmitOrder = async () => {
+    const userId = localStorage.getItem("userId");
+    console.log(sentProduct)
+    const formData = {
+      id_usuario: userId,
+      publicaciones: [sentProduct],
+      precio_total: sentProduct.precio * sentProduct.cantidad
+    };
+    try {
+      await axios.post('http://localhost:5000/api/orden/crear', formData);
+      console.log('Orden creada exitosamente.');
+    } catch (error) {
+      console.error('Error al crear la orden:', error);
+      alert('Hubo un error al crear la orden.');
+    }
+  };
 
   return (
     <div className="mainContainer">
@@ -197,11 +241,16 @@ useEffect(() => {
             initialQuantity={1}
             min={1}
             max={10}
-            onChange={(value) => console.log("Cantidad seleccionada:", value)}
+            onChange={(newQuantity) => {
+              setProduct((prevProduct) => ({
+                ...prevProduct,
+                quantity: newQuantity,
+              }));
+            }}
           />
         </div>}
-        {currentPrice > 0 && <button className={styles.buyButton}>Comprar ahora</button>}
-        {currentPrice > 0 && <button className={styles.cartButton}>Agregar al carrito</button>}
+        {currentPrice > 0 && <button onClick={handleSubmitOrder} className={styles.buyButton}>Comprar ahora</button>}
+        {currentPrice > 0 && <button onClick={() => addToCart(product)} className={styles.cartButton}>Agregar al carrito</button>}
         {currentPrice === 0 && <button className={styles.cartButton}>Contactar al vendedor</button>}
       </div>
     </div>

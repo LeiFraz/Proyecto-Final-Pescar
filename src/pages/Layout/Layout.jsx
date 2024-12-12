@@ -4,33 +4,36 @@ import { useEffect, useState, useRef } from "react";
 import Lottie from 'lottie-react';
 import logofooter from '../../assets/Img-componentes/logo_slogan_white.png';
 import animationData from "../../assets/Img-componentes/growlogo.json"; // Reemplaza con la ruta a tu archivo Lottie
-import UserProfile from "../UserProfile/UserProfile";
-
+import CartSidebar from "../../components/CartSidebar/CartSidebar";
+import HamburgerMenu from "../../components/HamburgerMenu/HamburgerMenu";
+import { useCart } from "../../common/CartContext";
 function Layout() {
+    const { cart, openCart, isCartOpen } = useCart();
     const[id,setId] = useState()
     const[tipo,setTipo] = useState()
     const lottieRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     useEffect(() => {
         // Verifica si el archivo CSS ya está en el he
-        // localStorage.setItem("userId", "1234");
-        // localStorage.setItem("tipoPerfil","emprendedor")
-        // setId(localStorage.getItem("userId"));
-        // setTipo(localStorage.getItem("tipoPerfil"))
+        localStorage.setItem("userId", "673d0d5b598fff8480abccd6");
+        localStorage.setItem("tipoPerfil","emprendedor")
+        setId(localStorage.getItem("userId"));
+        setTipo(localStorage.getItem("tipoPerfil"))
     }, [id]);
 
     const navigate = useNavigate();
-    const paginaLogin = () => navigate('/login') 
+    const paginaRegistro = () => navigate('/registro') 
     const volverArriba = () => navigate('/#')
+    
 
 const handleMouseEnter = () => {
     if (lottieRef.current) {
-      setIsPlaying(true);
-      lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
-      const currentFrame = lottieRef.current.currentFrame;
-      lottieRef.current.goToAndPlay(currentFrame, true);
+        setIsPlaying(true);
+        lottieRef.current.setSpeed(1.5); // Aseguramos velocidad positiva al entrar
+        const currentFrame = lottieRef.current.currentFrame;
+        lottieRef.current.goToAndPlay(currentFrame, true);
     }
-  };
+};
 
   const handleMouseLeave = () => {
     if (lottieRef.current) {
@@ -47,9 +50,24 @@ const handleMouseEnter = () => {
       lottieRef.current.goToAndStop(0); // Nos aseguramos que se detenga en el frame 0
     }
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Maneja el cambio de tamaño de pantalla
+  useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
     return(
 
         <>
+        {isMobile ? (
+                <HamburgerMenu 
+                userId={id}
+                typeUser={tipo}
+                />
+            ) : (
+                <div className="main-navigation">
             <div className="main-search" id="#">
             <div className="nav mycontainer">
                 <div className="logo-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -70,10 +88,10 @@ const handleMouseEnter = () => {
                     <button className="montserrat-regular"><i className="icon-search"></i></button>
                 </div>
                 <div className="carrito">
-                    <div>
-                        <a href="#"><img src="/img/bag2.png" alt="Carrito"/></a>
-                        <p className="contador">0</p>
-                    </div>
+                        <div>
+                            <img src="/img/bag2.png" alt="Carrito" onClick={() => openCart()} />
+                            <p className="contador">{cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
+                        </div>
                 </div>
             </div>
             </div>
@@ -90,20 +108,19 @@ const handleMouseEnter = () => {
                             <li className="dropdown-menu-item"><a href="/emprendimientos">Emprendimientos</a></li>
                         </ul>
                     </li>
-                    <li className="nav-link-item"><a href="#">Sobre nosotros</a></li>
-                    <li className="nav-link-item"><a href="#">Contactanos</a></li>
+                    <li className="nav-link-item"><a href="/nosotros">Sobre nosotros</a></li>
                 </ul>
                 </div>
                 <div className="nav-links-container">
                     {!id?(
                         <ul className="nav-links">
-                        <li className="nav-link-item" onClick={paginaLogin}><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
+                        <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Iniciar Sesión</a></li>
                         </ul>
                     ) : (
                     <ul className="nav-links">
                         <li className="nav-link-item"><a href="#"><i className="icon-user"></i>Nombre Cuenta <i className="icon-down-open"></i></a>
                             <ul className="dropdown_menu">
-                                <li className="dropdown-menu-item profile"><a href="/perfil">Perfil</a></li>
+                                <li className="dropdown-menu-item profile"><a href="#">Perfil</a></li>
                                 {tipo != "emprendedor"&& tipo!="admin"&& <li className="dropdown-menu-item profile"><a href="#">Emprender</a></li>}
                                 {tipo == "emprendedor"&& tipo!="admin" && <li className="dropdown-menu-item profile"><a href="#">Tu emprendimiento</a></li>}
                                 <li className="dropdown-menu-item profile"><a href="#">Ajustes</a></li>
@@ -116,7 +133,14 @@ const handleMouseEnter = () => {
                 </div>
             </div>
             </div>
+            </div>
+            )}
+            
             <Page/>
+            {isCartOpen && (
+                <CartSidebar
+                />
+            )}
             <footer className="footer">
         <section className="footer-sections">
             <div className="footer-sections-container mycontainer">

@@ -3,6 +3,10 @@ import axios from "axios";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import { Navigation, Pagination } from 'swiper';
 const obtenerCategorias = async (setCategorias) => {
     try {
         // Realizar la solicitud GET
@@ -130,20 +134,50 @@ function Index() {
                         <h2 className="section-subtitle">Productos Recomendados</h2><a href="/publicaciones?tipo=producto">Ver más <i className="icon-right"></i></a>
                     </div>
                     <div className="products-container">
+                    <Swiper
+                        className="carrousel-index"
+                        modules={[Navigation, Pagination]}
+                        spaceBetween={5} // Espacio entre las slides
+                        slidesPerView={1} // Número de slides visibles
+                        slidesPerGroup={1}
+                        navigation // Flechas de navegación
+                        pagination={{ clickable: true }} // Paginación con puntos
+                        breakpoints={{
+                        640: {
+                            slidesPerView: 2, // 2 slides visibles en pantallas >= 640px
+                            slidesPerGroup: 2,
+                        },
+                        1024: {
+                            slidesPerView: 3, // 3 slides visibles en pantallas >= 1024px
+                            slidesPerGroup: 3, // 3 slides visibles en pantallas >= 1024px
+                        },
+                        1280: {
+                            slidesPerView: 4, // 3 slides visibles en pantallas >= 1024px
+                            slidesPerGroup: 4, // 3 slides visibles en pantallas >= 1024px
+                        },
+                        }}
+                    >
                         {/* <!-- Cards products --> */}
+                        <SwiperSlide>
                         <ProductCard
                         imageUrl="https://i.pinimg.com/originals/1a/e7/5d/1ae75d4027c349a8a9d56714370612cf.jpg"
                         productName="Peluches a Crochet Personalizados"
                         profileName="Crochetizate"
                         originalPrice={30000}
                         discount={20}
+                        id_publicacion={1}
                         />
+                        </SwiperSlide>
+                        <SwiperSlide>
                         <ProductCard
                         imageUrl="https://d22fxaf9t8d39k.cloudfront.net/d77b447786f2bdd7994fddc3bfd4e52d190a7c608926e912dc7d16a96500ab1d14657.png"
                         productName="Mazo de Cartas Personalizado"
                         profileName="CarteandoAndo"
                         originalPrice={25000}
+                        id_publicacion={2}
                         />
+                        </SwiperSlide>
+                        <SwiperSlide>
                         <ProductCard
                         imageUrl="https://fbi.cults3d.com/uploaders/14619068/illustration-file/84bee593-e0c1-4a9d-ab3d-4e4846df1a12/017.jpg"
                         productName="Figura impresa 3D a elección"
@@ -151,12 +185,54 @@ function Index() {
                         originalPrice={0}
                         discount={0}
                         />
+                        </SwiperSlide>
+                        <SwiperSlide>
                         <ProductCard
                         imageUrl="https://i.pinimg.com/736x/f0/6c/88/f06c88e5b39d2c878be2427db5d09a1c.jpg"
                         productName="Torta personalizada"
                         profileName="Beli Pasteleria"
                         originalPrice={35500}
+                        id_publicacion={3}
                         />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <ProductCard
+                        imageUrl="https://i.pinimg.com/originals/1a/e7/5d/1ae75d4027c349a8a9d56714370612cf.jpg"
+                        productName="Peluches a Crochet Personalizados"
+                        profileName="Crochetizate"
+                        originalPrice={30000}
+                        discount={20}
+                        id_publicacion={1}
+                        />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <ProductCard
+                        imageUrl="https://d22fxaf9t8d39k.cloudfront.net/d77b447786f2bdd7994fddc3bfd4e52d190a7c608926e912dc7d16a96500ab1d14657.png"
+                        productName="Mazo de Cartas Personalizado"
+                        profileName="CarteandoAndo"
+                        originalPrice={25000}
+                        id_publicacion={2}
+                        />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <ProductCard
+                        imageUrl="https://fbi.cults3d.com/uploaders/14619068/illustration-file/84bee593-e0c1-4a9d-ab3d-4e4846df1a12/017.jpg"
+                        productName="Figura impresa 3D a elección"
+                        profileName="Impresiones Xtreme"
+                        originalPrice={0}
+                        discount={0}
+                        />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <ProductCard
+                        imageUrl="https://i.pinimg.com/736x/f0/6c/88/f06c88e5b39d2c878be2427db5d09a1c.jpg"
+                        productName="Torta personalizada"
+                        profileName="Beli Pasteleria"
+                        originalPrice={35500}
+                        id_publicacion={3}
+                        />
+                        </SwiperSlide>
+                    </Swiper>
                     </div>
                 </section>
             </div>
@@ -173,12 +249,14 @@ function Index() {
                         productName="Instalación de aire acondicionado"
                         profileName="Juan Instalaciones"
                         originalPrice={70000}
+                        id_publicacion={4}
                         />
                         <ProductCard
                         imageUrl="https://www.spaoneandonly.cl/wp-content/uploads/2024/09/C7AD8ED4-BA67-4775-BA6A-BFC6832F6BC7-1-1000x1000.jpg"
                         productName="Sesión de masaje por hora"
                         profileName="MAXajes"
                         originalPrice={10000}
+                        id_publicacion={5}
                         />
                         <ProductCard
                         imageUrl="https://siberiasalon.com/wp-content/smush-webp/2023/09/Glitter-1000x1000.jpg.webp"
@@ -186,6 +264,7 @@ function Index() {
                         profileName="Marlu Nails"
                         originalPrice={8000}
                         discount={25}
+                        id_publicacion={6}
                         />
                         <ProductCard
                         imageUrl="https://grupolasser.com/wp-content/uploads/2022/07/empresa-instalacion-camaras-empresas-comunidades-hogares-madrid.jpg"
@@ -193,6 +272,7 @@ function Index() {
                         profileName="SecurityCam"
                         originalPrice={110000}
                         discount={10}
+                        id_publicacion={7}
                         />
                     </div>
                 </section>
@@ -211,6 +291,7 @@ function Index() {
                         profileName="Piramide Pool"
                         originalPrice={1000000}
                         discount={70}
+                        id_publicacion={8}
                         />
                         <ProductCard
                         imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi8vNpeOn4mAIBd8SIfu7BqHUlmD-Qcj0Pmw&s"
@@ -218,6 +299,7 @@ function Index() {
                         profileName="Surfear"
                         originalPrice={30000}
                         discount={60}
+                        id_publicacion={9}
                         />
                         <ProductCard
                         imageUrl=""
