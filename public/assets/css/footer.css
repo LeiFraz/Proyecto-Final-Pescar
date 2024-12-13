@@ -80,3 +80,13 @@ a{
 .footer-section .footer-logo{
     width: 200px;
 }
+@media (max-width: 455px) {
+    .social-icon .affiliate {
+        height: 30px;
+    }
+}
+@media (max-width: 375px) {
+    .social-icon .affiliate {
+        height: 20px;
+    }
+}

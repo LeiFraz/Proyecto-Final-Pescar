@@ -232,6 +232,10 @@ const handleMouseEnter = () => {
                         <a href="" className="social-icon image" ><img src="/img/valtech.png" alt="Valtech" className="affiliate"/></a>
                         <a href="https://www.valtech.com/es-ar/" className="social-icon image-hover" target="_blank"><img src="/img/valtech2.png" alt="Valtech" className="affiliate"/></a>
                     </div>
+                    <div className="image-wrapper">
+                        <a href="" className="social-icon image" ><img src="/img/pampa.png" alt="Pampa Energia" className="affiliate"/></a>
+                        <a href="https://pampa.com" className="social-icon image-hover" target="_blank"><img src="/img/pampa2.png" alt="Pampa Energia" className="affiliate"/></a>
+                    </div>
                 </div>
             </section>
             

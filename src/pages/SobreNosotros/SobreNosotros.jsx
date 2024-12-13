@@ -2,7 +2,9 @@ import React from "react";
 import styles from "./SobreNosotros.module.css";
 import { useState } from "react";
 import UsCard from "../../components/UsCard/UsCard";
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
+import { Autoplay } from 'swiper';
 const AboutPage = () => {
     const [openIndex, setOpenIndex] = useState(null);
 
@@ -18,6 +20,15 @@ const AboutPage = () => {
         { image: "/img/cami.png", name: "Camila Aguilera", role: "UX/UI", link: "https://www.linkedin.com/in/camila-aguilera-34963a226/" },
         { image: "/img/carlos.png", name: "Carlos Sanchez", role: "Project Manager", link: "https://www.linkedin.com/in/carlos-alfredo-s%C3%A1nchez/" },
     ];
+    const alianzas = [
+        {image:"/img/pescar2.png"},
+        {image:"/img/valtech2.png"},
+        {image:"/img/karuna2.png"},
+        {image:"/img/pampa2.png"},
+        {image:"/img/google.png"},
+        {image:"/img/educacionit.png"},
+
+    ]
     const faqItems = [
     {
         question: '¿Qué servicios ofrece GROW?',
@@ -115,6 +126,50 @@ const AboutPage = () => {
                 <UsCard
                 people={people}
                 />
+            </section>
+            <section className={styles.afiliados}>
+                <h1>Nuestras alianzas</h1>
+                <Swiper
+                    modules={[Autoplay]} // Habilitar autoplay
+                    spaceBetween={10}    // Espacio entre las imágenes
+                    slidesPerView={'auto'} // Permite que el swiper muestre todas las imágenes
+                    autoplay={{
+                        delay: 2000,       // Intervalo de 2 segundos entre las transiciones
+                        disableOnInteraction: false,  // No pausar la reproducción si el usuario interactúa
+                    }}
+                    loop={true}          // Permite que el swiper sea infinito
+                    speed={2000}         // Velocidad de transición de las imágenes
+                    centeredSlides={true}  // Centra las imágenes dentro del swiper
+                    breakpoints={{
+                        320: { slidesPerView: 1 },
+                        640: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }}
+                    style={{ width: '100%', height:'200px' }} // Asegúrate de que el swiper tenga el tamaño completo
+                    >
+                    {alianzas.map((al, index) => (
+                        <SwiperSlide
+                            key={index}
+                            style={{
+                            width: 'auto',
+                            height: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                            }}
+                        >
+                            <img
+                            src={al.image}
+                            alt="Imagen"
+                            style={{
+                                width: index === 2 || index===4 || index===5 ? '200px' : '100px', // Aumentar el tamaño de la imagen si el índice es 2 (ajusta según el índice que necesites)
+                                objectFit: 'contain',
+                                transition: 'width 0.3s ease' // Agrega una transición suave al cambiar el tamaño
+                            }}
+                            />
+                        </SwiperSlide>
+                        ))}
+                    </Swiper>
             </section>
 
             <section className={styles['contact-us']}>
