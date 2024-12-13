@@ -6,7 +6,7 @@ import styles from './OrderCard.module.css';
 const obtenerPublicacion = async (setPublicacion, id_publicacion) => {
     try {
         // Realizar la solicitud GET
-        const response = await axios.get(`http://localhost:5000/api/publicacion/${id_publicacion}`);
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/publicacion/${id_publicacion}`);
         
         console.log(response)
         const pubData = {

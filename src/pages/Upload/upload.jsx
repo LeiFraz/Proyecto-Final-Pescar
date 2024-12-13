@@ -10,7 +10,7 @@ import FormularioPrecio from '../../components/FormularioPrecio/FormularioPrecio
 const obtenerCategorias = async (setCategorias) => {
     try {
         // Realizar la solicitud GET
-        const response = await axios.get('http://localhost:5000/api/categoria');
+        const response = await axios.get('https://grow-backend.up.railway.app/api/categoria');
         
         // Desestructurar y obtener solo los campos "id" y "nombre" de cada publicación
         const categoriasData = response.data.map(categoria => ({
@@ -143,7 +143,7 @@ function Upload() {
     
         try {
             const response = await axios.post(
-                'http://localhost:5000/api/publicacion/crear',
+                'https://grow-backend.up.railway.app/api/publicacion/crear',
                 formData
             );
     
@@ -151,7 +151,7 @@ function Upload() {
             setPublicationId(publicationId)
             const updatePromises = finalMaterials.map((material) =>
                 axios.put(
-                    `http://localhost:5000/api/materialusado/${material._id}`,
+                    `https://grow-backend.up.railway.app/api/materialusado/${material._id}`,
                     { id_publicacion: publicationId }
                 )
             );

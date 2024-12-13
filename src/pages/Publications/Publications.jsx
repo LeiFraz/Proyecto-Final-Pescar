@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const obtenerCategorias = async (setCategorias) => {
     try {
-        const response = await axios.get('http://localhost:5000/api/categoria');
+        const response = await axios.get('https://grow-backend.up.railway.app/api/categoria');
         const categoriasData = response.data.map(categoria => ({
             id: categoria._id,
             nombre: categoria.nombre
@@ -126,7 +126,7 @@ function Publications() {
 
     const obtenerPublicaciones = async (pagina = 1) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/publicacion/filtros', {
+            const response = await axios.get('https://grow-backend.up.railway.app/api/publicacion/filtros', {
                 params: {
                     ...filtros,
                     page: pagina,

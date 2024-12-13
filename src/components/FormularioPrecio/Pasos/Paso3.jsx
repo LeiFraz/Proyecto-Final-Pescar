@@ -48,7 +48,7 @@ const Paso3 = ({
 
     const obtenerNombre = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/material/${id}`);
+            const response = await axios.get(`https://grow-backend.up.railway.app/api/material/${id}`);
             const material = response.data; 
             return material.nombre; 
         } catch (error) {

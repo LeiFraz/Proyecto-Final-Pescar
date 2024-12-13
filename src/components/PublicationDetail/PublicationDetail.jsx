@@ -14,7 +14,7 @@ import ModalLoading from '../Modals/ModalLoading';
 const obtenerMateriales = async (setMateriales, id_publicacion) => {
   try {
     // Obtener los materiales usados
-    const response = await axios.get(`http://localhost:5000/api/materialusado/${id_publicacion}`);
+    const response = await axios.get(`https://grow-backend.up.railway.app/api/materialusado/${id_publicacion}`);
     const materialesData = response.data;
 
     // Para cada material, obtener el nombre desde la API
@@ -22,7 +22,7 @@ const obtenerMateriales = async (setMateriales, id_publicacion) => {
       materialesData.map(async (material) => {
         try {
           // Hacer una solicitud para obtener el material por id_material
-          const materialResponse = await axios.get(`http://localhost:5000/api/material/${material.id_material}`);
+          const materialResponse = await axios.get(`https://grow-backend.up.railway.app/api/material/${material.id_material}`);
           return { ...material, nombre: materialResponse.data.nombre }; // Agregar el nombre
         } catch (error) {
           console.error(`Error al obtener el material con ID ${material.id_material}:`, error);
@@ -41,7 +41,7 @@ const obtenerEmprendimiento = async (setEmprendimiento, id_emprendimiento) => {
   
   try {
       // Realizar la solicitud GET
-      const response = await axios.get(`http://localhost:5000/api/emprendimiento/${id_emprendimiento}`);
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/emprendimiento/${id_emprendimiento}`);
       
       const empData = response.data
       console.log(empData)
@@ -165,7 +165,7 @@ useEffect(() => {
     setIsLoading(true);
     setIsOpened(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/orden/crear', formData);
+      const response = await axios.post('https://grow-backend.up.railway.app/api/orden/crear', formData);
       console.log('Orden creada exitosamente.');
       console.log(response)
       setOrderId(response.data._id);

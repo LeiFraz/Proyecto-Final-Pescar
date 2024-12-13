@@ -80,7 +80,7 @@ function CreateCategory() {
         console.log(formData)
     
         try {
-        await axios.post('http://localhost:5000/api/categoria/crear', formData);
+        await axios.post('https://grow-backend.up.railway.app/api/categoria/crear', formData);
         setIsLoading(false);
         openModal();
         } catch (error) {

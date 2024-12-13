@@ -81,7 +81,7 @@ function Entrepreneurs() {
 
     const obtenerEmprendimientos = async (pagina = 1) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/emprendimiento/filtros', {
+            const response = await axios.get('https://grow-backend.up.railway.app/api/emprendimiento/filtros', {
                 params: {
                     ...filtros,
                     page: pagina,

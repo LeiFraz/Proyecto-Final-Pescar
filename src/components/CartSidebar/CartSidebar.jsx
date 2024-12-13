@@ -45,7 +45,7 @@ const CartSidebar = ( ) => {
         };
         console.log(formData)
         try {
-          const response = await axios.post('http://localhost:5000/api/orden/crear', formData);
+          const response = await axios.post('https://grow-backend.up.railway.app/api/orden/crear', formData);
           console.log('Orden creada exitosamente.');
           setOrderId(response.data._id);
           setIsLoading(false);

@@ -9,7 +9,7 @@ const obtenerUsuario = async (id_usuario, setUsuario) => {
   
   try {
       // Realizar la solicitud GET
-      const response = await axios.get(`http://localhost:5000/api/usuario/${id_usuario}`);
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/usuario/${id_usuario}`);
       
       const usData = response.data
       console.log(usData)
@@ -20,7 +20,7 @@ const obtenerUsuario = async (id_usuario, setUsuario) => {
 };
 const obtenerCompras = async (id_usuario, setCompras) => {
   try{
-  const response = await axios.get(`http://localhost:5000/api/orden/usuario/${id_usuario}`);
+  const response = await axios.get(`https://grow-backend.up.railway.app/api/orden/usuario/${id_usuario}`);
   const orderData = response.data;
   console.log(orderData)
   setCompras(orderData);

@@ -8,7 +8,7 @@ const obtenerEmprendimiento = async (emp, setEmprendimiento, setSidebarTexts, se
   
   try {
       // Realizar la solicitud GET
-      const response = await axios.get(`http://localhost:5000/api/emprendimiento/${emp}`);
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/emprendimiento/${emp}`);
       
       const empData = response.data
       console.log(empData)
@@ -24,7 +24,7 @@ const obtenerPublicaciones = async (emp, setPublicaciones) => {
   
   try {
       // Realizar la solicitud GET
-      const response = await axios.get(`http://localhost:5000/api/publicacion/emprendedor/${emp}`);
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/publicacion/emprendedor/${emp}`);
       
       const pubData = response.data
       console.log(pubData)

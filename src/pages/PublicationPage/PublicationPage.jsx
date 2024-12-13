@@ -5,7 +5,7 @@ import PublicationDetail from '../../components/PublicationDetail/PublicationDet
 
 const obtenerPublicacion = async (publicacion, setPublicationData) => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/publicacion/${publicacion}`);
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/publicacion/${publicacion}`);
         const publicacionData = response.data;
         setPublicationData(publicacionData); // Guarda todo el resultado de la API
     } catch (error) {

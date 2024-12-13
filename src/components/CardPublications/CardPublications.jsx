@@ -5,7 +5,7 @@ import styles from './CardPublications.module.css';
 const obtenerEmprendimiento = async (setEmprendimiento, id_emprendimiento) => {
     try {
         // Realizar la solicitud GET
-        const response = await axios.get(`http://localhost:5000/api/emprendimiento/${id_emprendimiento}`);
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/emprendimiento/${id_emprendimiento}`);
         
         console.log(response)
         const emprendimientoData = {
