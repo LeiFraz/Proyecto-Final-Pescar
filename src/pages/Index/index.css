@@ -186,10 +186,10 @@
   }
   
   .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 3px !important;
   }
 
 
@@ -228,4 +228,8 @@
         display: block;
     }
 }
-
+@media (max-width: 425px) {
+    .categories-container{
+        justify-content: center;
+    }
+}
