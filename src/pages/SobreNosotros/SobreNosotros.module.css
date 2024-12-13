@@ -19,7 +19,14 @@ body {
     margin-top: 45px;
     margin-bottom: 45px;
 }
-
+.cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2rem;
+    margin-bottom: 3rem;
+}
 .about-container h1.about-title {
     font-size: 2.5rem; /* Ajusta el tamaño del título */
     margin-bottom: 20px;

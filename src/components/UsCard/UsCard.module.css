@@ -1,0 +1,70 @@
+/* StaggeredCards.module.css */
+.staggeredCardsContainer {
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .card {
+    position: relative;
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 20px 10px; /* Menor padding superior para compensar el offset de la imagen */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: visible;
+    transition: transform 0.3s ease;
+  }
+  
+  .cardImage {
+    width: 90px;
+    margin-bottom: 10px;
+  }
+  
+  .cardName {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .cardRole {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .left {
+    align-self: flex-start;
+    transform: translateX(-20px);
+  }
+  
+  .right {
+    align-self: flex-end;
+    transform: translateX(20px);
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .cardContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+  @media (max-width: 520px) {
+    .card{
+        width: 300px;
+    }
+  }
+  @media (max-width: 280px) {
+    .card{
+        width: 250px;
+    }
+  }

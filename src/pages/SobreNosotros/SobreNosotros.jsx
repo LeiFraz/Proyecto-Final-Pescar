@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./SobreNosotros.module.css";
 import { useState } from "react";
+import UsCard from "../../components/UsCard/UsCard";
 
 const AboutPage = () => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -8,7 +9,15 @@ const AboutPage = () => {
     const toggleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
     };
-
+    const people = [
+        { image: "/img/leonardo.png", name: "Leonardo Paz", role: "Fullstack Developer", link: "http://www.linkedin.com/in/leonardofpaz" },
+        { image: "/img/gabriel.png", name: "Gabriel Sosa", role: "Fullstack Developer", link: "https://www.linkedin.com/in/gabriel-a-sosa/" },
+        { image: "/img/federico.png", name: "Federico Zapata", role: "Backend Developer", link: "https://www.linkedin.com/in/federico-zapata-749a081a0/" },
+        { image: "/img/mayra.png", name: "Mayra Araujo", role: "Frontend Developer", link: "https://www.linkedin.com/in/mayraaraujoj/" },
+        { image: "/img/diana.png", name: "Diana Alali", role: "Frontend Developer", link: "https://www.linkedin.com/in/diana-alali-4973a7200/" },
+        { image: "/img/cami.png", name: "Camila Aguilera", role: "UX/UI", link: "https://www.linkedin.com/in/camila-aguilera-34963a226/" },
+        { image: "/img/carlos.png", name: "Carlos Sanchez", role: "Project Manager", link: "https://www.linkedin.com/in/carlos-alfredo-s%C3%A1nchez/" },
+    ];
     const faqItems = [
     {
         question: '¿Qué servicios ofrece GROW?',
@@ -27,7 +36,7 @@ const AboutPage = () => {
     },
     ];
     return (
-        <>
+        <div className={styles.theContainer}>
         <div className={styles['about-img']}>
             
         </div>
@@ -101,6 +110,12 @@ const AboutPage = () => {
                     </div>
                 </div>
             </section>
+            <section className={styles.cards}>
+                <h1>Nuestro equipo</h1>
+                <UsCard
+                people={people}
+                />
+            </section>
 
             <section className={styles['contact-us']}>
                 <div className={styles.header}>
@@ -143,7 +158,7 @@ const AboutPage = () => {
                 `}
             </script>
         </div>
-        </>
+        </div>
     );
 };
 
