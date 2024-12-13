@@ -2,9 +2,25 @@
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 import { useCart } from "../../common/CartContext";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+const obtenerEmprendimiento = async (id_emprendimiento, setEmprendimiento) => {
+    try {
+        // Realizar la solicitud GET
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/emprendimiento/${id_emprendimiento}`);
+        console.log(response)
+        // Desestructurar y obtener solo los campos "id" y "nombre" de cada publicación
+        const nombre = response.data.nombre_emprendimiento
+
+        // Actualizar el estado con los datos filtrados
+        setEmprendimiento(nombre);
+    } catch (error) {
+        console.error('Error al obtener las categorias:', error);
+    }
+};
 const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount, id_publicacion, id_emprendimiento }) => {
     const [product, setProduct] = useState([]);
+    const [emprendimiento, setEmprendimiento] = useState("")
     const formatPrice = (price) => {
         if(price>0){
           const isInteger = price % 1 === 0; // Verifica si el precio es entero
@@ -30,6 +46,11 @@ if (discount && discount > 0 && discount < 100) {
 return originalPrice;
 }
 
+useEffect(() => {
+    if(!profileName){
+        obtenerEmprendimiento(id_emprendimiento, setEmprendimiento)
+    }
+    }, []);
 const currentPrice = calculateCurrentPrice(originalPrice, discount)
 product.title=productName;
 product.price=currentPrice;
@@ -67,7 +88,8 @@ return (
         <Link to={`/publicacion?publicacion=${id_publicacion}`} className="product-link"></Link>
         <h3 className="product-title">{productName}</h3>
         <Link to={`/emprendimiento?emprendimiento=${id_emprendimiento}`} className="entrepeneur-name">
-        <p>{profileName}</p>
+        {profileName && <p>{profileName}</p>}
+        {emprendimiento && <p>{emprendimiento}</p>}
         </Link>
         <div className="price-container">
         {currentPrice>0 && <span className="current-price">{formatPrice(currentPrice)}</span>}

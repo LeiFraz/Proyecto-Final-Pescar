@@ -169,13 +169,7 @@
 
 
 .products-container{
-    flex-wrap: wrap;
     height: auto;
-    display: flex;
-    justify-content: space-between; /* Alinea la imagen a la izquierda */
-
-    gap: 1.5rem; /* Espaciado entre tarjetas */
-    align-items: flex-start; /* Asegura que las tarjetas estén alineadas en la parte superior */
 }
 
 
