@@ -80,7 +80,7 @@ const HamburgerMenu = ({userId, typeUser, logout, id_emprendimiento}) => {
                             <a href="#">{localStorage.getItem('userName')}<i className="icon-down-open"></i></a>
                             <ul className={styles.dropdown}>
                                 <li><a href={`/perfil?usuario=${userId}`}>Perfil</a></li>
-                                {typeUser!="emprendedor" && <li><a href="/emprendimientos/crearEmprendimiento">Emprender</a></li>}
+                                {typeUser!="emprendedor" && <li><a href="/crearEmprendimiento">Emprender</a></li>}
                                 {typeUser==="emprendedor" && id_emprendimiento===localStorage.getItem('entrepreneurId') && <li><a href={`/emprendimiento?emprendimiento=${localStorage.getItem('entrepreneurId')}`}>{localStorage.getItem('entrepreneurName')}</a></li>}
                                 <li><a href="#">Ajustes</a></li>
                                 <li><a href="#" className={styles.logout} onClick={logout}><i className="icon-logout"></i>Cerrar Sesión</a></li>
