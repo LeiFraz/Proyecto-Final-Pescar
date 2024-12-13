@@ -85,6 +85,8 @@
 }
 .browser{
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
     justify-content: space-between;
     margin-bottom: 3rem;
 }

@@ -368,6 +368,7 @@ function Index() {
                         {emprendimientos.map(emp => (
                             <SwiperSlide>
                             <ProfileCard
+                                id_emprendimiento={emp._id}
                                 imageUrl={emp.foto_perfil}
                                 profileName={emp.nombre_emprendimiento}
                                 description={emp.descripcion}
