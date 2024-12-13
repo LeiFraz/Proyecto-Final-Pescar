@@ -19,6 +19,7 @@
     border-radius: 8px;
     text-align: center;
     min-width: 300px;
+    z-index: 999;
 }
 
 /* Estilos para el spinner */
