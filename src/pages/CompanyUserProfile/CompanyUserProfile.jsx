@@ -188,6 +188,7 @@ const handlePageChange = (direction) => {
                 originalPrice={pub.precio_original || pub.precio_actual}
                 discount={pub.descuento}
                 id_emprendimiento={pub.id_emprendimiento}
+                transparentPrice={pub.calculo_precio.precio_transparente}
               />
             ))}
           </div>

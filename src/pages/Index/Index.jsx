@@ -216,6 +216,7 @@ function Index() {
                                 originalPrice={prod.precio_original || prod.precio_actual}
                                 discount={prod.descuento}
                                 id_emprendimiento={prod.id_emprendimiento}
+                                transparentPrice={prod.calculo_precio.precio_transparente}
                             />
                             </SwiperSlide>
                         ))}
@@ -270,6 +271,7 @@ function Index() {
                                 originalPrice={prod.precio_original || prod.precio_actual}
                                 discount={prod.descuento}
                                 id_emprendimiento={prod.id_emprendimiento}
+                                transparentPrice={prod.calculo_precio.precio_transparente}
                             />
                             </SwiperSlide>
                         ))}
@@ -323,6 +325,7 @@ function Index() {
                                 originalPrice={prod.precio_original || prod.precio_actual}
                                 discount={prod.descuento}
                                 id_emprendimiento={prod.id_emprendimiento}
+                                transparentPrice={prod.calculo_precio.precio_transparente}
                             />
                             </SwiperSlide>
                         ))}

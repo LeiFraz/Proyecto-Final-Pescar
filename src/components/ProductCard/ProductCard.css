@@ -104,7 +104,9 @@
     position: relative;
     z-index: 2;
 }
-
+.verified-price{
+    width: 12px;
+}
 .action-button {
     background: transparent;
     border: none;

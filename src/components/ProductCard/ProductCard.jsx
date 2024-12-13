@@ -18,7 +18,8 @@ const obtenerEmprendimiento = async (id_emprendimiento, setEmprendimiento) => {
         console.error('Error al obtener las categorias:', error);
     }
 };
-const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount, id_publicacion, id_emprendimiento }) => {
+const ProductCard = ({ imageUrl, productName, profileName, originalPrice, discount, id_publicacion, id_emprendimiento, transparentPrice }) => {
+    const color = transparentPrice ? '#1D7A66' : '#000';
     const [product, setProduct] = useState([]);
     const [emprendimiento, setEmprendimiento] = useState("")
     const formatPrice = (price) => {
@@ -92,7 +93,7 @@ return (
         {emprendimiento && <p>{emprendimiento}</p>}
         </Link>
         <div className="price-container">
-        {currentPrice>0 && <span className="current-price">{formatPrice(currentPrice)}</span>}
+        {currentPrice>0 && <span style={{color}} className="current-price">{formatPrice(currentPrice)}</span>}{transparentPrice && <img className={'verified-price'} src="/img/transparentprice.png" alt="" />}
         {currentPrice==0 && <span className="current-price">$ A convenir</span>}
         {currentPrice>0 && currentPrice!=originalPrice && <span className="original-price">{formatPrice(originalPrice)}</span>}
         </div>
