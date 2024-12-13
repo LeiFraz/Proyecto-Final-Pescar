@@ -14,7 +14,7 @@ import { Navigation, Pagination } from 'swiper';
 const obtenerCategorias = async (setCategorias) => {
     try {
         // Realizar la solicitud GET
-        const response = await axios.get('http://localhost:5000/api/categoria/limit/12');
+        const response = await axios.get('https://grow-backend.up.railway.app/api/categoria/limit/12');
         console.log(response)
         // Desestructurar y obtener solo los campos "id" y "nombre" de cada publicación
         const categoriasData = response.data.map(categoria => ({
@@ -196,6 +196,7 @@ function Index() {
                         productName="Torta personalizada"
                         profileName="Beli Pasteleria"
                         originalPrice={35500}
+                        discount={0}
                         /></SwiperSlide>
                         </Swiper>
                     </div>

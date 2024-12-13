@@ -6,7 +6,7 @@ import styles from './OrderCard.module.css';
 const obtenerPublicacion = async (setPublicacion, id_publicacion) => {
     try {
         // Realizar la solicitud GET
-        const response = await axios.get(`http://localhost:5000/api/publicacion/${id_publicacion}`);
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/publicacion/${id_publicacion}`);
         
         console.log(response)
         const pubData = {
@@ -44,6 +44,7 @@ const OrderCard = ({id_publicacion, cantidad, precio}) => {
         <div className={styles.postCardContainer}>
             <div className={styles.postCard}>
                 {publicacion.imagen && <img src={publicacion.imagen} alt="Product" className={styles.postProductImage}/>}
+                <div className={styles.orderInfo}>
                 <div className={styles.postInfo}>
                     {publicacion.nombre && <h2>{publicacion.nombre}</h2>}
                     <div className={styles.postPriceContainer}>
@@ -51,6 +52,7 @@ const OrderCard = ({id_publicacion, cantidad, precio}) => {
                     </div>
                 </div>
                 <span className={styles.cantidad}>{cantidad}</span>
+                </div>
             </div>
         </div>
     )

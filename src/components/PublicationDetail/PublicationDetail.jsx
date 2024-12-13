@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -9,10 +10,11 @@ import { Link } from 'react-router-dom';
 import styles from './PublicationDetail.module.css';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
 import { useCart } from "../../common/CartContext";
+import ModalLoading from '../Modals/ModalLoading';
 const obtenerMateriales = async (setMateriales, id_publicacion) => {
   try {
     // Obtener los materiales usados
-    const response = await axios.get(`http://localhost:5000/api/materialusado/${id_publicacion}`);
+    const response = await axios.get(`https://grow-backend.up.railway.app/api/materialusado/${id_publicacion}`);
     const materialesData = response.data;
 
     // Para cada material, obtener el nombre desde la API
@@ -20,7 +22,7 @@ const obtenerMateriales = async (setMateriales, id_publicacion) => {
       materialesData.map(async (material) => {
         try {
           // Hacer una solicitud para obtener el material por id_material
-          const materialResponse = await axios.get(`http://localhost:5000/api/material/${material.id_material}`);
+          const materialResponse = await axios.get(`https://grow-backend.up.railway.app/api/material/${material.id_material}`);
           return { ...material, nombre: materialResponse.data.nombre }; // Agregar el nombre
         } catch (error) {
           console.error(`Error al obtener el material con ID ${material.id_material}:`, error);
@@ -35,8 +37,26 @@ const obtenerMateriales = async (setMateriales, id_publicacion) => {
     console.error('Error al obtener los materiales usados:', error);
   }
 };
-const PublicationDetail = ({ images, productName, profileName, originalPrice, discount, description, transparentPrice, id_publicacion, profit }) => {
+const obtenerEmprendimiento = async (setEmprendimiento, id_emprendimiento) => {
+  
+  try {
+      // Realizar la solicitud GET
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/emprendimiento/${id_emprendimiento}`);
+      
+      const empData = response.data
+      console.log(empData)
+      setEmprendimiento(empData.nombre_emprendimiento);
+  } catch (error) {
+      console.error('Error al obtener el emprendimiento:', error);
+  }
+};
+const PublicationDetail = ({ images, productName, originalPrice, discount, description, transparentPrice, id_publicacion, profit, id_emprendimiento }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+  const [orderId, setOrderId] = useState("")
+  const [nombreEmprendimiento, setEmprendimiento] = useState();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({
     title: '',
     price: 0,
@@ -61,7 +81,8 @@ const PublicationDetail = ({ images, productName, profileName, originalPrice, di
         return "$ A convenir"
     }
   };
-
+  const openModal = () => setIsOpened(true);
+  const closeModal = () => setIsOpened(false);
   const calculateCurrentPrice = (originalPrice, discount) => {
     if (discount && discount > 0 && discount < 100) {
       return originalPrice - (discount / 100 * originalPrice);
@@ -120,8 +141,9 @@ const PublicationDetail = ({ images, productName, profileName, originalPrice, di
   const totalPrice = materiales.reduce((acc, material) => acc + material.precio, 0);
   useEffect(() => {
     obtenerMateriales(setMateriales,id_publicacion);
-    
+    obtenerEmprendimiento(setEmprendimiento,id_emprendimiento);
 }, []);
+
 
 useEffect(() => {
   if (contentRef.current) {
@@ -140,17 +162,30 @@ useEffect(() => {
       publicaciones: [sentProduct],
       precio_total: sentProduct.precio * sentProduct.cantidad
     };
+    setIsLoading(true);
+    setIsOpened(true);
     try {
-      await axios.post('http://localhost:5000/api/orden/crear', formData);
+      const response = await axios.post('https://grow-backend.up.railway.app/api/orden/crear', formData);
       console.log('Orden creada exitosamente.');
+      console.log(response)
+      setOrderId(response.data._id);
+      setIsLoading(false);
+      openModal();
     } catch (error) {
       console.error('Error al crear la orden:', error);
       alert('Hubo un error al crear la orden.');
     }
   };
+  const handleAccept = () => {
+    closeModal();
+    navigate(`/orden?orden=${orderId}`);
+};
 
   return (
-    <div className="mainContainer">
+    <div className={styles.mainContainer}>
+      <ModalLoading isOpen={isOpened} isLoading={isLoading} text={'Se realizó el pago'} loadingText={"Procesando pago..."}>
+                {!isLoading && <button className='btn btn-success' onClick={handleAccept}>Aceptar</button>}
+      </ModalLoading>
     <div className={styles.detailContainer}>
       {/* Slider de Imágenes */}
       <div className={styles.imageSlider}>
@@ -179,7 +214,7 @@ useEffect(() => {
       {/* Información del Producto */}
       <div className={styles.productInfo}>
         <h1 className={styles.productName}>{productName}</h1>
-        <p>Vendido por: <Link to={`/profile/${profileName}`}>{profileName}</Link></p>
+        <p>Vendido por: <Link to={`/emprendimiento?emprendimiento=${id_emprendimiento}`}>{nombreEmprendimiento}</Link></p>
         <div className={styles.priceContainer}>
         {discount > 0 && (
             <div className={styles.discountContainer}>
@@ -253,6 +288,7 @@ useEffect(() => {
         {currentPrice > 0 && <button onClick={() => addToCart(product)} className={styles.cartButton}>Agregar al carrito</button>}
         {currentPrice === 0 && <button className={styles.cartButton}>Contactar al vendedor</button>}
       </div>
+      
     </div>
     </div>
   );

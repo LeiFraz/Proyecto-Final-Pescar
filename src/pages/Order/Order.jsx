@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 const obtenerPublicacion = async (orden, setOrderData) => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/orden/${orden}`);
+        const response = await axios.get(`https://grow-backend.up.railway.app/api/orden/${orden}`);
         const ordenData = response.data;
         setOrderData(ordenData); // Guarda todo el resultado de la API
     } catch (error) {

@@ -10,7 +10,7 @@ const ProfileOrderCard = ({ id_orden }) => {
     const fetchImages = async () => {
         try {
         // 1. Obtener la orden usando el `id_orden`
-        const orderResponse = await axios.get(`http://localhost:5000/api/orden/${id_orden}`);
+        const orderResponse = await axios.get(`https://grow-backend.up.railway.app/api/orden/${id_orden}`);
         const orderData = orderResponse.data;
         console.log(orderData)
         // 2. Extraer las publicaciones (máximo 3)
@@ -18,7 +18,7 @@ const ProfileOrderCard = ({ id_orden }) => {
 
         // 3. Consultar las imágenes de las publicaciones
         const imageRequests = publicaciones.map((pub) =>
-          axios.get(`http://localhost:5000/api/publicacion/${pub.id_publicacion}`)
+          axios.get(`https://grow-backend.up.railway.app/api/publicacion/${pub.id_publicacion}`)
         );
 
         const imageResponses = await Promise.all(imageRequests);

@@ -11,15 +11,17 @@ body {
     color: #12C258 ;
     text-align: center;
 }
-.about-container{
-    width: 80%;                /* El ancho será el 80% del contenedor padre */
-    max-width: 1200px;         /* El ancho no superará los 1200px */
-    margin: 0 auto;            /* Centra el contenedor horizontalmente */
+
+.about-container {
+    width: 90%; /* Más ancho en pantallas pequeñas */
+    max-width: 1200px;
+    margin: 0 auto;
     margin-top: 45px;
     margin-bottom: 45px;
 }
+
 .about-container h1.about-title {
-    font-size: 3rem; /* Título más grande */
+    font-size: 2.5rem; /* Ajusta el tamaño del título */
     margin-bottom: 20px;
 }
 
@@ -46,13 +48,14 @@ body {
 .about {
     padding: 20px;
 }
+
 .about-img {
-    height: 450px; /* Ajusta el alto del contenedor */
-    width: 100%; /* Ajusta el ancho del contenedor */
+    height: 300px; /* Ajusta el alto para pantallas más pequeñas */
+    width: 100%;
     background-image: url('img/fondoabout.jpg');
-    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-    background-position: center; /* Centra la imagen horizontal y verticalmente */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,11 +64,10 @@ body {
 .about-info {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px; /* Márgenes más pequeños */
+    padding: 20px;
     text-align: center;
     font-size: 1.2rem;
 }
-
 
 .pasos {
     padding: 20px;
@@ -75,7 +77,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 50px;
+    gap: 30px;
 }
 
 .card {
@@ -84,7 +86,8 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
-    width: 300px;
+    width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+    max-width: 300px; /* Máximo ancho en pantallas grandes */
     transition: transform 0.3s;
 }
 
@@ -229,5 +232,52 @@ body {
     display: block;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container h1.about-title {
+        font-size: 2rem;
+    }
 
+    .about-img {
+        height: 200px;
+    }
 
+    .pasos-cards {
+        flex-direction: unset;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .contact-us {
+        width: 90%;
+    }
+
+    .faq h2 {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        width: 95%;
+    }
+
+    .about-info {
+        font-size: 1rem;
+    }
+
+    .card-desc {
+        font-size: 0.9rem;
+    }
+
+    .faq h2 {
+        font-size: 1.2rem;
+    }
+}

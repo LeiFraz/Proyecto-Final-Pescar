@@ -1,11 +1,20 @@
 import React from "react";
 import "./CartSidebar.css"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../common/CartContext";
 import CartItem from "../CartItem/CartItem";
 import axios from "axios";
+import ModalLoading from "../Modals/ModalLoading";
 
 const CartSidebar = ( ) => {
     const { cart, getTotal, isCartOpen, closeCart, clearCart } = useCart();
+    const [isLoading, setIsLoading] = useState(false);
+    const [isOpened, setIsOpened] = useState(false);
+    const [orderId, setOrderId] = useState("")
+    const openModal = () => setIsOpened(true);
+    const closeModal = () => setIsOpened(false);
+    const navigate = useNavigate();
     const formatPrice = (price) => {
         if (price > 0) {
             const isInteger = price % 1 === 0; 
@@ -21,6 +30,8 @@ const CartSidebar = ( ) => {
         }
     };
     const submitOrder = async () => {
+        setIsLoading(true);
+        setIsOpened(true);
         const userId = localStorage.getItem("userId");
         const simplifiedCart = cart.map(item => 
             { return { id_publicacion: item.id, cantidad: item.quantity, precio: item.price }; 
@@ -34,8 +45,11 @@ const CartSidebar = ( ) => {
         };
         console.log(formData)
         try {
-          await axios.post('http://localhost:5000/api/orden/crear', formData);
+          const response = await axios.post('https://grow-backend.up.railway.app/api/orden/crear', formData);
           console.log('Orden creada exitosamente.');
+          setOrderId(response.data._id);
+          setIsLoading(false);
+          openModal();
           clearCart();
         } catch (error) {
           console.error('Error al crear la orden:', error);
@@ -43,8 +57,17 @@ const CartSidebar = ( ) => {
         }
       };
 
+    const handleAccept = () => {
+        closeModal();
+        closeCart();
+        navigate(`/orden?orden=${orderId}`);
+    };
+
     return (
         <>
+        <ModalLoading isOpen={isOpened} isLoading={isLoading} text={'Se realizó el pago'} loadingText={"Procesando pago..."}>
+                {!isLoading && <button className='btn btn-success' onClick={handleAccept}>Aceptar</button>}
+        </ModalLoading>
         <div
                 className={`cart-overlay ${isCartOpen ? "open" : ""}`}
                 onClick={closeCart}

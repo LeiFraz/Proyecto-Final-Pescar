@@ -32,12 +32,15 @@ function CreateEntrepreneur() {
     };
     
     useEffect(() => {
-        if(id_usuario == null){
+        if(id_usuario == null || localStorage.getItem("entrepreneurId")){
             navigate("/inicio");
         }
     }, []);
     const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+    const closeModal = () => {
+        setIsOpen(false)
+        window.location.href = `/emprendimiento?emprendimiento=${localStorage.getItem('entrepreneurId')}`;
+    };
     const handleImageUpload = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
@@ -110,11 +113,11 @@ function CreateEntrepreneur() {
         console.log(formData)
     
         try {
-        const entrepreneurResponse = await axios.post('http://localhost:5000/api/emprendimiento/crear', formData);
+        const entrepreneurResponse = await axios.post('https://grow-backend.up.railway.app/api/emprendimiento/crear', formData);
         console.log(entrepreneurResponse)
         localStorage.setItem('entrepreneurId', entrepreneurResponse.data._id)
         localStorage.setItem('entrepreneurName', entrepreneurResponse.data.nombre_emprendimiento)
-        await axios.put(`http://localhost:5000/api/usuario/${id_usuario}`, {
+        await axios.put(`https://grow-backend.up.railway.app/api/usuario/${id_usuario}`, {
             rol: "emprendedor",
         });
         localStorage.setItem('tipoPerfil',"emprendedor")

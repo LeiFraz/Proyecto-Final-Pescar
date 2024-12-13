@@ -24,7 +24,7 @@ const Paso1 = ({ setMaterials, nextStep, id_emprendimiento, setIsUploadVisible, 
     useEffect(() => {
         const fetchMaterials = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/material/buscar/${id_emprendimiento}`); // Endpoint para obtener materiales
+                const response = await axios.get(`https://grow-backend.up.railway.app/api/material/buscar/${id_emprendimiento}`); // Endpoint para obtener materiales
                 const options = response.data.map((material) => ({
                     value: material._id,
                     label: material.nombre,
@@ -91,7 +91,7 @@ const Paso1 = ({ setMaterials, nextStep, id_emprendimiento, setIsUploadVisible, 
             return;
         } 
         try {
-            const response = await axios.post('http://localhost:5000/api/material/crear', newMaterial); // Endpoint para crear un material
+            const response = await axios.post('https://grow-backend.up.railway.app/api/material/crear', newMaterial); // Endpoint para crear un material
             const createdMaterial = response.data;
 
             // Agregar el nuevo material a las opciones disponibles

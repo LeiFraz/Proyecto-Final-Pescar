@@ -9,7 +9,7 @@ const obtenerUsuario = async (id_usuario, setUsuario) => {
   
   try {
       // Realizar la solicitud GET
-      const response = await axios.get(`http://localhost:5000/api/usuario/${id_usuario}`);
+      const response = await axios.get(`https://grow-backend.up.railway.app/api/usuario/${id_usuario}`);
       
       const usData = response.data
       console.log(usData)
@@ -20,7 +20,7 @@ const obtenerUsuario = async (id_usuario, setUsuario) => {
 };
 const obtenerCompras = async (id_usuario, setCompras) => {
   try{
-  const response = await axios.get(`http://localhost:5000/api/orden/usuario/${id_usuario}`);
+  const response = await axios.get(`https://grow-backend.up.railway.app/api/orden/usuario/${id_usuario}`);
   const orderData = response.data;
   console.log(orderData)
   setCompras(orderData);
@@ -52,6 +52,9 @@ useEffect(() => {
   const handleNavigation = () => {
     navigate("/emprendimientos/crearEmprendimiento");
   };
+  const paginaEmprendimiento = () =>{
+    navigate(`/emprendimiento?emprendimiento=${id_emprendimiento}`);
+  }
   return (
     <div className="profile-container">
       {/* Perfil del usuario */}
@@ -74,7 +77,7 @@ useEffect(() => {
         <div className="user-actions">
           {usuario && usuario._id === localStorage.getItem("userId") && <button className="btn edit-btn">Cambiar datos</button>}
           {usuario && usuario.rol=="consumidor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento==="" && <button onClick={handleNavigation} className="btn upgrade-btn">Emprender</button>}
-          {usuario && usuario.rol=="emprendedor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento!=="" && <button className="btn upgrade-btn">{localStorage.getItem('entrepreneurName')}</button>}
+          {usuario && usuario.rol=="emprendedor" && usuario._id === localStorage.getItem("userId") && id_emprendimiento!=="" && <button onClick={paginaEmprendimiento} className="btn upgrade-btn">{localStorage.getItem('entrepreneurName')}</button>}
         </div>
       </div>
 

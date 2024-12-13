@@ -84,6 +84,8 @@
 }
 .browser{
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
     justify-content: space-between;
     margin-bottom: 1.5rem;
 }
@@ -93,6 +95,11 @@
 }
 .title{
     font-size: 1.8rem;
+    display: inline-block;
+}
+.flexTitle{
+    display: flex;
+    justify-content: space-between;
 }
 .filters select{
     margin-bottom: 1rem;
@@ -105,6 +112,14 @@
 }
 .mainTitle h1{
     font-size: 1.8rem;
+}
+.mainTitle{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
 }
 .pagination {
     display: flex;
@@ -164,4 +179,103 @@
     padding: 10px 20px;
     cursor: pointer;
     text-align: center;
+}
+.filters {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.filters.ocultar {
+    max-height: 0;
+    opacity: 0;
+}
+
+.filters.mostrar {
+    max-height: 100vh; /* Ajusta según el contenido */
+    opacity: 1;
+}
+.icon {
+    display: inline-block; /* Para que el transform funcione */
+    transition: transform 0.3s ease; /* Suaviza la transición de rotación */
+}
+.rotated {
+    transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+    .filters {
+        max-height: none !important; /* Ignora las clases mostrar/ocultar */
+        opacity: 1 !important;
+        display: flex !important;
+    }
+
+    .filters.ocultar,
+    .filters.mostrar {
+        max-height: none; /* Restablece el tamaño máximo */
+        opacity: 1; /* Restablece la opacidad */
+    }
+
+    .mainTitle {
+        cursor: default;
+    }
+}
+
+
+@media (max-width: 1035px) {
+    .rangoPrecioInput{
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+@media (max-width: 768px) {
+    .title{
+        cursor: pointer;
+    }
+    .filterProductsContainer{
+        flex-direction: column;
+    }
+    .filterContainer{
+        margin: 0;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .postsContainer{
+        margin: 0;
+        width: 100%;
+    }
+    .rangoPrecioInput{
+        flex-wrap: nowrap;
+        flex-direction: unset;
+        justify-content: flex-start;
+    }
+    .filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem; /* Ajusta el espacio entre los elementos según sea necesario */
+    }
+
+    .filter {
+        width: calc(50% - 1rem); /* Resta gap para evitar desbordamiento */
+        padding-bottom: 1rem;
+        border-bottom: 1px #b6b6b6 solid;
+    }
+    .mainTitle{
+        width: 100%;
+    }
+    .flexTitle{
+        cursor: pointer;
+    }
+}
+@media (max-width: 500px) {
+    .filters {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 2rem;
+    }
+    .filter {
+        width: 100%;
+        padding-bottom: 1rem;
+        border-bottom: 1px #b6b6b6 solid;
+    }
 }

@@ -65,6 +65,8 @@ body {
 .buttons {
     grid-column: span 2;
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
     justify-content: space-between;
 }
 
@@ -95,4 +97,10 @@ body {
 .error-message{
     color: red;
     font-size: 0.8rem;
+}
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
 }

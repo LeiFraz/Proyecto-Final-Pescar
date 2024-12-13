@@ -60,7 +60,7 @@ const Paso2 = ({ materials, setUsedMaterials, nextStep, prevStep }) => {
         try {
             // Crear un array de promesas para enviar todos los materiales usados simultáneamente
             const promises = usedMaterials.map((usedMaterial) => 
-                axios.post('http://localhost:5000/api/materialusado/crear', usedMaterial)
+                axios.post('https://grow-backend.up.railway.app/api/materialusado/crear', usedMaterial)
             );
 
             // Esperar a que todas las solicitudes se resuelvan
