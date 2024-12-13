@@ -13,7 +13,7 @@
 
 .containerMayra {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin: auto;
     margin-top: 40px;
@@ -73,7 +73,7 @@
     background: #ccc;
     position: absolute;
     top: 50%;
-    width: 40%;
+    width: 25%;
 }
 
 .divider:before {
@@ -157,4 +157,19 @@
 .backButton a:hover {
     background-color: #706DF8;
     color: #fff;
+}
+
+@media (max-width: 426px) {
+    .containerMayra{
+        flex-direction: column;
+    }
+
+    .divider:before, .divider:after {
+        content: "";
+        height: 1px;
+        background: #ccc;
+        position: absolute;
+        top: 50%;
+        width: 20%;
+    }
 }

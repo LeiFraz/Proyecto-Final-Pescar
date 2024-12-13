@@ -64,7 +64,7 @@ const Login = () => {
             <div className={style.loginBox}>
                 <h1>iniciar sesión en Grow</h1>
 
-                <button className={`${style.btn} ${style.google}`}>Registrese con Google</button>
+                {/* <button className={`${style.btn} ${style.google}`}>Registrese con Google</button> */}
 
                 <div className={style.divider}>iniciar sesión con email</div>
 
