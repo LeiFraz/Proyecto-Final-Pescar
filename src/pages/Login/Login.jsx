@@ -81,7 +81,7 @@ const Login = () => {
 
                 <div className={style.register}>¿no tienes cuenta? <a href="/registro">regístrate</a></div>
             </div>
-            <img src= "src\pages\Login\logo_slogan_verde (1).png" alt="icono de Grow" className={style.imagenLogin}/>
+            <img src= "img/logo_slogan_verde.png" alt="icono de Grow" className={style.imagenLogin}/>
         </div>
         </>
     )

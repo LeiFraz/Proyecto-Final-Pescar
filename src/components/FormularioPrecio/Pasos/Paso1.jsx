@@ -217,7 +217,7 @@ const Paso1 = ({ setMaterials, nextStep, id_emprendimiento, setIsUploadVisible, 
 
             
             </section>
-            <div className="buttons">
+            <div className={styles.buttons}>
                     <button className={styles['cancel-btn']} onClick={handleCancel}>Cancelar</button>
                     <button onClick={confirmMaterials} className={styles['next-btn']}>Siguiente</button>
             </div>

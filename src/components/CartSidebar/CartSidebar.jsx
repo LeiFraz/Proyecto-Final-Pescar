@@ -78,7 +78,7 @@ const CartSidebar = ( ) => {
             </button>
             {cart.length === 0 ? (
                 <div className="empty-cart-container">
-                    <img className="empty-cart-img" src="src\components\CartSidebar\emptycart.png" alt="" />
+                    <img className="empty-cart-img" src="/img/emptycart.png" alt="" />
                     <p className="empty-cart">El carrito está vacío</p>
                 </div>
             ) : (

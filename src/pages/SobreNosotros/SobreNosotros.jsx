@@ -72,7 +72,7 @@ const AboutPage = () => {
                 <div className={styles['pasos-cards']}>
                     <div className={styles['card']}>
                         <div className={styles['card-img']}>
-                            <img src="src\pages\SobreNosotros\img\1paso.jpg" alt="1er paso" />
+                            <img src="/img/1paso.jpg" alt="1er paso" />
                         </div>
                         <div className={styles['card-info']}>
                             <h2 className={styles['card-name']}>1. Regístrate</h2>
@@ -82,7 +82,7 @@ const AboutPage = () => {
 
                     <div className={styles['card']}>
                         <div className={styles['card-img']}>
-                            <img src="src\pages\SobreNosotros\img\2paso.jpg" alt="2do paso" />
+                            <img src="/img/2paso.jpg" alt="2do paso" />
                         </div>
                         <div className={styles['card-info']}>
                             <h2 className={styles['card-name']}>2. Publica tus productos o servicios</h2>
@@ -92,7 +92,7 @@ const AboutPage = () => {
 
                     <div className={styles['card']}>
                         <div className={styles['card-img']}>
-                            <img src="src\pages\SobreNosotros\img\3paso.jpg" alt="3er paso" />
+                            <img src="/img/3paso.jpg" alt="3er paso" />
                         </div>
                         <div className={styles['card-info']}>
                             <h2 className={styles['card-name']}>3. Conecta y crece</h2>

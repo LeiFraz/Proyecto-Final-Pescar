@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper';
-
+import './index.css'
 
 
 const obtenerCategorias = async (setCategorias) => {
@@ -30,44 +30,12 @@ const obtenerCategorias = async (setCategorias) => {
     }
 };
 function Index() {
-    const [loading, setLoading] = useState(true); // Estado de carga
     const [categorias, setCategorias] = useState([]);
     useEffect(() => {
         obtenerCategorias(setCategorias);
-        const existingLink = document.querySelector('link[href="/src/pages/Index/index.css"]');
-        if (!existingLink) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = '/src/pages/Index/index.css'; // Ruta al archivo CSS
-            document.head.appendChild(link);
-
-            // Cuando el archivo CSS se carga correctamente, actualizamos el estado de carga
-            link.onload = () => {
-                setLoading(false);  // Cambiar el estado a false después de que se cargue el CSS
-            };
-
-            // Si el archivo CSS no se carga correctamente (en caso de error)
-            link.onerror = (error) => {
-                console.error('Error al cargar el CSS:', error);
-                setLoading(false);  // Asegúrate de quitar el estado de carga si hay un error
-            };
-        } else {
-            setLoading(false);  // Si el CSS ya está cargado, no es necesario esperar
-        }
-
-        // Cleanup: Elimina el link cuando el componente se desmonte
-        return () => {
-            const link = document.querySelector('link[href="/src/pages/Index/index.css"]');
-            if (link) {
-                document.head.removeChild(link);
-            }
-        };
     }, []);
 
     // Si estamos cargando, mostramos el indicador de carga
-    if (loading) {
-        return <div className="loading-spinner">Cargando...</div>;
-    }
     return(
         <div className="montserrat-regular">
             <div className="main-container">
@@ -93,19 +61,19 @@ function Index() {
                 <section className="notes-container">
                     <div className="notes">
                         <article className="publication">
-                            <div className="notes-icon"><img src="/src/pages/Index/img/laptop.png" alt=""/></div>
+                            <div className="notes-icon"><img src="/img/laptop.png" alt=""/></div>
                             <div className="notes-p"><strong>Fácil publicación</strong><p>Publica tus productos y servicios de forma sencilla y rápida.</p></div>
                         </article>
                         <article className="support">
-                            <div className="notes-icon"><img src="/src/pages/Index/img/headset.png" alt=""/></div>
+                            <div className="notes-icon"><img src="/img/headset.png" alt=""/></div>
                             <div className="notes-p"><strong>Soporte al emprendedor</strong><p>Ayuda personalizada para gestionar tu negocio en GROW.</p></div>
                         </article>
                         <article className="connection">
-                            <div className="notes-icon"><img src="/src/pages/Index/img/chat.png" alt=""/></div>
+                            <div className="notes-icon"><img src="/img/chat.png" alt=""/></div>
                             <div className="notes-p"><strong>Conexión directa</strong><p>Contacto de forma directa con tus emprendedores / clientes potenciales.</p></div>
                         </article>
                         <article className="pays">
-                            <div className="notes-icon"><img src="/src/pages/Index/img/introduction.png" alt=""/></div>
+                            <div className="notes-icon"><img src="/img/introduction.png" alt=""/></div>
                             <div className="notes-p"><strong>Pautas de Pago Flexibles</strong><p>Acuerda los terminos de pago que mejor se adapten a tu bolsillo.</p></div>
                         </article>
                     </div>

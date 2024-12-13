@@ -78,7 +78,7 @@ function CompanyUserProfile() {
 
   // Agregar un nuevo producto
   const handleAddProduct = () => {
-    navigate('/publicaciones/crearPublicacion');
+    navigate('/crearPublicacion');
   };
 
   // Eliminar un producto

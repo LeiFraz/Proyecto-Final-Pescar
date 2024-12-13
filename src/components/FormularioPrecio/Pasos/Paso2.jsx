@@ -108,7 +108,7 @@ const Paso2 = ({ materials, setUsedMaterials, nextStep, prevStep }) => {
                 </section>
             ))}
             </main>
-            <div className="buttons">
+            <div className={styles.buttons}>
             <button onClick={prevStep} className={styles['cancel-btn']}>Volver</button>
             <button onClick={submitUsedMaterials} className={styles['next-btn']}>Siguiente</button>
             </div>

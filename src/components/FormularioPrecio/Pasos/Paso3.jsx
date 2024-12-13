@@ -184,7 +184,7 @@ const Paso3 = ({
                     </label>
                 </section>
             </main>
-            <div className="buttons">
+            <div className={styles.buttons}>
                 <button onClick={prevStep} className={styles['cancel-btn']}>Volver</button>
                 <button className={styles['next-btn']} onClick={handleConfirmarPrecio}>Confirmar Precio</button>
             </div>

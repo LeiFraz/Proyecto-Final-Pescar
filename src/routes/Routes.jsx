@@ -37,7 +37,7 @@ export const Routes = () => {
                     element: <Publications/>
                 },
                 {
-                    path: '/publicaciones/crearPublicacion',
+                    path: '/crearPublicacion',
                     element: <Upload/>
                 },
                 {
@@ -49,7 +49,7 @@ export const Routes = () => {
                     element: <Categories/>
                 },
                 {
-                    path: '/categorias/crearCategoria',
+                    path: '/crearCategoria',
                     element: <CreateCategory/>
                 },
                 {
@@ -65,7 +65,7 @@ export const Routes = () => {
                     element: <SobreNosotros/>
                 },
                 {
-                    path:'/emprendimientos/crearEmprendimiento',
+                    path:'/crearEmprendimiento',
                     element:<CreateEntrepreneur/>
                 },
 

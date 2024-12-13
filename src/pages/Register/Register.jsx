@@ -95,7 +95,7 @@ const Register = () => {
             </div>
             <div className={style.sideSection}>
                 <div className={style.icon}>
-                    <img src="src\pages\Register\logo_slogan_verde (1).png" alt="Icono"/>
+                    <img src="img/logo_slogan_verde.png" alt="Icono"/>
                 </div>
             </div>
         </div>

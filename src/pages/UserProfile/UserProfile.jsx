@@ -50,7 +50,7 @@ useEffect(() => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/emprendimientos/crearEmprendimiento");
+    navigate("/crearEmprendimiento");
   };
   const paginaEmprendimiento = () =>{
     navigate(`/emprendimiento?emprendimiento=${id_emprendimiento}`);
